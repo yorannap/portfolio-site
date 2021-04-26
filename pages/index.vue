@@ -33,6 +33,18 @@
 <script>
 
 export default {
+  data() {
+    return {
+      lmS: null
+    };
+  },
+  mounted() {
+    this.lmS = new this.locomotiveScroll({
+      el: document.querySelector("#projects"),
+      smooth: true
+    });
+      console.log(this.lmS);
+  }
 }
 </script>
 
@@ -48,6 +60,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 20px;
+  overscroll-behavior: none;
 }
 
 .container {
@@ -57,6 +70,8 @@ body {
 }
 
 header {
+  position: fixed;
+  width: 100vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -71,7 +86,7 @@ header {
   width: 100vw;
   height: 100vh;
   text-align: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   font-size: 230px!important;
   line-height: 0.85em;
@@ -83,6 +98,10 @@ header {
 
 #projects {
   z-index: 5;
+  width: 94%;
+  overflow: scroll;
+  height: 100vh;
+  margin: auto;
 }
 
 .project-image {
