@@ -5,12 +5,19 @@
         <p>yorannap</p>
       </div>
     </header>
-    <div id="projects" data-scroll-container>
+    <div id="projects">
       <div class="featured-project">
         <p class="kicker">Graphic design</p>
         <h2 class="project-title">Wellington Posters</h2>
         <div class="project-image">
-          <img src="../static/wellington.jpg" alt="Wellington Posters">
+          <img src="../static/wellington.jpg" alt="Wellington Posters" />
+        </div>
+      </div>
+      <div class="featured-project">
+        <p class="kicker">Graphic design</p>
+        <h2 class="project-title">Wellington Posters</h2>
+        <div class="project-image">
+          <img src="../static/wellington.jpg" alt="Wellington Posters" />
         </div>
       </div>
     </div>
