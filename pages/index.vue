@@ -6,19 +6,17 @@
       </div>
     </header>
     <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" v-for="projects in projectNo" :key="projects">
-        <div class="project-title">
+      <div class="featured-project" data-scroll :data-scroll-section="projects" v-for="projects in projectNo" :key="projects">
+        <div class="project-header">
           <p class="kicker" data-scroll data-scroll-speed="2">Graphic design</p>
-          <h2 class="project-image-title-1" data-scroll data-scroll-speed="3">Wellington Posters</h2>
+          <h2 class="project-title-1" data-scroll data-scroll-speed="3">Wellington Posters</h2>
         </div>
-        <div class="project-image-title-2" style="clip-path: inset(110px 0 0 0);">
-          <h2>Wellington Posters</h2>
+        <div class="ghost-container">
+          <h2 class="project-title-2" data-scroll data-scroll-speed="3" data-scroll-delay="0.15">Wellington Posters</h2>
         </div>
-        <button class="wrapper">
-          <div class="project-image">
-            <div></div>
-          </div>
-        </button>
+        <div class="project-image-container">
+          <div></div>
+        </div>
       </div>
     </div>
     <div class="background-text">
@@ -32,48 +30,74 @@
 
 <script>
 import gsap from 'gsap';
-
 export default {
   data() {
     return {
       lmS: null,
-      projectNo: [1, 1, 1, 1]
+      projectNo: ['project-1', 'project-2', 'project-3', 'project-4', 'project-5'],
+      elementProps: {
+        firstProjectTitle1: {
+          location: null
+        },
+        secondProjectTitle1: {
+          location: null
+        },
+        firstImage: {
+          location: null
+        },
+        secondImage: {
+          location: null
+        }
+      }
     };
   },
   methods: {
     loco(e) {
       this.lmS.update();
-      //console.log(this.lmS.el.firstChild.firstChild);
-      //console.log(this.lmS.el.firstChild.firstChild.offsetTop);
-      //console.log(this.lmS.el.firstChild.firstChild.getBoundingClientRect());
-      //console.log(this.lmS.el.firstChild.firstChild.getBoundingClientRect().top);
-      let imageText = document.querySelector('.project-image-title-1');
-      let projectContainer = document.querySelector('.featured-project').getBoundingClientRect().top;
-      let imageText2 = document.querySelector('.project-image-title-2').getBoundingClientRect().top;
-      let imageLocation = imageText.getBoundingClientRect().top
-      //let imageLocation = imageText.offsetTop;
-      let imageCords = Math.round(imageLocation)
-      imageText.style.top = imageCords;
 
-      let windowHeight = window.innerHeight;
+      let firstProjectTitle1 = document.querySelectorAll(".project-title-1.is-inview")[0];
+      let secondProjectTitle1 = document.querySelectorAll(".project-title-1.is-inview")[1];
+      let firstProjectTitle2 = document.querySelectorAll(".project-title-2.is-inview")[0];
+      let secondProjectTitle2 = document.querySelectorAll(".project-title-2.is-inview")[1];
+
+      //firstProjectTitle1.style.border = "1px solid green"
+
+      //gsap.to(firstProjectTitle2, {y: this.elementProps.firstProjectTitle1.location.y, ease: "InOut", duration: 0.2});
+
+
+      /* if(secondProjectTitle1) {
+        secondProjectTitle1.style.border = "1px solid orange"
+        this.elementProps.secondProjectTitle1.location = secondProjectTitle1 ? secondProjectTitle1.getBoundingClientRect() : null;
+        gsap.to(secondProjectTitle2, {y: this.elementProps.secondProjectTitle1.location.y - projectContainer2s - 189, ease: "InOut", duration: 0.2});
+      } */
+
+
+
+      /* let imageText = document.querySelector('.project-title-1');
+      let projectContainer = document.querySelector('.featured-project').getBoundingClientRect().top;
+      let imageText2 = document.querySelector('.project-title-2').getBoundingClientRect().top;
+      let imageLocation = imageText.getBoundingClientRect().top */
+      //let imageLocation = imageText.offsetTop;
+      /* let imageCords = Math.round(imageLocation) */
+      /* imageText.style.top = imageCords; */
+      
+
       function map_range(value, low1, high1, low2, high2) {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
       }
-      if (e != undefined) {
+      /* if (e != undefined) {
         let remapX = map_range(e.clientX, 0, windowHeight, -30, 30);
         let remapY = map_range(e.clientY, 0, windowHeight, -30, 30);
-        gsap.to("button.wrapper", {x: remapX, y: remapY, ease: "Out", duration: 1});
-        gsap.to("button.wrapper div", {x: -remapX/10, y: -remapY/10, ease: "Out", duration: 0.5});
-      }
-      gsap.to(".project-image-title-2 h2", {y: imageCords - projectContainer, ease: "InOut", duration: 0.2});
-      // gsap.to(".project-image", {rotate: remap, ease: "InOut", duration: 0.07});
-      // gsap.to(".project-image-title-2", {rotate: -remap, ease: "InOut", duration: 0.1});
+        //gsap.to("button.wrapper", {x: remapX, y: remapY, ease: "Out", duration: 1});
+        //gsap.to("button.wrapper div", {x: -remapX/10, y: -remapY/10, ease: "Out", duration: 0.5});
+      } */
     }
   },
   mounted() {
     this.lmS = new this.locomotiveScroll({
       el: document.querySelector("#projects"),
-      smooth: true
+      smooth: true,
+      repeat: true
     });
     this.loco();
   }
@@ -146,12 +170,7 @@ header {
   position: absolute;
 }
 
-.project-image {
-  width: 100%;
-  height: 100%;
-}
-
-.project-image div {
+.project-image-container div {
   background: url('~assets/wellington.jpg');
   position: absolute;
   top: 0;
@@ -162,7 +181,7 @@ header {
   background-position: 50% 50%;
 }
 
-.kicker, .project-title {
+.kicker, .project-header {
   text-align: center;
 }
 
@@ -170,6 +189,7 @@ header {
   position: relative;
   width: 100%;
   height: 100%;
+  padding-top: 25vh;
 }
 
 .kicker {
@@ -180,7 +200,7 @@ header {
   width: 100%;
 }
 
-.project-title {
+.project-header {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -189,44 +209,46 @@ header {
   line-height: 1em;
 }
 
-#projects .featured-project:first-child {
-  margin-top: 50vh;
-}
-
-button.wrapper {
-  margin-top: 100px;
-  font-size: 80px;
-  position: absolute;
-  padding: 0;
-  left: 50%;
+.project-image-container,
+.ghost-container {
   max-width: 600px;
   max-height: 400px;
   width: 100%;
   height: 100%;
-  background-color: transparent;
-  cursor: pointer;
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
-  border: 10px solid white;
   border-radius: 20px;
   overflow: hidden;
+  position: absolute;
 }
 
-.project-image-title-1 {
+.project-image-container {
+  border: 10px solid white;
+  margin-top: 100px;
+  z-index: 1;
+}
+
+.ghost-container {
+  /* max-width: 700px!important; */
+  clip-path: inset(110px 0 0 0);
+  z-index: 2;
+}
+
+.project-title-1,
+.project-title-2 {
   margin-top: 0.5em;
 }
 
-.project-image-title-2 {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  max-width: 600px;
+.project-title-2 {
   width: 100%;
-  height: 100%;
   color: rgb(245, 206, 78);
   position: absolute;
   text-align: center;
   line-height: 1;
   z-index: 2;
 }
+
+/* [data-scroll-section] {
+    border: 1px solid red;
+} */
 </style>
