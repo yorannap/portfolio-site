@@ -7,15 +7,15 @@
     </header>
     <div @scroll="loco" id="projects" data-scroll-container>
       <div class="featured-project" data-scroll :data-scroll-section="projects" v-for="projects in projectNo" :key="projects">
+        <p class="kicker" data-scroll>Graphic design</p>
         <div class="project-header">
-          <p class="kicker" data-scroll data-scroll-speed="2">Graphic design</p>
-          <h2 class="project-title-1" data-scroll data-scroll-speed="3">Wellington Posters</h2>
+          <h2 class="project-title-1 project-titles" data-scroll>Wellington Posters</h2>
         </div>
         <div class="ghost-container">
-          <h2 class="project-title-2" data-scroll data-scroll-speed="3" data-scroll-delay="0.15">Wellington Posters</h2>
-        </div>
-        <div class="project-image-container">
-          <div></div>
+          <div class="project-image"></div>
+          <div class="ghost-wrapper">
+            <h2 class="project-title-2 project-titles" data-scroll>Wellington Posters</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -54,17 +54,51 @@ export default {
   methods: {
     loco(e) {
       this.lmS.update();
+      let animDuration = 2;
+      let titleOffsetY = 500;
+      let ease = "power2.out";
+      let mouseX;
+      let mouseY;
 
-      let firstProjectTitle1 = document.querySelectorAll(".project-title-1.is-inview")[0];
-      let secondProjectTitle1 = document.querySelectorAll(".project-title-1.is-inview")[1];
-      let firstProjectTitle2 = document.querySelectorAll(".project-title-2.is-inview")[0];
-      let secondProjectTitle2 = document.querySelectorAll(".project-title-2.is-inview")[1];
+      let firstProject = document.querySelectorAll(".featured-project.is-inview")[0];
+      let secondProject = document.querySelectorAll(".featured-project.is-inview")[1];
 
-      //firstProjectTitle1.style.border = "1px solid green"
+      let firstTitles = firstProject.querySelectorAll(".project-titles");
+      let secondTitles = secondProject.querySelectorAll(".project-titles");
 
-      //gsap.to(firstProjectTitle2, {y: this.elementProps.firstProjectTitle1.location.y, ease: "InOut", duration: 0.2});
+      let firstGhostWrapper = firstProject.querySelector(".ghost-wrapper");
+      let firstGhostContainer = firstProject.querySelector(".ghost-container");
 
+      let secondGhostWrapper = secondProject.querySelector(".ghost-wrapper");
+      let secondGhostContainer = secondProject.querySelector(".ghost-container");
 
+      if (e != undefined) {
+        mouseX = map_range(e.clientX, 0, window.innerWidth, -30, 30);
+        mouseY = map_range(e.clientY, 0, window.innerHeight, -30, 30);
+        // console.log(mouseX, mouseY)
+      }
+
+      if(firstProject) {
+        let rotate = map_range(firstTitles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
+        let position = map_range(firstTitles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -50, 50);
+
+        gsap.to(firstTitles, {y: position + mouseY, x: mouseX, ease: ease, duration: animDuration});
+        gsap.to(firstGhostWrapper, {rotate: -rotate, ease: ease, duration: animDuration});
+        gsap.to(firstGhostContainer, {y: mouseY, x: mouseX, rotate: rotate, ease: ease, duration: animDuration});
+      }
+
+      if(secondTitles) {
+        let rotate2 = map_range(secondTitles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
+        let position2 = map_range(secondTitles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -50, 50);
+
+        gsap.to(secondTitles, {y: position2, ease: ease, duration: animDuration});
+        gsap.to(secondGhostWrapper, {rotate: -rotate2, ease: ease, duration: animDuration});
+        gsap.to(secondGhostContainer, {rotate: rotate2, ease: ease, duration: animDuration});
+      }
+
+      function map_range(value, low1, high1, low2, high2) {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+      }
       /* if(secondProjectTitle1) {
         secondProjectTitle1.style.border = "1px solid orange"
         this.elementProps.secondProjectTitle1.location = secondProjectTitle1 ? secondProjectTitle1.getBoundingClientRect() : null;
@@ -82,9 +116,6 @@ export default {
       /* imageText.style.top = imageCords; */
       
 
-      function map_range(value, low1, high1, low2, high2) {
-        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-      }
       /* if (e != undefined) {
         let remapX = map_range(e.clientX, 0, windowHeight, -30, 30);
         let remapY = map_range(e.clientY, 0, windowHeight, -30, 30);
@@ -170,17 +201,6 @@ header {
   position: absolute;
 }
 
-.project-image-container div {
-  background: url('~assets/wellington.jpg');
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
 .kicker, .project-header {
   text-align: center;
 }
@@ -189,7 +209,6 @@ header {
   position: relative;
   width: 100%;
   height: 100%;
-  padding-top: 25vh;
 }
 
 .kicker {
@@ -210,28 +229,37 @@ header {
 }
 
 .project-image-container,
-.ghost-container {
-  max-width: 600px;
-  max-height: 400px;
+.ghost-container, 
+.ghost-wrapper, 
+.project-header {
+  max-width: 500px;
+  max-height: 350px;
   width: 100%;
   height: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  border-radius: 20px;
-  overflow: hidden;
+  top: 50%;
+  transform: translate(-50%, -50%);
   position: absolute;
 }
 
-.project-image-container {
-  border: 10px solid white;
-  margin-top: 100px;
-  z-index: 1;
+.project-image {
+  background: url('~assets/wellington.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
 .ghost-container {
-  /* max-width: 700px!important; */
-  clip-path: inset(110px 0 0 0);
+  /* clip-path: inset(110px 0 0 0); */
   z-index: 2;
+  border: 10px solid white;
+  border-radius: 20px;
+  box-sizing: content-box;
+  overflow: hidden;
 }
 
 .project-title-1,
