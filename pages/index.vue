@@ -35,19 +35,25 @@ export default {
     return {
       lmS: null,
       projectNo: ['project-1', 'project-2', 'project-3', 'project-4', 'project-5'],
-      elementProps: {
-        firstProjectTitle1: {
-          location: null
-        },
-        secondProjectTitle1: {
-          location: null
-        },
-        firstImage: {
-          location: null
-        },
-        secondImage: {
-          location: null
-        }
+      mouseOffset: {
+        x: 0,
+        y: 0
+      },
+      windowHeight: null,
+      windowWidth: null,
+      currentProject: null,
+      projectChange: true,
+      firstProject: {
+        section: null,
+        titles: null,
+        wrapper: null,
+        container: null
+      },
+      secondProject: {
+        section: null,
+        titles: null,
+        wrapper: null,
+        container: null
       }
     };
   },
@@ -55,73 +61,92 @@ export default {
     loco(e) {
       this.lmS.update();
       let animDuration = 2;
-      let titleOffsetY = 500;
-      let ease = "power2.out";
-      let mouseX;
-      let mouseY;
+      let titleOffsetY = 700;
+      let ease = "out";
 
-      let firstProject = document.querySelectorAll(".featured-project.is-inview")[0];
-      let secondProject = document.querySelectorAll(".featured-project.is-inview")[1];
+      this.windowHeight = window.innerHeight;
+      this.windowWidth = window.innerWidth;
 
-      let firstTitles = firstProject.querySelectorAll(".project-titles");
-      let secondTitles = secondProject.querySelectorAll(".project-titles");
+      this.firstProject.section = document.querySelectorAll(".featured-project.is-inview")[0];
+      this.secondProject.section = document.querySelectorAll(".featured-project.is-inview")[1];
 
-      let firstGhostWrapper = firstProject.querySelector(".ghost-wrapper");
-      let firstGhostContainer = firstProject.querySelector(".ghost-container");
-
-      let secondGhostWrapper = secondProject.querySelector(".ghost-wrapper");
-      let secondGhostContainer = secondProject.querySelector(".ghost-container");
-
-      if (e != undefined) {
-        mouseX = map_range(e.clientX, 0, window.innerWidth, -30, 30);
-        mouseY = map_range(e.clientY, 0, window.innerHeight, -30, 30);
-        // console.log(mouseX, mouseY)
+      // check for project change
+      if(this.currentProject !== this.firstProject.section) {
+        this.projectChange = true;
+        this.currentProject = this.firstProject.section;
+      }
+      else {
+        this.projectChange = false;
       }
 
-      if(firstProject) {
-        let rotate = map_range(firstTitles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
-        let position = map_range(firstTitles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -50, 50);
-
-        gsap.to(firstTitles, {y: position + mouseY, x: mouseX, ease: ease, duration: animDuration});
-        gsap.to(firstGhostWrapper, {rotate: -rotate, ease: ease, duration: animDuration});
-        gsap.to(firstGhostContainer, {y: mouseY, x: mouseX, rotate: rotate, ease: ease, duration: animDuration});
+      // reselect elements on project change
+      if(this.projectChange) {
+        this.firstProject.titles = this.firstProject.section.querySelectorAll(".project-titles");
+        this.secondProject.titles = this.secondProject.section.querySelectorAll(".project-titles");
+  
+        this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
+        this.secondProject.wrapper = this.secondProject.section.querySelector(".ghost-wrapper");
+  
+        this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
+        this.secondProject.container = this.secondProject.section.querySelector(".ghost-container");
       }
 
-      if(secondTitles) {
-        let rotate2 = map_range(secondTitles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
-        let position2 = map_range(secondTitles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -50, 50);
-
-        gsap.to(secondTitles, {y: position2, ease: ease, duration: animDuration});
-        gsap.to(secondGhostWrapper, {rotate: -rotate2, ease: ease, duration: animDuration});
-        gsap.to(secondGhostContainer, {rotate: rotate2, ease: ease, duration: animDuration});
+      // if mousemove then set new co-ordinates and offset
+      if (e.type === 'mousemove') {
+        let mouseLocationX = e.clientX;
+        let mouseLocationY = e.clientY;
+        this.mouseOffset.x = this.mapRange(mouseLocationX, 0, this.windowHeight, -10, 10);
+        this.mouseOffset.y = this.mapRange(mouseLocationY, 0, this.windowWidth, -10, 10);
       }
 
-      function map_range(value, low1, high1, low2, high2) {
+      if(this.firstProject.section) {
+        let rotate = this.mapRange(this.firstProject.titles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
+        let position = this.mapRange(this.firstProject.titles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -30, 30);
+
+        gsap.to(this.firstProject.titles, {
+          y: position -this.mouseOffset.y, 
+          x: -this.mouseOffset.x, 
+          ease: ease, 
+          duration: animDuration});
+        gsap.to(this.firstProject.wrapper, {
+          y: -this.mouseOffset.y, 
+          x: -this.mouseOffset.x, 
+          rotate: -rotate, 
+          ease: ease, 
+          duration: animDuration});
+        gsap.to(this.firstProject.container, {
+          y: this.mouseOffset.y, 
+          x: this.mouseOffset.x,
+          rotate: rotate, 
+          ease: ease, 
+          duration: animDuration / 1.2});
+      }
+
+      if(this.secondProject.section) {
+        let rotate2 = this.mapRange(this.secondProject.titles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
+        let position2 = this.mapRange(this.secondProject.titles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -30, 30);
+
+        gsap.to(this.secondProject.titles, {
+          y: position2 -this.mouseOffset.y, 
+          x: -this.mouseOffset.x,
+          ease: ease, 
+          duration: animDuration});
+        gsap.to(this.secondProject.wrapper, {
+          y: -this.mouseOffset.y, 
+          x: -this.mouseOffset.x,
+          rotate: -rotate2, 
+          ease: ease, 
+          duration: animDuration});
+        gsap.to(this.secondProject.container, {
+          y: this.mouseOffset.y, 
+          x: this.mouseOffset.x,
+          rotate: rotate2, 
+          ease: ease, 
+          duration: animDuration / 1.2});
+      }
+    },
+    mapRange(value, low1, high1, low2, high2) {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-      }
-      /* if(secondProjectTitle1) {
-        secondProjectTitle1.style.border = "1px solid orange"
-        this.elementProps.secondProjectTitle1.location = secondProjectTitle1 ? secondProjectTitle1.getBoundingClientRect() : null;
-        gsap.to(secondProjectTitle2, {y: this.elementProps.secondProjectTitle1.location.y - projectContainer2s - 189, ease: "InOut", duration: 0.2});
-      } */
-
-
-
-      /* let imageText = document.querySelector('.project-title-1');
-      let projectContainer = document.querySelector('.featured-project').getBoundingClientRect().top;
-      let imageText2 = document.querySelector('.project-title-2').getBoundingClientRect().top;
-      let imageLocation = imageText.getBoundingClientRect().top */
-      //let imageLocation = imageText.offsetTop;
-      /* let imageCords = Math.round(imageLocation) */
-      /* imageText.style.top = imageCords; */
-      
-
-      /* if (e != undefined) {
-        let remapX = map_range(e.clientX, 0, windowHeight, -30, 30);
-        let remapY = map_range(e.clientY, 0, windowHeight, -30, 30);
-        //gsap.to("button.wrapper", {x: remapX, y: remapY, ease: "Out", duration: 1});
-        //gsap.to("button.wrapper div", {x: -remapX/10, y: -remapY/10, ease: "Out", duration: 0.5});
-      } */
     }
   },
   mounted() {
@@ -130,7 +155,7 @@ export default {
       smooth: true,
       repeat: true
     });
-    this.loco();
+    //this.loco();
   }
 }
 </script>
@@ -264,7 +289,10 @@ header {
 
 .project-title-1,
 .project-title-2 {
-  margin-top: 0.5em;
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .project-title-2 {
