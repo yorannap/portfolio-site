@@ -6,15 +6,15 @@
       </div>
     </header>
     <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" data-scroll :data-scroll-section="projects" v-for="projects in projectNo" :key="projects">
-        <p class="kicker" data-scroll>Graphic design</p>
+      <div class="featured-project" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
+        <p class="kicker" data-scroll>{{project.kicker}}</p>
         <div class="project-header">
-          <h2 class="project-title-1 project-titles" data-scroll>Wellington Posters</h2>
+          <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
         </div>
         <div class="ghost-container">
-          <div class="project-image"></div>
+          <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
           <div class="ghost-wrapper">
-            <h2 class="project-title-2 project-titles" data-scroll>Wellington Posters</h2>
+            <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
           </div>
         </div>
       </div>
@@ -30,11 +30,50 @@
 
 <script>
 import gsap from 'gsap';
+import imageWellington from '~/assets/wellington.jpg'
+import imagePanda from '~/assets/panda.jpg'
 export default {
   data() {
     return {
       lmS: null,
-      projectNo: ['project-1', 'project-2', 'project-3', 'project-4', 'project-5'],
+      projectNo: ['project-1', 'project-1', 'project-1', 'project-1', 'project-1'],
+      projects: [
+        {
+          id: 'project-1',
+          kicker: 'graphic design',
+          title: 'Wellington Posters',
+          image: imageWellington,
+          textColour: '#f5ce4e'
+        },
+        {
+          id: 'project-2',
+          kicker: 'ui & web design',
+          title: 'The Red Panda Project',
+          image: imagePanda,
+          textColour: '#E6C1B1'
+        },
+        {
+          id: 'project-3',
+          kicker: 'graphic design',
+          title: 'Wellington Posters',
+          image: imageWellington,
+          textColour: '#f5ce4e'
+        },
+        {
+          id: 'project-4',
+          kicker: 'ui & web design',
+          title: 'The Red Panda Project',
+          image: imagePanda,
+          textColour: '#E6C1B1'
+        },
+        {
+          id: 'project-5',
+          kicker: 'graphic design',
+          title: 'Wellington Posters',
+          image: imageWellington,
+          textColour: '#f5ce4e'
+        }
+      ],
       mouseOffset: {
         x: 0,
         y: 0
@@ -44,14 +83,18 @@ export default {
       currentProject: null,
       projectChange: true,
       firstProject: {
+        y: null,
         section: null,
+        kicker: null,
         titles: null,
         wrapper: null,
         container: null
       },
       secondProject: {
+        y: null,
         section: null,
         titles: null,
+        kicker: null,
         wrapper: null,
         container: null
       }
@@ -59,16 +102,18 @@ export default {
   },
   methods: {
     loco(e) {
+      // update locomotive
       this.lmS.update();
-      let animDuration = 2;
-      let titleOffsetY = 700;
-      let ease = "out";
+      let animDuration = 1;
+      let ease = "inOut";
 
+      // set state
       this.windowHeight = window.innerHeight;
       this.windowWidth = window.innerWidth;
-
       this.firstProject.section = document.querySelectorAll(".featured-project.is-inview")[0];
       this.secondProject.section = document.querySelectorAll(".featured-project.is-inview")[1];
+      this.firstProject.y = this.firstProject.section.getBoundingClientRect().y;
+      this.secondProject.y = this.secondProject.section.getBoundingClientRect().y;
 
       // check for project change
       if(this.currentProject !== this.firstProject.section) {
@@ -81,14 +126,18 @@ export default {
 
       // reselect elements on project change
       if(this.projectChange) {
-        this.firstProject.titles = this.firstProject.section.querySelectorAll(".project-titles");
-        this.secondProject.titles = this.secondProject.section.querySelectorAll(".project-titles");
-  
-        this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
-        this.secondProject.wrapper = this.secondProject.section.querySelector(".ghost-wrapper");
-  
-        this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
-        this.secondProject.container = this.secondProject.section.querySelector(".ghost-container");
+        if(this.firstProject.section !== undefined) {
+          this.firstProject.titles = this.firstProject.section.querySelectorAll(".project-titles");
+          this.firstProject.kicker = this.firstProject.section.querySelectorAll(".kicker");
+          this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
+          this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
+        }
+        if(this.secondProject.section !== undefined) {
+          this.secondProject.titles = this.secondProject.section.querySelectorAll(".project-titles");
+          this.secondProject.kicker = this.secondProject.section.querySelectorAll(".kicker");
+          this.secondProject.wrapper = this.secondProject.section.querySelector(".ghost-wrapper");
+          this.secondProject.container = this.secondProject.section.querySelector(".ghost-container");
+        }
       }
 
       // if mousemove then set new co-ordinates and offset
@@ -99,50 +148,74 @@ export default {
         this.mouseOffset.y = this.mapRange(mouseLocationY, 0, this.windowWidth, -10, 10);
       }
 
-      if(this.firstProject.section) {
-        let rotate = this.mapRange(this.firstProject.titles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
-        let position = this.mapRange(this.firstProject.titles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -30, 30);
+      // animate first project
+      if(this.firstProject.section !== undefined) {
+        let rotate = this.mapRange(this.firstProject.y, 0, window.innerHeight, -10, 10);
+        let position = this.mapRange(this.firstProject.y, 0, window.innerHeight, -120, 100);
+        let scale = this.mapRange(this.firstProject.y, 0, window.innerHeight / 2, 0.98, 0.96);
 
         gsap.to(this.firstProject.titles, {
           y: position -this.mouseOffset.y, 
           x: -this.mouseOffset.x, 
           ease: ease, 
           duration: animDuration});
+
+        gsap.to(this.firstProject.kicker, {
+          y: (position * 0.9) - (this.mouseOffset.y * 1.2), 
+          x: -this.mouseOffset.x * 1.2,
+          ease: ease, 
+          duration: animDuration});
+
         gsap.to(this.firstProject.wrapper, {
           y: -this.mouseOffset.y, 
           x: -this.mouseOffset.x, 
           rotate: -rotate, 
+          scale: 1 / scale,
           ease: ease, 
           duration: animDuration});
+
         gsap.to(this.firstProject.container, {
           y: this.mouseOffset.y, 
           x: this.mouseOffset.x,
           rotate: rotate, 
+          scale: scale,
           ease: ease, 
-          duration: animDuration / 1.2});
+          duration: animDuration});
       }
 
-      if(this.secondProject.section) {
-        let rotate2 = this.mapRange(this.secondProject.titles[0].getBoundingClientRect().y, 0, window.innerHeight, -10, 10);
-        let position2 = this.mapRange(this.secondProject.titles[0].getBoundingClientRect().y - titleOffsetY, 0, window.innerHeight, -30, 30);
+      // animate second project
+      if(this.secondProject.section !== undefined) {
+        let rotate2 = this.mapRange(this.secondProject.y, 0, window.innerHeight, -10, 10);
+        let position2 = this.mapRange(this.secondProject.y, 0, window.innerHeight, -120, 100);
+        let scale2 = this.mapRange(this.secondProject.y, 0, window.innerHeight / 2, 1.0, 0.90);
 
         gsap.to(this.secondProject.titles, {
           y: position2 -this.mouseOffset.y, 
           x: -this.mouseOffset.x,
           ease: ease, 
           duration: animDuration});
+
+        gsap.to(this.secondProject.kicker, {
+          y: (position2 * 0.9) - (this.mouseOffset.y * 1.2), 
+          x: -this.mouseOffset.x * 1.2,
+          ease: ease, 
+          duration: animDuration});
+
         gsap.to(this.secondProject.wrapper, {
           y: -this.mouseOffset.y, 
           x: -this.mouseOffset.x,
           rotate: -rotate2, 
+          scale: 1 / scale2,
           ease: ease, 
           duration: animDuration});
+          
         gsap.to(this.secondProject.container, {
           y: this.mouseOffset.y, 
           x: this.mouseOffset.x,
+          scale: scale2,
           rotate: rotate2, 
           ease: ease, 
-          duration: animDuration / 1.2});
+          duration: animDuration});
       }
     },
     mapRange(value, low1, high1, low2, high2) {
@@ -242,6 +315,7 @@ header {
   text-transform: lowercase;
   position: absolute;
   width: 100%;
+  margin-top: 6%;
 }
 
 .project-header {
@@ -258,7 +332,7 @@ header {
 .ghost-wrapper, 
 .project-header {
   max-width: 500px;
-  max-height: 350px;
+  max-height: 400px;
   width: 100%;
   height: 100%;
   left: 50%;
@@ -268,13 +342,14 @@ header {
 }
 
 .project-image {
-  background: url('~assets/wellington.jpg');
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
+  background-size: contain;
+  background-size: 170%;
+  background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
@@ -282,13 +357,15 @@ header {
   /* clip-path: inset(110px 0 0 0); */
   z-index: 2;
   border: 10px solid white;
-  border-radius: 20px;
+  border-radius: 25px;
   box-sizing: content-box;
   overflow: hidden;
+  box-shadow: 0px 8px 30px #e0d8cf;
 }
 
 .project-title-1,
 .project-title-2 {
+  margin-top: -0.25em;
   cursor: default;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -297,14 +374,20 @@ header {
 
 .project-title-2 {
   width: 100%;
-  color: rgb(245, 206, 78);
   position: absolute;
   text-align: center;
   line-height: 1;
   z-index: 2;
 }
 
-/* [data-scroll-section] {
-    border: 1px solid red;
+.kicker,
+.project-titles,
+.ghost-container,
+.ghost-wrapper {
+  will-change: transform;
+}
+
+/* #projects .featured-project:first-child {
+  margin-top: 13vh;
 } */
 </style>
