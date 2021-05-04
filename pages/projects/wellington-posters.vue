@@ -25,9 +25,13 @@
 
 <script>
 import gsap from 'gsap';
+import { mapGetters } from 'vuex'
 import imageWellington from '~/assets/wellington.jpg'
 
 export default {
+  computed: {
+    ...mapGetters(['clickedProject'])
+  },
   data() {
     return {
       lmS: null,
@@ -142,6 +146,19 @@ export default {
     },
     mapRange(value, low1, high1, low2, high2) {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+    }
+  },
+  transition: {
+    name: 'project',
+    mode: 'out-in',
+    enter(el, done) {
+      let ghostContainer = el.querySelectorAll('.ghost-container');
+      gsap.from(ghostContainer, {
+        rotate: this.clickedProject.rotation,
+        ease: this.ease, 
+        duration: 1,
+        onComplete: done
+      });
     }
   },
   mounted() {

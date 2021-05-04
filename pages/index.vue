@@ -1,7 +1,7 @@
 <template>
   <div @mousemove="loco">
     <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
+      <div class="featured-project" @click="updateClickedProject(project.id)" :class="project.id" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
         <p class="kicker" data-scroll>{{project.kicker}}</p>
         <nuxt-link :to="project.link">
           <div class="project-header">
@@ -27,10 +27,15 @@
 
 <script>
 import gsap from 'gsap';
+import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import imageWellington from '~/assets/wellington.jpg'
 import imagePanda from '~/assets/panda.jpg'
 
 export default {
+  computed: {
+    ...mapGetters(['clickedProject'])
+  },
   data() {
     return {
       lmS: null,
@@ -81,6 +86,8 @@ export default {
         x: 0,
         y: 0
       },
+      animDuration: 0.5,
+      ease: 'inOut',
       windowHeight: null,
       windowWidth: null,
       currentProject: null,
@@ -104,11 +111,10 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['updateClickedProject']),
     loco(e) {
       // update locomotive
       this.lmS.update();
-      let animDuration = 0.5;
-      let ease = "inOut";
 
       // set state
       this.windowHeight = window.innerHeight;
@@ -159,30 +165,30 @@ export default {
         gsap.to(this.firstProject.titles, {
           y: position -this.mouseOffset.y, 
           x: -this.mouseOffset.x, 
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
 
         gsap.to(this.firstProject.kicker, {
           y: (position * 0.9) - (this.mouseOffset.y * 1.2), 
           x: -this.mouseOffset.x * 1.2,
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
 
         gsap.to(this.firstProject.wrapper, {
           y: -this.mouseOffset.y, 
           x: -this.mouseOffset.x, 
           rotate: -rotate, 
           scale: 1 / scale,
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
 
         gsap.to(this.firstProject.container, {
           y: this.mouseOffset.y, 
           x: this.mouseOffset.x,
           rotate: rotate, 
           scale: scale,
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
       }
 
       // animate second project
@@ -195,34 +201,50 @@ export default {
         gsap.to(this.secondProject.titles, {
           y: position2 -this.mouseOffset.y, 
           x: -this.mouseOffset.x,
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
 
         gsap.to(this.secondProject.kicker, {
           y: (position2 * 0.9) - (this.mouseOffset.y * 1.2), 
           x: -this.mouseOffset.x * 1.2,
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
 
         gsap.to(this.secondProject.wrapper, {
           y: -this.mouseOffset.y, 
           x: -this.mouseOffset.x,
           rotate: -rotate2, 
           scale: 1 / scale2,
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
           
         gsap.to(this.secondProject.container, {
           y: this.mouseOffset.y, 
           x: this.mouseOffset.x,
           scale: scale2,
           rotate: rotate2, 
-          ease: ease, 
-          duration: animDuration});
+          ease: this.ease, 
+          duration: this.animDuration});
       }
     },
     mapRange(value, low1, high1, low2, high2) {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+    }
+  },
+  transition: {
+    name: 'home',
+    mode: 'out-in',
+    leave(el, done) {
+      let projectTitles = el.querySelectorAll('.project-titles');
+      let projectKickers = el.querySelectorAll('.kicker');
+      let backgroundText = el.querySelectorAll('.background-text');
+      console.log(el)
+      gsap.to([projectTitles, projectKickers, backgroundText], {
+        opacity: 0,
+        ease: this.ease, 
+        duration: 1,
+        onComplete: done
+      });
     }
   },
   mounted() {
