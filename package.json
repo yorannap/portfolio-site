@@ -14,5 +14,7 @@
     "locomotive-scroll": "^4.1.1",
     "nuxt": "^2.15.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/color-mode": "^2.0.5"
+  }
 }

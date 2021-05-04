@@ -1,9 +1,8 @@
 <template>
   <div @mousemove="loco">
     <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
+      <div class="featured-project" data-scroll :data-scroll-section="project.id">
         <p class="kicker" data-scroll>{{project.kicker}}</p>
-        <nuxt-link :to="project.link">
           <div class="project-header">
             <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
           </div>
@@ -13,14 +12,13 @@
               <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
             </div>
           </div>
-        </nuxt-link>
       </div>
-    </div>
-    <div class="background-text">
-      <h1>
-        Curated
-        Projects
-      </h1>
+      <div class="project-content">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
+        <img :src="project.image" alt="" srcset="">
+      </div>
     </div>
   </div>
 </template>
@@ -28,55 +26,19 @@
 <script>
 import gsap from 'gsap';
 import imageWellington from '~/assets/wellington.jpg'
-import imagePanda from '~/assets/panda.jpg'
 
 export default {
   data() {
     return {
       lmS: null,
-      projectNo: ['project-1', 'project-1', 'project-1', 'project-1', 'project-1'],
-      projects: [
-        {
-          id: 'project-1',
-          kicker: 'graphic design',
-          title: 'Wellington Posters',
-          link: '/projects/wellington-posters',
-          image: imageWellington,
-          textColour: '#f5ce4e'
-        },
-        {
-          id: 'project-2',
-          kicker: 'ui & web design',
-          title: 'The Red Panda Project',
-          link: '/projects/red-panda-project',
-          image: imagePanda,
-          textColour: '#E6C1B1'
-        },
-        {
-          id: 'project-3',
-          kicker: 'graphic design',
-          title: 'Wellington Posters',
-          link: '/projects/wellington-posters',
-          image: imageWellington,
-          textColour: '#f5ce4e'
-        },
-        {
-          id: 'project-4',
-          kicker: 'ui & web design',
-          title: 'The Red Panda Project',
-          link: '/projects/red-panda-project',
-          image: imagePanda,
-          textColour: '#E6C1B1'
-        },
-        {
-          id: 'project-5',
-          kicker: 'graphic design',
-          title: 'Wellington Posters',
-          link: '/projects/wellington-posters',
-          image: imageWellington,
-          textColour: '#f5ce4e'
-        }
-      ],
+      project: {
+        id: 'project-1',
+        kicker: 'graphic design',
+        title: 'Wellington Posters',
+        link: '/projects/wellington-posters',
+        image: imageWellington,
+        textColour: '#f5ce4e'
+      },
       mouseOffset: {
         x: 0,
         y: 0
@@ -101,7 +63,7 @@ export default {
         wrapper: null,
         container: null
       }
-    };
+    }
   },
   methods: {
     loco(e) {
@@ -114,7 +76,6 @@ export default {
       this.windowHeight = window.innerHeight;
       this.windowWidth = window.innerWidth;
       this.firstProject.section = document.querySelectorAll(".featured-project.is-inview")[0];
-      this.secondProject.section = document.querySelectorAll(".featured-project.is-inview")[1];
 
       // check for project change
       if(this.currentProject !== this.firstProject.section) {
@@ -132,12 +93,6 @@ export default {
           this.firstProject.kicker = this.firstProject.section.querySelectorAll(".kicker");
           this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
           this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
-        }
-        if(this.secondProject.section !== undefined) {
-          this.secondProject.titles = this.secondProject.section.querySelectorAll(".project-titles");
-          this.secondProject.kicker = this.secondProject.section.querySelectorAll(".kicker");
-          this.secondProject.wrapper = this.secondProject.section.querySelector(".ghost-wrapper");
-          this.secondProject.container = this.secondProject.section.querySelector(".ghost-container");
         }
       }
 
@@ -184,42 +139,6 @@ export default {
           ease: ease, 
           duration: animDuration});
       }
-
-      // animate second project
-      if(this.secondProject.section !== undefined) {
-        this.secondProject.y = this.secondProject.section.getBoundingClientRect().y;
-        let rotate2 = this.mapRange(this.secondProject.y, 0, window.innerHeight, -10, 10);
-        let position2 = this.mapRange(this.secondProject.y, 0, window.innerHeight, -120, 100);
-        let scale2 = this.mapRange(this.secondProject.y, 0, window.innerHeight / 2, 1, 0.85);
-
-        gsap.to(this.secondProject.titles, {
-          y: position2 -this.mouseOffset.y, 
-          x: -this.mouseOffset.x,
-          ease: ease, 
-          duration: animDuration});
-
-        gsap.to(this.secondProject.kicker, {
-          y: (position2 * 0.9) - (this.mouseOffset.y * 1.2), 
-          x: -this.mouseOffset.x * 1.2,
-          ease: ease, 
-          duration: animDuration});
-
-        gsap.to(this.secondProject.wrapper, {
-          y: -this.mouseOffset.y, 
-          x: -this.mouseOffset.x,
-          rotate: -rotate2, 
-          scale: 1 / scale2,
-          ease: ease, 
-          duration: animDuration});
-          
-        gsap.to(this.secondProject.container, {
-          y: this.mouseOffset.y, 
-          x: this.mouseOffset.x,
-          scale: scale2,
-          rotate: rotate2, 
-          ease: ease, 
-          duration: animDuration});
-      }
     },
     mapRange(value, low1, high1, low2, high2) {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
@@ -238,4 +157,13 @@ export default {
 
 <style>
 
+.project-content p {
+  margin-bottom: 1em;
+}
+
+.project-content {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+}
 </style>
