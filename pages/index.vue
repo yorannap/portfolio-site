@@ -28,7 +28,6 @@
 <script>
 import gsap from 'gsap';
 import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
 import imageWellington from '~/assets/wellington.jpg'
 import imagePanda from '~/assets/panda.jpg'
 
@@ -86,6 +85,7 @@ export default {
         x: 0,
         y: 0
       },
+      animActive: true,
       animDuration: 0.5,
       ease: 'inOut',
       windowHeight: null,
@@ -111,8 +111,21 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['updateClickedProject']),
+    updateClickedProject(projectName) {
+      let ghostContainer = document.querySelector(`#projects .${projectName} .ghost-container`)
+      /* gsap.to(ghostContainer, {
+        rotate: 0,
+        ease: this.ease, 
+        duration: 0.5,
+      }); */
+        let rotation = gsap.getProperty(ghostContainer, "rotate");
+        let scale = gsap.getProperty(ghostContainer, "scale");
+        this.$store.dispatch('updateClickedProject', {projectName, rotation, scale})
+    },
     loco(e) {
+      if(this.animActive === false) {
+        return;
+      }
       // update locomotive
       this.lmS.update();
 
@@ -161,6 +174,7 @@ export default {
         let rotate = this.mapRange(this.firstProject.y, 0, window.innerHeight, -10, 10);
         let position = this.mapRange(this.firstProject.y, 0, window.innerHeight, -120, 100);
         let scale = this.mapRange(this.firstProject.y, 0, window.innerHeight / 2, 1, 1);
+        /* scale = 0.8; */
 
         gsap.to(this.firstProject.titles, {
           y: position -this.mouseOffset.y, 
@@ -185,7 +199,7 @@ export default {
         gsap.to(this.firstProject.container, {
           y: this.mouseOffset.y, 
           x: this.mouseOffset.x,
-          rotate: rotate, 
+          rotate: rotate,
           scale: scale,
           ease: this.ease, 
           duration: this.animDuration});
@@ -197,6 +211,7 @@ export default {
         let rotate2 = this.mapRange(this.secondProject.y, 0, window.innerHeight, -10, 10);
         let position2 = this.mapRange(this.secondProject.y, 0, window.innerHeight, -120, 100);
         let scale2 = this.mapRange(this.secondProject.y, 0, window.innerHeight / 2, 1, 0.85);
+        /* scale2 = 0.8; */
 
         gsap.to(this.secondProject.titles, {
           y: position2 -this.mouseOffset.y, 
@@ -235,16 +250,19 @@ export default {
     name: 'home',
     mode: 'out-in',
     leave(el, done) {
+      setTimeout(() => {
+      this.animActive = false;
+      let projectNotClicked = el.querySelectorAll('#projects .featured-project:not(.project-clicked)');
       let projectTitles = el.querySelectorAll('.project-titles');
       let projectKickers = el.querySelectorAll('.kicker');
       let backgroundText = el.querySelectorAll('.background-text');
-      console.log(el)
-      gsap.to([projectTitles, projectKickers, backgroundText], {
+      gsap.to([projectTitles, projectKickers, backgroundText, projectNotClicked], {
         opacity: 0,
-        ease: this.ease, 
-        duration: 1,
+        ease: 'out', 
+        duration: 0.5,
         onComplete: done
       });
+        }, 5);
     }
   },
   mounted() {

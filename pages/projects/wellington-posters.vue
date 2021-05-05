@@ -1,7 +1,7 @@
 <template>
   <div @mousemove="loco">
     <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" data-scroll :data-scroll-section="project.id">
+      <div class="featured-project" data-scroll :data-scroll-section="project.id"> 
         <p class="kicker" data-scroll>{{project.kicker}}</p>
           <div class="project-header">
             <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
@@ -25,13 +25,9 @@
 
 <script>
 import gsap from 'gsap';
-import { mapGetters } from 'vuex'
 import imageWellington from '~/assets/wellington.jpg'
 
 export default {
-  computed: {
-    ...mapGetters(['clickedProject'])
-  },
   data() {
     return {
       lmS: null,
@@ -73,7 +69,7 @@ export default {
     loco(e) {
       // update locomotive
       this.lmS.update();
-      let animDuration = 0.5;
+      /* let animDuration = 0.5;
       let ease = "inOut";
 
       // set state
@@ -142,7 +138,7 @@ export default {
           scale: scale,
           ease: ease, 
           duration: animDuration});
-      }
+      } */
     },
     mapRange(value, low1, high1, low2, high2) {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
@@ -153,10 +149,23 @@ export default {
     mode: 'out-in',
     enter(el, done) {
       let ghostContainer = el.querySelectorAll('.ghost-container');
+      let projectTitles = el.querySelectorAll('.project-titles');
+      let projectKickers = el.querySelectorAll('.kicker');
       gsap.from(ghostContainer, {
-        rotate: this.clickedProject.rotation,
-        ease: this.ease, 
+        rotate: this.$store.getters.clickedProject.rotation,
+        width: this.$store.getters.clickedProject.width,
+        height: this.$store.getters.clickedProject.height,
+        left: this.$store.getters.clickedProject.x + (this.$store.getters.clickedProject.rectWidth / 2),
+        top: this.$store.getters.clickedProject.y + (this.$store.getters.clickedProject.rectHeight / 2),
+        ease: "expo.inOut",
         duration: 1,
+        onComplete: done
+      });
+      gsap.from([projectTitles, projectKickers], {
+        opacity: 0,
+        ease: "power3.inOut", 
+        duration: 1,
+        delay: 0.5,
         onComplete: done
       });
     }
@@ -172,7 +181,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.ghost-container {
+  width: 800px;
+  height: 400px;
+}
 
 .project-content p {
   margin-bottom: 1em;
