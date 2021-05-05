@@ -1,26 +1,24 @@
 <template>
   <div @mousemove="loco">
-    <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" @click="updateClickedProject(project.id)" :class="project.id" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
-        <p class="kicker" data-scroll>{{project.kicker}}</p>
-        <nuxt-link :to="project.link">
-          <div class="project-header">
-            <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
-          </div>
-          <div class="ghost-container">
-            <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
-            <div class="ghost-wrapper">
-              <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
-            </div>
-          </div>
-        </nuxt-link>
-      </div>
-    </div>
     <div class="background-text">
       <h1>
         Curated
         Projects
       </h1>
+    </div>
+    <div @scroll="loco" id="projects" data-scroll-container>
+      <div class="featured-project" @click="updateClickedProject(project.id, project.link)" :class="project.id" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
+        <p class="kicker" data-scroll>{{project.kicker}}</p>
+        <div class="project-header">
+          <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
+        </div>
+        <div class="ghost-container">
+          <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
+          <div class="ghost-wrapper">
+            <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +84,7 @@ export default {
         y: 0
       },
       animActive: true,
-      animDuration: 0.5,
+      animDuration: 0.4,
       ease: 'inOut',
       windowHeight: null,
       windowWidth: null,
@@ -111,19 +109,25 @@ export default {
     };
   },
   methods: {
-    updateClickedProject(projectName) {
-      let ghostContainer = document.querySelector(`#projects .${projectName} .ghost-container`)
-      /* gsap.to(ghostContainer, {
-        rotate: 0,
-        ease: this.ease, 
-        duration: 0.5,
-      }); */
+    updateClickedProject(projectName, projectUrl) {
+      // add clicked class so leave animation can exclude the clicked project
+      let projectEl = document.querySelector(`#projects .${projectName}`)
+      projectEl.classList.add('project-clicked');
+      this.$router.push({ path: projectUrl })
+      // disable future animations
+      this.animActive = false;
+      // delay that waits for running animation to finish before recording co-ordinates
+      setTimeout(() => {
+        let ghostContainer = projectEl.querySelector('.ghost-container')
         let rotation = gsap.getProperty(ghostContainer, "rotate");
         let scale = gsap.getProperty(ghostContainer, "scale");
         this.$store.dispatch('updateClickedProject', {projectName, rotation, scale})
+      }, this.animDuration * 1000);
     },
     loco(e) {
       if(this.animActive === false) {
+        let projectsContainer = document.querySelector('#projects');
+        projectsContainer.style.overflowY = 'hidden';
         return;
       }
       // update locomotive
@@ -249,9 +253,10 @@ export default {
   transition: {
     name: 'home',
     mode: 'out-in',
+    css: false,
+    appear: true,
     leave(el, done) {
-      setTimeout(() => {
-      this.animActive = false;
+    // make sure duration of this animation is > this.animDuration
       let projectNotClicked = el.querySelectorAll('#projects .featured-project:not(.project-clicked)');
       let projectTitles = el.querySelectorAll('.project-titles');
       let projectKickers = el.querySelectorAll('.kicker');
@@ -262,7 +267,6 @@ export default {
         duration: 0.5,
         onComplete: done
       });
-        }, 5);
     }
   },
   mounted() {

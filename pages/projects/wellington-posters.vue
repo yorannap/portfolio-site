@@ -147,6 +147,7 @@ export default {
   transition: {
     name: 'project',
     mode: 'out-in',
+    css: false,
     enter(el, done) {
       let ghostContainer = el.querySelectorAll('.ghost-container');
       let projectTitles = el.querySelectorAll('.project-titles');
@@ -155,17 +156,17 @@ export default {
         rotate: this.$store.getters.clickedProject.rotation,
         width: this.$store.getters.clickedProject.width,
         height: this.$store.getters.clickedProject.height,
+        scale: this.$store.getters.clickedProject.scale,
         left: this.$store.getters.clickedProject.x + (this.$store.getters.clickedProject.rectWidth / 2),
         top: this.$store.getters.clickedProject.y + (this.$store.getters.clickedProject.rectHeight / 2),
         ease: "expo.inOut",
-        duration: 1,
-        onComplete: done
+        duration: 1
       });
       gsap.from([projectTitles, projectKickers], {
         opacity: 0,
-        ease: "power3.inOut", 
+        ease: "out", 
         duration: 1,
-        delay: 0.5,
+        delay: 0.75,
         onComplete: done
       });
     }
