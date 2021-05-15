@@ -6,16 +6,21 @@
         Projects
       </h1>
     </div>
-    <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" :class="project.id" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
-        <p class="kicker" data-scroll>{{project.kicker}}</p>
-        <div class="project-header" @click="updateClickedProject(project.id, project.link)">
-          <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
+    <div id="projects" @scroll="loco" data-scroll-container>
+      <div class="featured-project" 
+      :class="project.id" 
+      data-scroll 
+      :data-scroll-section="project.id" 
+      v-for="project in projects" 
+      :key="project.id">
+        <p class="kicker">{{project.kicker}}</p>
+        <div class="project-header">
+          <h2 class="project-title-1 project-titles">{{ project.title }}</h2>
         </div>
         <div class="ghost-container" @click="updateClickedProject(project.id, project.link)">
           <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
           <div class="ghost-wrapper">
-            <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
+            <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}">{{ project.title }}</h2>
           </div>
         </div>
       </div>
