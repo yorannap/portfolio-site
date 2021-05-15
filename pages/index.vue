@@ -7,12 +7,12 @@
       </h1>
     </div>
     <div @scroll="loco" id="projects" data-scroll-container>
-      <div class="featured-project" @click="updateClickedProject(project.id, project.link)" :class="project.id" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
+      <div class="featured-project" :class="project.id" data-scroll :data-scroll-section="project.id" v-for="project in projects" :key="project.id">
         <p class="kicker" data-scroll>{{project.kicker}}</p>
-        <div class="project-header">
+        <div class="project-header" @click="updateClickedProject(project.id, project.link)">
           <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
         </div>
-        <div class="ghost-container">
+        <div class="ghost-container" @click="updateClickedProject(project.id, project.link)">
           <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
           <div class="ghost-wrapper">
             <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
@@ -254,7 +254,6 @@ export default {
     name: 'home',
     mode: 'out-in',
     css: false,
-    appear: true,
     leave(el, done) {
     // make sure duration of this animation is > this.animDuration
       let projectNotClicked = el.querySelectorAll('#projects .featured-project:not(.project-clicked)');
@@ -275,7 +274,7 @@ export default {
       smooth: true,
       repeat: true,
     });
-    //this.loco();
+    window.addEventListener("resize", this.loco);
   }
 }
 </script>

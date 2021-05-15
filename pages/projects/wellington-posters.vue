@@ -16,8 +16,8 @@
       <div class="project-content">
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
+        <img :src="project.image" />
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
-        <img :src="project.image" alt="" srcset="">
       </div>
     </div>
   </div>
@@ -152,6 +152,7 @@ export default {
       let ghostContainer = el.querySelectorAll('.ghost-container');
       let projectTitles = el.querySelectorAll('.project-titles');
       let projectKickers = el.querySelectorAll('.kicker');
+      let projectContent = el.querySelectorAll('.project-content');
       gsap.from(ghostContainer, {
         rotate: this.$store.getters.clickedProject.rotation,
         width: this.$store.getters.clickedProject.width,
@@ -162,7 +163,7 @@ export default {
         ease: "expo.inOut",
         duration: 1
       });
-      gsap.from([projectTitles, projectKickers], {
+      gsap.from([projectTitles, projectKickers, projectContent], {
         opacity: 0,
         ease: "out", 
         duration: 1,
@@ -183,9 +184,15 @@ export default {
 </script>
 
 <style scoped>
-.ghost-container {
+.project-image-container,
+.ghost-container, 
+.ghost-wrapper, 
+.project-header {
   width: 800px;
-  height: 400px;
+}
+
+.featured-project {
+  height: 90%;
 }
 
 .project-content p {
@@ -193,8 +200,8 @@ export default {
 }
 
 .project-content {
-  max-width: 800px;
-  width: 100%;
+  max-width: 700px;
+  width: 90%;
   margin: auto;
 }
 </style>

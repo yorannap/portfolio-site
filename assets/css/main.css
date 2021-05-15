@@ -110,11 +110,6 @@ h2 {
 }
 
 .project-header {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 600px;
-  width: 100%;
   line-height: 1em;
 }
 
@@ -122,12 +117,13 @@ h2 {
 .ghost-container, 
 .ghost-wrapper, 
 .project-header {
-  width: 500px;
-  height: 400px;
+  width: 50vw;
+  height: 40vw;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
+  cursor: pointer;
 }
 
 .project-image {
@@ -136,8 +132,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: contain;
-  background-size: 170%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
@@ -160,12 +155,12 @@ h2 {
   user-select: none; /* Standard syntax */
 }
 
-.project-title-2 {
+/* .project-title-2 {
   width: 100%;
   position: absolute;
   line-height: 1;
   z-index: 2;
-}
+} */
 
 .kicker,
 .project-titles,
