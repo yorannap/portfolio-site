@@ -277,6 +277,12 @@ export default {
     this.lmS = new this.locomotiveScroll({
       el: document.querySelector("#projects"),
       smooth: true,
+      smartphone: {
+        smooth: true
+      },
+      tablet: {
+        smooth: true
+      },
       repeat: true,
     });
     window.addEventListener("resize", this.loco);
