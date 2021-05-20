@@ -74,7 +74,7 @@ header > * {
 }
 
 .color-mode-switch {
-  bottom: 40px;
+  bottom: calc(env(safe-area-inset-bottom) + 40px);
   left: 40px;
   position: absolute;
 }
