@@ -139,6 +139,8 @@ p.kicker {
 .kicker {
   width: 50vw;
   height: 40vw;
+  max-width: 500px;
+  max-height: 400px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -194,7 +196,7 @@ p.kicker {
     font-size: 5em;
   }
   h2 {
-    font-size: 3.2em;
+    font-size: 3em;
   }
   .ghost-container, 
   .ghost-wrapper,
@@ -218,5 +220,21 @@ p.kicker {
   .kicker {
     width: 70vw;
     height: 60vw;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  h2 {
+    font-size: 2em;
+  }
+  p.kicker {
+    top: 33%;
+  }
+  .ghost-container, 
+  .ghost-wrapper,
+  .project-header,
+  .kicker {
+    width: 70vh;
+    height: 60vh;
   }
 }

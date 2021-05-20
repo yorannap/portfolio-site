@@ -1,6 +1,6 @@
 <template>
   <div @mousemove="loco">
-    <div @scroll="loco" id="projects" data-scroll-container>
+    <div @scroll="loco" id="projects" class="single" data-scroll-container>
       <div class="featured-project" data-scroll :data-scroll-section="project.id"> 
         <p class="kicker" data-scroll>{{project.kicker}}</p>
           <div class="project-header">
@@ -184,11 +184,11 @@ export default {
 </script>
 
 <style scoped>
-.project-image-container,
-.ghost-container, 
-.ghost-wrapper, 
-.project-header {
+#projects.single .ghost-container, 
+#projects.single .ghost-wrapper, 
+#projects.single .project-header {
   width: 800px;
+  max-width: 1000px;
 }
 
 .featured-project {
