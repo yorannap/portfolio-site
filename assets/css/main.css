@@ -95,6 +95,7 @@ h2 {
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
+  -webkit-user-drag: element;
 }
 @media screen and (orientation: portrait) {
   #projects {
@@ -115,12 +116,12 @@ h2 {
   height: 100%;
 }
 
-.featured-project.first-project {
+/* .featured-project.first {
   border: red 3px solid;
 }
-.featured-project.second-project {
+.featured-project.second {
   border: green 3px solid;
-}
+} */
 
 p.kicker {
   top: 36%;

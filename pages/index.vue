@@ -155,22 +155,22 @@ export default {
 
       // reselect elements on project change
       if(this.projectChange) {
-        let allProjects = document.querySelectorAll(".featured-project");
+        /* let allProjects = document.querySelectorAll(".featured-project");
         allProjects.forEach(project => {
-          project.classList.remove("second-project");
-          project.classList.remove("first-project");
-        });
+          project.classList.remove("second");
+          project.classList.remove("first");
+        }); */
         if(this.firstProject.section !== undefined) {
-          this.firstProject.section.classList.add("first-project");
-          this.firstProject.section.classList.remove("second-project");
+          /* this.firstProject.section.classList.add("first");
+          this.firstProject.section.classList.remove("second"); */
           this.firstProject.titles = this.firstProject.section.querySelectorAll(".project-titles");
           this.firstProject.kicker = this.firstProject.section.querySelectorAll(".kicker");
           this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
           this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
         }
         if(this.secondProject.section !== undefined) {
-          this.secondProject.section.classList.add("second-project");
-          this.secondProject.section.classList.remove("first-project");
+          /* this.secondProject.section.classList.add("second");
+          this.secondProject.section.classList.remove("first"); */
           this.secondProject.titles = this.secondProject.section.querySelectorAll(".project-titles");
           this.secondProject.kicker = this.secondProject.section.querySelectorAll(".kicker");
           this.secondProject.wrapper = this.secondProject.section.querySelector(".ghost-wrapper");
@@ -289,12 +289,6 @@ export default {
       repeat: true,
     });
     window.addEventListener("resize", this.loco);
-    window.addEventListener('resize', () => {
-      // We execute the same script as before
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-      //console.log(vh);
-    });
   }
 }
 </script>
