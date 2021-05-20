@@ -97,7 +97,8 @@ h2 {
 }
 @media screen and (orientation: portrait) {
   #projects {
-    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    max-height: -webkit-fill-available;
   }
 }
 
