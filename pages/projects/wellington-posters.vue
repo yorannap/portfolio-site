@@ -148,6 +148,7 @@ export default {
     name: 'project',
     mode: 'out-in',
     css: false,
+    appear: true,
     enter(el, done) {
       let ghostContainer = el.querySelectorAll('.ghost-container');
       let projectTitles = el.querySelectorAll('.project-titles');
@@ -160,7 +161,7 @@ export default {
         scale: this.$store.getters.clickedProject.scale,
         left: this.$store.getters.clickedProject.x + (this.$store.getters.clickedProject.rectWidth / 2),
         top: this.$store.getters.clickedProject.y + (this.$store.getters.clickedProject.rectHeight / 2),
-        ease: "expo.inOut",
+        ease: "power4.inOut",
         duration: 1
       });
       gsap.from([projectTitles, projectKickers, projectContent], {

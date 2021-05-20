@@ -6,8 +6,8 @@ const createStore = () => {
       return {
         clickedProject: {
           rotation: null,
-          x: null,
-          y: null,
+          x: 600,
+          y: 1000,
           scale: null,
           width: null,
           height: null,

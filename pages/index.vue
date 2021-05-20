@@ -7,6 +7,7 @@
       </h1>
     </div>
     <div id="projects" @scroll="loco" data-scroll-container>
+      <div class="dummy-project"></div>
       <div class="featured-project" 
       :class="project.id" 
       data-scroll 
@@ -274,6 +275,7 @@ export default {
     name: 'home',
     mode: 'out-in',
     css: false,
+    appear: true,
     leave(el, done) {
     // make sure duration of this animation is > this.animDuration
       let projectNotClicked = el.querySelectorAll('#projects .featured-project:not(.project-clicked)');
@@ -282,8 +284,23 @@ export default {
       let backgroundText = el.querySelectorAll('.background-text');
       gsap.to([projectTitles, projectKickers, backgroundText, projectNotClicked], {
         opacity: 0,
-        ease: 'out', 
+        ease: 'power4.out', 
         duration: 0.5,
+        onComplete: done
+      });
+    },
+    enter(el, done) {
+    // make sure duration of this animation is > this.animDuration
+      let dummyProject = el.querySelector('#projects .dummy-project');
+      let updateScroll = () => {
+        // access the update scroll action through the store
+        console.log(this.$store)
+      }
+      gsap.from(dummyProject, {
+        height: 100 + '%',
+        ease: 'power4.out', 
+        duration: 1,
+        onUpdate: updateScroll,
         onComplete: done
       });
     }
@@ -303,5 +320,4 @@ export default {
 </script>
 
 <style>
-
 </style>
