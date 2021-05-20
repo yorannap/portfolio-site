@@ -190,7 +190,7 @@ p.kicker {
   will-change: transform;
 }
 
-/***** TABLET *****/
+/***** MOBILE AND TABLET *****/
 @media only screen and (max-width: 800px) {
   .background-text h1 {
     font-size: 5em;
@@ -218,11 +218,12 @@ p.kicker {
   .ghost-wrapper,
   .project-header,
   .kicker {
-    width: 70vw;
-    height: 60vw;
+    width: 80vw;
+    height: 70vw;
   }
 }
 
+/* HEIGHT */
 @media only screen and (max-height: 600px) {
   h2 {
     font-size: 2em;
