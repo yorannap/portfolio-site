@@ -155,6 +155,11 @@ export default {
 
       // reselect elements on project change
       if(this.projectChange) {
+        let allProjects = document.querySelectorAll(".featured-project");
+        allProjects.forEach(project => {
+          project.classList.remove("second-project");
+          project.classList.remove("first-project");
+        });
         if(this.firstProject.section !== undefined) {
           this.firstProject.section.classList.add("first-project");
           this.firstProject.section.classList.remove("second-project");
