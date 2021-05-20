@@ -156,12 +156,16 @@ export default {
       // reselect elements on project change
       if(this.projectChange) {
         if(this.firstProject.section !== undefined) {
+          this.firstProject.section.classList.add("first-project");
+          this.firstProject.section.classList.remove("second-project");
           this.firstProject.titles = this.firstProject.section.querySelectorAll(".project-titles");
           this.firstProject.kicker = this.firstProject.section.querySelectorAll(".kicker");
           this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
           this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
         }
         if(this.secondProject.section !== undefined) {
+          this.secondProject.section.classList.add("second-project");
+          this.secondProject.section.classList.remove("first-project");
           this.secondProject.titles = this.secondProject.section.querySelectorAll(".project-titles");
           this.secondProject.kicker = this.secondProject.section.querySelectorAll(".kicker");
           this.secondProject.wrapper = this.secondProject.section.querySelector(".ghost-wrapper");
@@ -278,10 +282,10 @@ export default {
       el: document.querySelector("#projects"),
       smooth: true,
       smartphone: {
-        smooth: false
+        smooth: true
       },
       tablet: {
-        smooth: false
+        smooth: true
       },
       repeat: true,
     });

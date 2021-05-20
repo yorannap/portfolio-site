@@ -99,6 +99,13 @@ h2 {
   height: 100%;
 }
 
+.featured-project.first-project {
+  border: red 3px solid;
+}
+.featured-project.second-project {
+  border: green 3px solid;
+}
+
 p.kicker {
   top: 36%;
   text-align: center;
