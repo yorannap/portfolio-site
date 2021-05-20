@@ -89,8 +89,6 @@ h2 {
   width: 100vw;
   height: 100%;
   height: calc(env(safe-area-inset-top) + env(safe-area-inset-bottom) + 100%);
-  min-height: -webkit-fill-available;
-  max-height: -webkit-fill-available;
   /* height: calc(var(--vh, 1vh) * 100);
   min-height: calc(var(--vh, 1vh) * 100);
   max-height: calc(var(--vh, 1vh) * 100); */
@@ -100,6 +98,14 @@ h2 {
 }
 @media screen and (orientation: portrait) {
   #projects {
+    min-height: -webkit-fill-available;
+    max-height: -webkit-fill-available;
+  }
+}
+@media screen and (orientation: landscape) {
+  #projects {
+    min-height: 100%;
+    max-height: 100%;
   }
 }
 
