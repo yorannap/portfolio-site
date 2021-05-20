@@ -74,12 +74,9 @@ header > * {
 }
 
 .color-mode-switch {
-    top: calc(98% - 40px);
-    left: 40px;
-    position: sticky;
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -o-sticky;
+  top: calc(100% - 60px);
+  left: 40px;
+  position: fixed;
 }
 
 .dot {
