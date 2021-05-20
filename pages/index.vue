@@ -278,10 +278,10 @@ export default {
       el: document.querySelector("#projects"),
       smooth: true,
       smartphone: {
-        smooth: true
+        smooth: false
       },
       tablet: {
-        smooth: true
+        smooth: false
       },
       repeat: true,
     });
