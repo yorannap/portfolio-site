@@ -186,13 +186,13 @@ export default {
         /* scale = 0.8; */
 
         gsap.to(this.firstProject.titles, {
-          y: position -this.mouseOffset.y, 
+          y: position - this.mouseOffset.y, 
           x: -this.mouseOffset.x, 
           ease: this.ease, 
           duration: this.animDuration});
 
         gsap.to(this.firstProject.kicker, {
-          y: (position * 0.9) - (this.mouseOffset.y * 1.2), 
+          y: (position * 0.8) - (this.mouseOffset.y * 1.2), 
           x: -this.mouseOffset.x * 1.2,
           ease: this.ease, 
           duration: this.animDuration});
@@ -229,7 +229,7 @@ export default {
           duration: this.animDuration});
 
         gsap.to(this.secondProject.kicker, {
-          y: (position2 * 0.9) - (this.mouseOffset.y * 1.2), 
+          y: (position2 * 0.8) - (this.mouseOffset.y * 1.2), 
           x: -this.mouseOffset.x * 1.2,
           ease: this.ease, 
           duration: this.animDuration});

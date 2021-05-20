@@ -76,7 +76,7 @@ h2 {
   text-align: center;
   position: fixed;
   top: 0;
-  font-size: 230px!important;
+  font-size: 9em;
   line-height: 0.85em;
   display: flex;
   justify-content: center;
@@ -86,7 +86,7 @@ h2 {
 }
 
 #projects {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -99,14 +99,11 @@ h2 {
   height: 100%;
 }
 
-.kicker {
+p.kicker {
+  top: 36%;
   text-align: center;
   font-weight: 700;
-  margin-bottom: 1em;
   text-transform: lowercase;
-  position: absolute;
-  width: 100%;
-  margin-top: 6%;
 }
 
 .project-header {
@@ -115,7 +112,8 @@ h2 {
 
 .ghost-container, 
 .ghost-wrapper,
-.project-header {
+.project-header,
+.kicker {
   width: 50vw;
   height: 40vw;
   left: 50%;
@@ -169,12 +167,32 @@ h2 {
 
 /***** TABLET *****/
 @media only screen and (max-width: 800px) {
+  .background-text h1 {
+    font-size: 5em;
+  }
+  h2 {
+    font-size: 3.2em;
+  }
+  .ghost-container, 
+  .ghost-wrapper,
+  .project-header,
+  .kicker {
+    width: 60vw;
+    height: 50vw;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .background-text h1 {
+    font-size: 3em;
+  }
   h2 {
     font-size: 2.5em;
   }
   .ghost-container, 
   .ghost-wrapper,
-  .project-header {
+  .project-header,
+  .kicker {
     width: 70vw;
     height: 60vw;
   }
