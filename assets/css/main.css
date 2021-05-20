@@ -88,14 +88,17 @@ h2 {
 #projects {
   width: 100vw;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  /* height: calc(var(--vh, 1vh) * 100);
   min-height: calc(var(--vh, 1vh) * 100);
-  max-height: calc(var(--vh, 1vh) * 100);
-  /* max-height: -webkit-fill-available;
-  min-height: -webkit-fill-available; */
+  max-height: calc(var(--vh, 1vh) * 100); */
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
+}
+@media screen and (orientation: portrait) {
+  #projects {
+    max-height: -webkit-fill-available;
+  }
 }
 
 .featured-project {
