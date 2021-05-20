@@ -87,9 +87,9 @@ h2 {
 
 #projects {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  height: -webkit-fill-available;
+  max-height: -webkit-fill-available;
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
