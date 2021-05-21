@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="layout" @mousemove="loco">
     <the-header></the-header>
     <Nuxt />
   </div>
@@ -7,17 +7,21 @@
 
 <script>
 import TheHeader from '../components/TheHeader.vue';
+import { mapActions } from "vuex";
 
 export default {
   components: {
     TheHeader
   },
+  methods: {
+    ...mapActions(["loco"]),
+  },
   mounted() {
-    let initScroll = () => {
-      this.$store.dispatch('initScroll');
+    let init = () => {
+      this.$store.dispatch('init');
     }
-    initScroll();
-    window.addEventListener("resize", initScroll);
+    init();
+    window.addEventListener("resize", init);
   }
 }
 </script>

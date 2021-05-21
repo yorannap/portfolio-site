@@ -24,12 +24,11 @@ const createStore = () => {
         animActive: true,
         animDuration: 0.5,
         ease: 'inOut',
-        windowHeight: null,
-        windowWidth: null,
         projectChange: true,
         firstProject: {
           y: null,
           section: null,
+          sectionPrev: null,
           kicker: null,
           titles: null,
           wrapper: null,
@@ -47,7 +46,7 @@ const createStore = () => {
       }
     },
     mutations: {
-      updateClickedProject(state, projectValues) {
+      definingClickedProject(state, projectValues) {
         state.clickedProject = projectValues;
       },
       setIsMobileTablet(state, check) {
@@ -58,27 +57,48 @@ const createStore = () => {
       },
       projectChange(state, value) {
         state.projectChange = value;
+        state.secondProject.sectionPrev = state.secondProject.section;
+        state.firstProject.sectionPrev = state.firstProject.section;
       },
-      updateWindowSizes(state) {
-        state.windowHeight = window.innerHeight;
-        state.windowWidth = window.innerWidth;
+      updateProjectSections(state, inViewProjectSections) {
+        state.firstProject.section = inViewProjectSections[0];
+        state.secondProject.section = inViewProjectSections[1];
+      },
+      updateProjectElements(state) {
+        if(state.firstProject.section !== undefined) {
+          state.firstProject.titles = state.firstProject.section.querySelectorAll(".project-titles");
+          state.firstProject.kicker = state.firstProject.section.querySelectorAll(".kicker");
+          state.firstProject.wrapper = state.firstProject.section.querySelector(".ghost-wrapper");
+          state.firstProject.container = state.firstProject.section.querySelector(".ghost-container");
+        }
+        if(state.secondProject.section !== undefined) {
+          state.secondProject.titles = state.secondProject.section.querySelectorAll(".project-titles");
+          state.secondProject.kicker = state.secondProject.section.querySelectorAll(".kicker");
+          state.secondProject.wrapper = state.secondProject.section.querySelector(".ghost-wrapper");
+          state.secondProject.container = state.secondProject.section.querySelector(".ghost-container");
+        }
+      },
+      updateMouseOffset(state, [mouseOffsetX, mouseOffsetY]) {
+        state.mouseOffset.x = mouseOffsetX;
+        state.mouseOffset.y = mouseOffsetY;
       }
     },
     actions: {
-      updateClickedProject(context, {projectName, rotation, scale}) {
+      definingClickedProject(context, {projectName, rotation, scale}) {
         let projectEl = document.querySelector(`#projects .${projectName}`);
         let ghostContainer = projectEl.querySelector('.ghost-container');
 
-        // SIZING
+        // sizing
         let width = ghostContainer.offsetWidth;
         let height = ghostContainer.offsetHeight;
         let rectWidth = ghostContainer.getBoundingClientRect().width;
         let rectHeight = ghostContainer.getBoundingClientRect().height;
 
-        // POSITION
+        // positioning
         let x = ghostContainer.getBoundingClientRect().x;
         let y = ghostContainer.getBoundingClientRect().y;
         
+        // defining properties
         let projectValues = {
           rotation: rotation,
           x: x,
@@ -89,7 +109,7 @@ const createStore = () => {
           rectWidth: rectWidth,
           rectHeight: rectHeight
         }
-        context.commit('updateClickedProject', projectValues);
+        context.commit('definingClickedProject', projectValues);
       },
       mobileAndTabletCheck(context) {
         let check = false;
@@ -97,146 +117,126 @@ const createStore = () => {
         context.commit('setIsMobileTablet', check)
       },
       loco(context, e) {
+        // map range utility function
         function mapRange(value, low1, high1, low2, high2) {
             return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
         }
+
         // lock scroll on project click
         if(context.state.animActive === false) {
           let projectsContainer = document.querySelector('#projects');
           projectsContainer.style.overflowY = 'hidden';
           return;
         }
+
         // update locomotive scroll
         context.state.scroll.update();
 
-        let inViewProjects = document.querySelectorAll(".featured-project.is-inview");
-        context.state.firstProject.section = inViewProjects[0];
-        context.state.secondProject.section = inViewProjects[1];
+        // select and update in view projects
+        let inViewProjectSections = document.querySelectorAll(".featured-project.is-inview");
+        context.commit('updateProjectSections', inViewProjectSections)
 
-        // check for project change based on existence of the 2nd project
-        if(context.state.secondProject.sectionPrev !== context.state.secondProject.section) {
-          context.state.secondProject.sectionPrev = context.state.secondProject.section;
+        // check for project change based on change in project sections
+        if((context.state.secondProject.sectionPrev !== context.state.secondProject.section)
+        || (context.state.firstProject.sectionPrev !== context.state.firstProject.section)) {
           context.commit('projectChange', true);
         }
         else if(context.state.projectChange !== false) {
           context.commit('projectChange', false);
         }
         
-        // reselect elements on project change
+        // update project elements on project change
         if(context.state.projectChange) {
-          /* let allProjects = document.querySelectorAll(".featured-project");
-          allProjects.forEach(project => {
-            project.classList.remove("second");
-            project.classList.remove("first");
-          }); */
-          if(context.state.firstProject.section !== undefined) {
-            /* context.state.firstProject.section.classList.add("first");
-            context.state.firstProject.section.classList.remove("second"); */
-            context.state.firstProject.titles = context.state.firstProject.section.querySelectorAll(".project-titles");
-            context.state.firstProject.kicker = context.state.firstProject.section.querySelectorAll(".kicker");
-            context.state.firstProject.wrapper = context.state.firstProject.section.querySelector(".ghost-wrapper");
-            context.state.firstProject.container = context.state.firstProject.section.querySelector(".ghost-container");
-          }
-          if(context.state.secondProject.section !== undefined) {
-            /* context.state.secondProject.section.classList.add("second");
-            context.state.secondProject.section.classList.remove("first"); */
-            context.state.secondProject.titles = context.state.secondProject.section.querySelectorAll(".project-titles");
-            context.state.secondProject.kicker = context.state.secondProject.section.querySelectorAll(".kicker");
-            context.state.secondProject.wrapper = context.state.secondProject.section.querySelector(".ghost-wrapper");
-            context.state.secondProject.container = context.state.secondProject.section.querySelector(".ghost-container");
-          }
+          context.commit('updateProjectElements')
         }
         
-        // if mousemove then set new co-ordinates and offset
+        // if mousemove and not mobile or tablet then set new co-ordinates and offset
         if((e !== undefined) && (context.state.isMobileTablet === false)) {
           if (e.type === 'mousemove') {
-            let mouseLocationX = e.clientX;
-            let mouseLocationY = e.clientY;
-            context.state.mouseOffset.x = mapRange(mouseLocationX, 0, context.state.windowHeight, -10, 10);
-            context.state.mouseOffset.y = mapRange(mouseLocationY, 0, context.state.windowWidth, -10, 10);
+            let mouseOffsetX = mapRange(e.clientX, 0, window.innerHeight, -10, 10);
+            let mouseOffsetY = mapRange(e.clientY, 0, window.innerWidth, -10, 10);
+            context.commit('updateMouseOffset', [mouseOffsetX, mouseOffsetY])
           }
         }
         
         // animate first project
         if(context.state.firstProject.section !== undefined) {
           context.state.firstProject.y = context.state.firstProject.section.getBoundingClientRect().y;
-          let rotate = mapRange(context.state.firstProject.y, 0, window.innerHeight, -10, 10);
+
+          // mapping limits
+          let rotate = mapRange(context.state.firstProject.y, 0, window.innerHeight, -8, 10);
           let position = mapRange(context.state.firstProject.y, 0, window.innerHeight, -120, 100);
           let scale = mapRange(context.state.firstProject.y, 0, window.innerHeight / 2, 1, 1);
           
+          // animating text
           gsap.to(context.state.firstProject.titles, {
             y: position - context.state.mouseOffset.y, 
-            x: -context.state.mouseOffset.x, 
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
+            x: - context.state.mouseOffset.x });
   
           gsap.to(context.state.firstProject.kicker, {
             y: (position * 0.8) - (context.state.mouseOffset.y * 1.2), 
-            x: -context.state.mouseOffset.x * 1.2,
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
-  
+            x: - context.state.mouseOffset.x * 1.2 });
+          
+          // animating image inversed wrapper with alt text
           gsap.to(context.state.firstProject.wrapper, {
-            y: -context.state.mouseOffset.y, 
-            x: -context.state.mouseOffset.x, 
-            rotate: -rotate, 
-            scale: 1 / scale,
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
+            y: - context.state.mouseOffset.y, 
+            x: - context.state.mouseOffset.x, 
+            rotate: - rotate, 
+            scale: 1 / scale });
   
           gsap.to(context.state.firstProject.container, {
             y: context.state.mouseOffset.y, 
             x: context.state.mouseOffset.x,
             rotate: rotate,
-            scale: scale,
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
+            scale: scale });
         }
         
         // animate second project
         if(context.state.secondProject.section !== undefined) {
           context.state.secondProject.y = context.state.secondProject.section.getBoundingClientRect().y;
-          let rotate2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -10, 10);
+
+          // mapping limits
+          let rotate2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -8, 10);
           let position2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -120, 100);
           let scale2 = mapRange(context.state.secondProject.y, 0, window.innerHeight / 2, 1, 0.85);
-          /* scale2 = 0.8; */
+          
+          // animating text
           gsap.to(context.state.secondProject.titles, {
-            y: position2 -context.state.mouseOffset.y, 
-            x: -context.state.mouseOffset.x,
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
+            y: position2 - context.state.mouseOffset.y, 
+            x: - context.state.mouseOffset.x });
   
           gsap.to(context.state.secondProject.kicker, {
             y: (position2 * 0.8) - (context.state.mouseOffset.y * 1.2), 
-            x: -context.state.mouseOffset.x * 1.2,
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
-  
+            x: -context.state.mouseOffset.x * 1.2 });
+            
+          // animating image inversed wrapper with alt text
           gsap.to(context.state.secondProject.wrapper, {
-            y: -context.state.mouseOffset.y, 
-            x: -context.state.mouseOffset.x,
-            rotate: -rotate2, 
-            scale: 1 / scale2,
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
+            y: - context.state.mouseOffset.y, 
+            x: - context.state.mouseOffset.x,
+            rotate: - rotate2, 
+            scale: 1 / scale2 });
             
           gsap.to(context.state.secondProject.container, {
             y: context.state.mouseOffset.y, 
             x: context.state.mouseOffset.x,
             scale: scale2,
-            rotate: rotate2, 
-            ease: context.state.ease, 
-            duration: context.state.animDuration});
+            rotate: rotate2 });
         }
       },
-      initScroll(context) {
+      gsapDefaults(context) {
+        gsap.defaults({
+          ease: context.state.ease, 
+          duration: context.state.animDuration
+        });
+      },
+      init(context) {
         let scroll = new this._vm.locomotiveScroll({
           el: document.querySelector("body"),
           smooth: false,
           repeat: true,
         });
         context.commit('initScroll', scroll);
-        context.commit('updateWindowSizes')
+        context.commit('gsapDefaults');
         context.dispatch('mobileAndTabletCheck');
       }
     },
