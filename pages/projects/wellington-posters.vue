@@ -30,7 +30,7 @@ import imageWellington from '~/assets/wellington.jpg'
 export default {
   data() {
     return {
-      lmS: null,
+      scroll: null,
       project: {
         id: 'project-1',
         kicker: 'graphic design',
@@ -68,7 +68,7 @@ export default {
   methods: {
     loco(e) {
       // update locomotive
-      this.lmS.update();
+      //this.scroll.update();
       /* let animDuration = 0.5;
       let ease = "inOut";
 
@@ -174,11 +174,11 @@ export default {
     }
   },
   mounted() {
-    this.lmS = new this.locomotiveScroll({
+    /* this.scroll = new this.locomotiveScroll({
       el: document.querySelector("#projects"),
       smooth: true,
       repeat: true,
-    });
+    }); */
     //this.loco();
   }
 }
