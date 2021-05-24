@@ -1,19 +1,22 @@
 <template>
-  <div @mousemove="loco">
-    <div @scroll="loco" id="projects" class="single" data-scroll-container>
-      <div class="featured-project" data-scroll :data-scroll-section="project.id"> 
-        <p class="kicker" data-scroll>{{project.kicker}}</p>
-          <div class="project-header">
-            <h2 class="project-title-1 project-titles" data-scroll>{{ project.title }}</h2>
-          </div>
-          <div class="ghost-container">
-            <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
-            <div class="ghost-wrapper">
-              <h2 class="project-title-2 project-titles" :style="{color: `${project.textColour}`}" data-scroll>{{ project.title }}</h2>
-            </div>
-          </div>
+  <div @mousemove="locoSingle">
+    <div id="projects" class="single" @scroll="locoSingle" data-scroll-container>
+      <div class="featured-project" :class="project.id" data-scroll :data-scroll-section="project.id">
+        <p class="kicker">{{ project.kicker }}</p>
+        <div class="project-header">
+          <h2 class="project-title-1 project-titles">{{ project.title }}</h2>
+        </div>
+        <p class="summary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.</p>
+        <div class="ghost-container">
+          <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
+          <!-- <div class="ghost-wrapper">
+            <h2 class="project-title-2 project-titles" :style="{ color: `${project.textColour}` }">
+              {{ project.title }}
+            </h2>
+          </div> -->
+        </div>
       </div>
-      <div class="project-content">
+      <div class="project-content" data-scroll>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
         <img :src="project.image" />
@@ -25,7 +28,8 @@
 
 <script>
 import gsap from 'gsap';
-import imageWellington from '~/assets/wellington.jpg'
+import { mapActions } from "vuex";
+import imageWellington from '~/assets/wellington.jpg';
 
 export default {
   data() {
@@ -38,162 +42,72 @@ export default {
         link: '/projects/wellington-posters',
         image: imageWellington,
         textColour: '#f5ce4e'
-      },
-      mouseOffset: {
-        x: 0,
-        y: 0
-      },
-      windowHeight: null,
-      windowWidth: null,
-      currentProject: null,
-      projectChange: true,
-      firstProject: {
-        y: null,
-        section: null,
-        kicker: null,
-        titles: null,
-        wrapper: null,
-        container: null
-      },
-      secondProject: {
-        y: null,
-        section: null,
-        titles: null,
-        kicker: null,
-        wrapper: null,
-        container: null
       }
     }
   },
   methods: {
-    loco(e) {
-      // update locomotive
-      //this.scroll.update();
-      /* let animDuration = 0.5;
-      let ease = "inOut";
-
-      // set state
-      this.windowHeight = window.innerHeight;
-      this.windowWidth = window.innerWidth;
-      this.firstProject.section = document.querySelectorAll(".featured-project.is-inview")[0];
-
-      // check for project change
-      if(this.currentProject !== this.firstProject.section) {
-        this.projectChange = true;
-        this.currentProject = this.firstProject.section;
-      }
-      else {
-        this.projectChange = false;
-      }
-
-      // reselect elements on project change
-      if(this.projectChange) {
-        if(this.firstProject.section !== undefined) {
-          this.firstProject.titles = this.firstProject.section.querySelectorAll(".project-titles");
-          this.firstProject.kicker = this.firstProject.section.querySelectorAll(".kicker");
-          this.firstProject.wrapper = this.firstProject.section.querySelector(".ghost-wrapper");
-          this.firstProject.container = this.firstProject.section.querySelector(".ghost-container");
-        }
-      }
-
-      // if mousemove then set new co-ordinates and offset
-      if (e.type === 'mousemove') {
-        let mouseLocationX = e.clientX;
-        let mouseLocationY = e.clientY;
-        this.mouseOffset.x = this.mapRange(mouseLocationX, 0, this.windowHeight, -10, 10);
-        this.mouseOffset.y = this.mapRange(mouseLocationY, 0, this.windowWidth, -10, 10);
-      }
-
-      // animate first project
-      if(this.firstProject.section !== undefined) {
-        this.firstProject.y = this.firstProject.section.getBoundingClientRect().y;
-        let rotate = this.mapRange(this.firstProject.y, 0, window.innerHeight, -10, 10);
-        let position = this.mapRange(this.firstProject.y, 0, window.innerHeight, -120, 100);
-        let scale = this.mapRange(this.firstProject.y, 0, window.innerHeight / 2, 1, 1);
-
-        gsap.to(this.firstProject.titles, {
-          y: position -this.mouseOffset.y, 
-          x: -this.mouseOffset.x, 
-          ease: ease, 
-          duration: animDuration});
-
-        gsap.to(this.firstProject.kicker, {
-          y: (position * 0.9) - (this.mouseOffset.y * 1.2), 
-          x: -this.mouseOffset.x * 1.2,
-          ease: ease, 
-          duration: animDuration});
-
-        gsap.to(this.firstProject.wrapper, {
-          y: -this.mouseOffset.y, 
-          x: -this.mouseOffset.x, 
-          rotate: -rotate, 
-          scale: 1 / scale,
-          ease: ease, 
-          duration: animDuration});
-
-        gsap.to(this.firstProject.container, {
-          y: this.mouseOffset.y, 
-          x: this.mouseOffset.x,
-          rotate: rotate, 
-          scale: scale,
-          ease: ease, 
-          duration: animDuration});
-      } */
-    },
-    mapRange(value, low1, high1, low2, high2) {
-        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-    }
+    ...mapActions(["locoSingle"]),
   },
   transition: {
     name: 'project',
     mode: 'out-in',
     css: false,
-    appear: true,
+    appear: false,
     enter(el, done) {
-      let ghostContainer = el.querySelectorAll('.ghost-container');
-      let projectTitles = el.querySelectorAll('.project-titles');
-      let projectKickers = el.querySelectorAll('.kicker');
-      let projectContent = el.querySelectorAll('.project-content');
+      let ghostContainer = el.querySelector('.ghost-container');
+      let projectTitles = el.querySelector('.project-titles');
+      let projectKickers = el.querySelector('.kicker');
+      let projectSummary = el.querySelector('.summary');
+      let projectContent = el.querySelector('.project-content');
+      let clickedProject = this.$store.getters.clickedProject;
       gsap.from(ghostContainer, {
-        rotate: this.$store.getters.clickedProject.rotation,
-        width: this.$store.getters.clickedProject.width,
-        height: this.$store.getters.clickedProject.height,
-        scale: this.$store.getters.clickedProject.scale,
-        left: this.$store.getters.clickedProject.x + (this.$store.getters.clickedProject.rectWidth / 2),
-        top: this.$store.getters.clickedProject.y + (this.$store.getters.clickedProject.rectHeight / 2),
+        rotate: clickedProject.rotation,
+        width: clickedProject.width,
+        height: clickedProject.height,
+        scale: clickedProject.scale,
+        left: clickedProject.x + (clickedProject.rectWidth / 2),
+        top: clickedProject.y + (clickedProject.rectHeight / 2),
         ease: "power4.inOut",
-        duration: 1
+        duration: 1,
+        clearProps: "all"
       });
-      gsap.from([projectTitles, projectKickers, projectContent], {
+      gsap.from([projectTitles, projectKickers, projectContent, projectSummary], {
+        y: 20,
         opacity: 0,
         ease: "out", 
         duration: 1,
         delay: 0.75,
+        clearProps: "all",
         onComplete: done
       });
     }
   },
   mounted() {
-    /* this.scroll = new this.locomotiveScroll({
-      el: document.querySelector("#projects"),
-      smooth: true,
-      repeat: true,
-    }); */
-    //this.loco();
-  }
+    /* setTimeout(() => {
+      
+      this.locoSingle();
+    }, 500); */
+  },
 }
 </script>
 
 <style scoped>
-#projects.single .ghost-container, 
-#projects.single .ghost-wrapper, 
+#projects.single .ghost-container,
 #projects.single .project-header {
-  width: 800px;
   max-width: 1000px;
+  width: 90vw;
+}
+
+.ghost-container {
+  top: 37rem;
+}
+
+.kicker {
+  top: 21rem;
 }
 
 .featured-project {
-  height: 90%;
+  height: 50rem;
 }
 
 .project-content p {
@@ -204,5 +118,6 @@ export default {
   max-width: 700px;
   width: 90%;
   margin: auto;
+  margin-bottom: 5rem;
 }
 </style>

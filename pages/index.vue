@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @mousemove="loco">
     <div class="background-text">
       <h1>Curated Projects</h1>
     </div>
@@ -15,7 +15,7 @@
       >
         <p class="kicker">{{ project.kicker }}</p>
         <div class="project-header">
-          <h2 class="project-title-1 project-titles">{{ project.title }}</h2>
+          <h2 class="project-title-1 project-titles" @click="clickedProject(project.id, project.link)">{{ project.title }}</h2>
         </div>
         <div class="ghost-container" @click="clickedProject(project.id, project.link)">
           <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
@@ -106,9 +106,6 @@ export default {
           rotation,
           scale,
         });
-
-        // re-activate scrolling and animation
-        this.$store.state.animActive = true;
       }, this.$store.state.animDuration * 1000);
     },
   },
@@ -118,21 +115,21 @@ export default {
     css: false,
     appear: true,
     leave(el, done) {
-      let projectsNotClicked = el.querySelectorAll(
-        "#projects .featured-project:not(.project-clicked)"
-      );
+      let projectsNotClicked = el.querySelectorAll("#projects .featured-project:not(.project-clicked)");
       let projectTitles = el.querySelectorAll(".project-titles");
       let projectKickers = el.querySelectorAll(".kicker");
       let backgroundText = el.querySelectorAll(".background-text");
-      gsap.to(
-        [projectTitles, projectKickers, backgroundText, projectsNotClicked],
-        {
+      gsap.to([projectTitles, projectKickers, backgroundText, projectsNotClicked], {
           opacity: 0,
           ease: "power4.out",
-          duration: this.$store.state.animDuration + 0.1,
+          duration: this.$store.state.animDuration + 0.05,
           onComplete: done,
         }
       );
+    },
+    afterLeave() {
+      // re-activate scrolling and animation
+      this.$store.state.animActive = true;
     },
     enter(el, done) {
       let dummyProject = el.querySelector("#projects .dummy-project");
@@ -151,5 +148,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.ghost-container,
+.project-title-1 {
+  cursor: pointer;
+}
 </style>
