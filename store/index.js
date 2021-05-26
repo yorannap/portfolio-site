@@ -5,6 +5,7 @@ const createStore = () => {
   return new Vuex.Store({
     state() {
       return {
+        throttleWait: false,
         clickedProject: {
           rotation: 0,
           x: 50 + "%",
@@ -188,7 +189,19 @@ const createStore = () => {
         function mapRange(value, low1, high1, low2, high2) {
             return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
         }
-
+        // throttle function
+        function throttle(callback, limit) {
+          if (!context.state.throttleWait) {
+            callback.call();
+            context.state.throttleWait = true;
+            setTimeout(function () {
+              context.state.throttleWait = false;
+            }, limit);
+          }
+        }
+        throttle(animate, 50);
+        context.state.scroll.update();
+        
         // lock scroll on project click
         if(context.state.animActive === false) {
           let projectsContainer = document.querySelector('#projects');
@@ -196,101 +209,102 @@ const createStore = () => {
           return;
         }
 
-        // update locomotive scroll
-        context.state.scroll.update();
+        function animate(){
+          // update locomotive scroll
 
-        // select and update in view projects
-        let inViewProjectSections = document.querySelectorAll(".featured-project.is-inview");
-        context.commit('updateProjectSections', inViewProjectSections)
+          // select and update in view projects
+          let inViewProjectSections = document.querySelectorAll(".featured-project.is-inview");
+          context.commit('updateProjectSections', inViewProjectSections)
 
-        // check for project change based on change in project sections
-        if((context.state.secondProject.sectionPrev !== context.state.secondProject.section)
-        || (context.state.firstProject.sectionPrev !== context.state.firstProject.section)) {
-          context.commit('projectChange', true);
-        }
-        else if(context.state.projectChange !== false) {
-          context.commit('projectChange', false);
-        }
-        
-        // update project elements on project change
-        if(context.state.projectChange) {
-          context.commit('updateProjectElements')
-        }
-        
-        // if mousemove and not mobile or tablet then set new co-ordinates and offset
-        if((e !== undefined) && (context.state.isMobileTablet === false)) {
-          if (e.type === 'mousemove') {
-            let mouseOffsetX = mapRange(e.clientX, 0, window.innerHeight, -10, 10);
-            let mouseOffsetY = mapRange(e.clientY, 0, window.innerWidth, -10, 10);
-            context.commit('updateMouseOffset', [mouseOffsetX, mouseOffsetY])
+          // check for project change based on change in project sections
+          if((context.state.secondProject.sectionPrev !== context.state.secondProject.section)
+          || (context.state.firstProject.sectionPrev !== context.state.firstProject.section)) {
+            context.commit('projectChange', true);
           }
-        }
-        else {
-          context.commit('updateMouseOffset', [0, 0])
-        }
-        
-        // animate first project
-        if(context.state.firstProject.section !== undefined) {
-          context.state.firstProject.y = context.state.firstProject.section.getBoundingClientRect().y;
+          else if(context.state.projectChange !== false) {
+            context.commit('projectChange', false);
+          }
+          
+          // update project elements on project change
+          if(context.state.projectChange) {
+            context.commit('updateProjectElements')
+          }
+          
+          // if mousemove and not mobile or tablet then set new co-ordinates and offset
+          if((e !== undefined) && (context.state.isMobileTablet === false)) {
+            if (e.type === 'mousemove') {
+              let mouseOffsetX = mapRange(e.clientX, 0, window.innerHeight, -10, 10);
+              let mouseOffsetY = mapRange(e.clientY, 0, window.innerWidth, -10, 10);
+              context.commit('updateMouseOffset', [mouseOffsetX, mouseOffsetY])
+            }
+          }
+          else {
+            context.commit('updateMouseOffset', [0, 0])
+          }
+          
+          // animate first project
+          if(context.state.firstProject.section !== undefined) {
+            context.state.firstProject.y = context.state.firstProject.section.getBoundingClientRect().y;
 
-          // mapping limits
-          let rotate = mapRange(context.state.firstProject.y, 0, window.innerHeight, -8, 10);
-          let position = mapRange(context.state.firstProject.y, 0, window.innerHeight, -120, 100);
-          let scale = mapRange(context.state.firstProject.y, 0, window.innerHeight / 2, 1, 1);
+            // mapping limits
+            let rotate = mapRange(context.state.firstProject.y, 0, window.innerHeight, -8, 10);
+            let position = mapRange(context.state.firstProject.y, 0, window.innerHeight, -120, 100);
+            let scale = mapRange(context.state.firstProject.y, 0, window.innerHeight / 2, 1, 1);
+            
+            // animating text
+            gsap.to(context.state.firstProject.titles, {
+              y: position - context.state.mouseOffset.y, 
+              x: - context.state.mouseOffset.x });
+    
+            gsap.to(context.state.firstProject.kicker, {
+              y: (position * 0.8) - (context.state.mouseOffset.y * 1.2), 
+              x: - context.state.mouseOffset.x * 1.2 });
+            
+            // animating image inversed wrapper with alt text
+            gsap.to(context.state.firstProject.wrapper, {
+              y: - context.state.mouseOffset.y, 
+              x: - context.state.mouseOffset.x, 
+              rotate: - rotate, 
+              scale: 1 / scale });
+    
+            gsap.to(context.state.firstProject.container, {
+              y: context.state.mouseOffset.y, 
+              x: context.state.mouseOffset.x,
+              rotate: rotate,
+              scale: scale });
+          }
           
-          // animating text
-          gsap.to(context.state.firstProject.titles, {
-            y: position - context.state.mouseOffset.y, 
-            x: - context.state.mouseOffset.x });
-  
-          gsap.to(context.state.firstProject.kicker, {
-            y: (position * 0.8) - (context.state.mouseOffset.y * 1.2), 
-            x: - context.state.mouseOffset.x * 1.2 });
-          
-          // animating image inversed wrapper with alt text
-          gsap.to(context.state.firstProject.wrapper, {
-            y: - context.state.mouseOffset.y, 
-            x: - context.state.mouseOffset.x, 
-            rotate: - rotate, 
-            scale: 1 / scale });
-  
-          gsap.to(context.state.firstProject.container, {
-            y: context.state.mouseOffset.y, 
-            x: context.state.mouseOffset.x,
-            rotate: rotate,
-            scale: scale });
-        }
-        
-        // animate second project
-        if(context.state.secondProject.section !== undefined) {
-          context.state.secondProject.y = context.state.secondProject.section.getBoundingClientRect().y;
+          // animate second project
+          if(context.state.secondProject.section !== undefined) {
+            context.state.secondProject.y = context.state.secondProject.section.getBoundingClientRect().y;
 
-          // mapping limits
-          let rotate2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -8, 10);
-          let position2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -120, 100);
-          let scale2 = mapRange(context.state.secondProject.y, 0, window.innerHeight / 2, 1, 0.85);
-          
-          // animating text
-          gsap.to(context.state.secondProject.titles, {
-            y: position2 - context.state.mouseOffset.y, 
-            x: - context.state.mouseOffset.x });
-  
-          gsap.to(context.state.secondProject.kicker, {
-            y: (position2 * 0.8) - (context.state.mouseOffset.y * 1.2), 
-            x: -context.state.mouseOffset.x * 1.2 });
+            // mapping limits
+            let rotate2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -8, 10);
+            let position2 = mapRange(context.state.secondProject.y, 0, window.innerHeight, -120, 100);
+            let scale2 = mapRange(context.state.secondProject.y, 0, window.innerHeight / 2, 1, 0.85);
             
-          // animating image inversed wrapper with alt text
-          gsap.to(context.state.secondProject.wrapper, {
-            y: - context.state.mouseOffset.y, 
-            x: - context.state.mouseOffset.x,
-            rotate: - rotate2, 
-            scale: 1 / scale2 });
-            
-          gsap.to(context.state.secondProject.container, {
-            y: context.state.mouseOffset.y, 
-            x: context.state.mouseOffset.x,
-            scale: scale2,
-            rotate: rotate2 });
+            // animating text
+            gsap.to(context.state.secondProject.titles, {
+              y: position2 - context.state.mouseOffset.y, 
+              x: - context.state.mouseOffset.x });
+    
+            gsap.to(context.state.secondProject.kicker, {
+              y: (position2 * 0.8) - (context.state.mouseOffset.y * 1.2), 
+              x: -context.state.mouseOffset.x * 1.2 });
+              
+            // animating image inversed wrapper with alt text
+            gsap.to(context.state.secondProject.wrapper, {
+              y: - context.state.mouseOffset.y, 
+              x: - context.state.mouseOffset.x,
+              rotate: - rotate2, 
+              scale: 1 / scale2 });
+              
+            gsap.to(context.state.secondProject.container, {
+              y: context.state.mouseOffset.y, 
+              x: context.state.mouseOffset.x,
+              scale: scale2,
+              rotate: rotate2 });
+          }
         }
       },
       gsapDefaults(context) {
