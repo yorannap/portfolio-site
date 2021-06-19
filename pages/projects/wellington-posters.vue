@@ -9,14 +9,9 @@
         <p class="summary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.</p>
         <div class="ghost-container">
           <div class="project-image" :style="{ backgroundImage: `url(${project.image})` }"></div>
-          <!-- <div class="ghost-wrapper">
-            <h2 class="project-title-2 project-titles" :style="{ color: `${project.textColour}` }">
-              {{ project.title }}
-            </h2>
-          </div> -->
         </div>
       </div>
-      <div class="project-content" data-scroll>
+      <div class="project-content container">
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!</p>
         <img :src="project.image" />
@@ -80,14 +75,19 @@ export default {
         clearProps: "all",
         onComplete: done
       });
+    },
+    leave(el, done) {
+      let page = document.querySelectorAll('.single')[0].children;
+      gsap.to(page, {
+        opacity: 0,
+        scale: 0.95,
+        ease: "power3.out",
+        duration: 1,
+        clearProps: "all",
+        onComplete: done
+      });
     }
-  },
-  mounted() {
-    /* setTimeout(() => {
-      
-      this.locoSingle();
-    }, 500); */
-  },
+  }
 }
 </script>
 
@@ -108,16 +108,5 @@ export default {
 
 .featured-project {
   height: 50rem;
-}
-
-.project-content p {
-  margin-bottom: 1em;
-}
-
-.project-content {
-  max-width: 700px;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 5rem;
 }
 </style>

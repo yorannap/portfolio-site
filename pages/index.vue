@@ -121,8 +121,9 @@ export default {
       let backgroundText = el.querySelectorAll(".background-text");
       gsap.to([projectTitles, projectKickers, backgroundText, projectsNotClicked], {
           opacity: 0,
-          ease: "power4.out",
-          duration: this.$store.state.animDuration + 0.05,
+          scale: 0.95,
+          ease: "power3.out",
+          duration: 1,
           onComplete: done,
         }
       );
@@ -144,6 +145,9 @@ export default {
         onComplete: done,
       });
     },
+  },
+  mounted() {
+    this.$store.state.animActive = true;
   },
 };
 </script>

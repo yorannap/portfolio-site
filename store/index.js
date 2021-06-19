@@ -199,8 +199,7 @@ const createStore = () => {
             }, limit);
           }
         }
-        throttle(animate, 50);
-        context.state.scroll.update();
+        throttle(animate, 10);
         
         // lock scroll on project click
         if(context.state.animActive === false) {
@@ -208,9 +207,10 @@ const createStore = () => {
           projectsContainer.style.overflowY = 'hidden';
           return;
         }
-
+        
         function animate(){
           // update locomotive scroll
+          context.state.scroll.update();
 
           // select and update in view projects
           let inViewProjectSections = document.querySelectorAll(".featured-project.is-inview");
