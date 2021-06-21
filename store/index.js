@@ -1,5 +1,6 @@
 import Vuex from 'vuex';
 import gsap from 'gsap';
+import mainJson from '../assets/main.json';
 
 const createStore = () => {
   return new Vuex.Store({
@@ -104,8 +105,8 @@ const createStore = () => {
       }
     },
     actions: {
-      definingClickedProject(context, {projectName, rotation, scale}) {
-        let projectEl = document.querySelector(`#projects .${projectName}`);
+      definingClickedProject(context, {projectSlug, rotation, scale}) {
+        let projectEl = document.querySelector(`#projects .${projectSlug}`);
         let ghostContainer = projectEl.querySelector('.ghost-container');
 
         // sizing
@@ -171,16 +172,16 @@ const createStore = () => {
           let position = mapRange(context.state.singleProject.y, 0, window.innerHeight, 0, -100);
           
           gsap.to(context.state.singleProject.titles, {
-            y: (-position * 2) - context.state.mouseOffset.y, 
+            y: - context.state.mouseOffset.y, 
             x: - context.state.mouseOffset.x });
   
           gsap.to([context.state.singleProject.kicker, context.state.singleProject.summary], {
-            y: (-position * 2) - (context.state.mouseOffset.y * 1.2), 
-            x: - context.state.mouseOffset.x * 1.2 });
+            y: - (context.state.mouseOffset.y * 0.8), 
+            x: - context.state.mouseOffset.x * 0.8 });
 
           gsap.to(context.state.singleProject.container, {
-            y: (-position * 1.2) + context.state.mouseOffset.y, 
-            x: context.state.mouseOffset.x});
+            y: context.state.mouseOffset.y / 2, 
+            x: context.state.mouseOffset.x / 2});
         }
 
       },
@@ -327,6 +328,9 @@ const createStore = () => {
     getters: {
       clickedProject(state) {
         return state.clickedProject;
+      },
+      mainJson(state) {
+        return mainJson
       }
     }
   })

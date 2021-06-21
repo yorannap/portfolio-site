@@ -1,0 +1,98 @@
+{
+  "header": {
+    "title": "",
+    "links": [
+      {
+        "id": "home",
+        "text": "Index",
+        "url": "/home"
+      },
+      {
+        "id": "about",
+        "text": "About",
+        "url": "/about"
+      }
+    ]
+  },
+  "about": {
+    "kicker": "Designer",
+    "name": "Yoran Nap",
+    "paragraphs": [
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "senior designer <a href='https://storbie.com' class='button' target='_blank'>@storbie</a>",
+      "contact me at <a href='mailto:yoran.nap@gmail.com' class='button'>yoran.nap@gmail.com</a>"
+    ]
+  },
+  "projects": [
+    {
+      "slug": "wellington-posters",
+      "title": "Wellington Posters",
+      "kicker": "graphic design",
+      "year": "2020",
+      "color": "f5ce4e",
+      "introduction": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.",
+      "thumbnail": "/images/wellington.jpg",
+      "sections": [
+        {
+          "type": "heading",
+          "data": "Introduction"
+        },
+        {
+          "type": "paragraph",
+          "data": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+        },
+        {
+          "type": "paragraph",
+          "data": "Amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+        },
+        {
+          "type": "image",
+          "data": "/images/wellington.jpg"
+        },
+        {
+          "type": "heading",
+          "data": "Introduction"
+        },
+        {
+          "type": "paragraph",
+          "data": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+        },
+        {
+          "type": "paragraph",
+          "data": "Amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+        },
+        {
+          "type": "image",
+          "data": "/images/wellington.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "the-red-panda-project",
+      "title": "The Red Panda Project",
+      "kicker": "digital experience",
+      "year": "2020",
+      "color": "E6C1B1",
+      "introduction": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.",
+      "thumbnail": "/images/panda.jpg",
+      "sections": [
+        {
+          "type": "heading",
+          "data": "Introduction"
+        },
+        {
+          "type": "paragraph",
+          "data": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+        },
+        {
+          "type": "paragraph",
+          "data": "Amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+        },
+        {
+          "type": "image",
+          "data": "/images/panda.jpg"
+        }
+      ]
+    }
+  ]
+}

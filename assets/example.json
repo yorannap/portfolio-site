@@ -1,0 +1,992 @@
+[
+  {
+    "header": {
+      "title": "",
+      "links": [
+        {
+          "id": "home",
+          "text": "Index",
+          "url": "/home"
+        },
+        {
+          "id": "about",
+          "text": "About",
+          "url": "/about"
+        }
+      ]
+    },
+    "about": {
+      "intro": [
+        "Louis Ansa",
+        "Art Director",
+        "Graphic Designer"
+      ],
+      "label": "Who the hell?",
+      "paragraphs": [
+        "Bonjour, Iâ€™m Louis Ansa, passionate art director & graphic designer. Graduated from <a href='https://www.gobelins.fr' target='_blank' class='About-link' data-emoji='gobelins'>Gobelins</a> school in Paris, I started working in Amsterdam before realising I definitively wanted more sun, thatâ€™s why I spent three years working at <a href='https://www.behance.net/watsondg' target='_blank' class='About-link' data-emoji='watsondg'>Watson DG</a> as an art director where I worked on amazing projects for companies such as Pixar, Disney, A24, Universal, Amazon or Fox Entertainment. Although I had so much fun working on those projects, I needed some time to experiment on my own, thatâ€™s when I decided to go freelance to have more time for side projects and <a href='https://www.behance.net/gallery/61305199/EveryAlmostDay-Spring-08' class='About-link' data-emoji='experiment'>experimentations</a>",
+        "I recently joined the <a href='http://www.makemepulse.com' target='_blank' class='About-link' data-emoji='mmp'>Make Me Pulse</a> team in Paris but Iâ€™m available for side projects, collaborations and cool freelance opportunities! You can check out some of my work on my <a href='https://www.instagram.com/louis_ansa/' target='_blank' class='About-link' data-emoji='ig'>Instagram</a> or my <a href='https://www.behance.net/apachan' target='_blank' class='About-link' data-emoji='bh'>Behance</a>. Hit me up for future projects!"
+      ],
+      "sidebar": {
+        "experience": [
+          {
+            "lines": [
+              "Art director at Make Me Pulse",
+              "2018<hr>Present",
+              "Rainy France"
+            ]
+          },
+          {
+            "lines": [
+              "Freelance Art director",
+              "2017<hr>2018",
+              "Rainy France"
+            ]
+          },
+          {
+            "lines": [
+              "Art director at Watson DG",
+              "2015<hr>2017",
+              "Sunny California"
+            ]
+          },
+          {
+            "lines": [
+              "Designer at Media Monks",
+              "2014<hr>2015",
+              "Rainy Netherlands"
+            ]
+          },
+          {
+            "lines": [
+              "Designer at DAN Paris, TBWA",
+              "2012<hr>2014",
+              "Rainy France"
+            ]
+          }
+        ],
+        "judging": [
+          "Awwwards Judge 2018<hr>Present",
+          "FWA Judge 2014<hr>2018"
+        ],
+        "awards": [
+          "FWA<hr>12",
+          "AWWWARDS<hr>6",
+          "Other Awards<hr>9",
+          "Publications<hr>11"
+        ],
+        "projects": [
+          {
+            "title": "Beyond Beauty",
+            "link": "https://beyond-beauty.co/"
+          },
+          {
+            "title": "Fashion Editorial",
+            "link": "https://www.behance.net/gallery/67484047/Story-for-Sicky-Magazine"
+          },
+          {
+            "title": "Every Almost Day",
+            "link": "https://www.behance.net/gallery/66404153/EveryAlmostDay-Summer-08"
+          },
+          {
+            "title": "Cococreator",
+            "link": "https://www.behance.net/gallery/57524601/Coco"
+          },
+          {
+            "title": "Minettes",
+            "link": "https://www.behance.net/gallery/57291405/Minettes"
+          },
+          {
+            "title": "Reve du Japon",
+            "link": "https://www.behance.net/gallery/55218013/Reve-du-Japon"
+          },
+          {
+            "title": "Sing",
+            "link": "https://www.behance.net/gallery/47528261/Sing"
+          },
+          {
+            "title": "The Grey Tales",
+            "link": "https://www.behance.net/gallery/34508605/THE-GREY-TALES-Website"
+          },
+          {
+            "title": "American Honey",
+            "link": "https://www.behance.net/gallery/42674547/American-Honey"
+          },
+          {
+            "title": "Generation Quiz",
+            "link": "https://www.behance.net/gallery/43440025/AMH-Generation-Quiz"
+          },
+          {
+            "title": "Stroke For Love",
+            "link": "https://www.behance.net/gallery/30961319/Stroke-for-love"
+          },
+          {
+            "title": "Omnisense",
+            "link": "https://www.behance.net/gallery/42436103/Omnisense"
+          }
+        ]
+      }
+    },
+    "work": {
+      "entries": [
+        {
+          "slug": "beyond-beauty",
+          "title": "Beyond Beauty",
+          "header": "Beyond Beauty",
+          "link": "https://beyond-beauty.co",
+          "type": "Experience Website",
+          "agency": "Personal Project",
+          "year": "2018",
+          "color": "e1dfd6",
+          "introduction": "Interactive diary, Beyond Beauty is a tribute to four inspiring women mainly known for their appearances although they stand up & act for the greater good. Discover stories about true inner beauty.",
+          "thumbnail": {
+            "desktop": "images/projects/beyond-beauty/thumbnail.jpg",
+            "device": "images/projects/beyond-beauty/thumbnail@low.jpg"
+          },
+          "slides": "images/beyond-beauty.png",
+          "index": {
+            "number": "01",
+            "text": "MMXVII",
+            "yohan": "Experience Website"
+          },
+          "sections": [
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/beyond-beauty/video-frame.jpg",
+                  "video": "images/projects/beyond-beauty/video"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "ratio": "60",
+              "image": "images/projects/beyond-beauty/full-02.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "60",
+              "image": "images/projects/beyond-beauty/full-03.jpg"
+            },
+            {
+              "type": "two-columns",
+              "ratio": "wide",
+              "assets": [
+                {
+                  "poster": "images/projects/beyond-beauty/side-wide-01.jpg"
+                },
+                {
+                  "poster": "images/projects/beyond-beauty/side-wide-02.jpg"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "ratio": "60",
+              "image": "images/projects/beyond-beauty/full-04.jpg"
+            },
+            {
+              "type": "fullscreen",
+              "image": "images/projects/beyond-beauty/fullscreen-01.jpg"
+            },
+            {
+              "type": "long",
+              "image": "images/projects/beyond-beauty/long-01.jpg"
+            },
+            {
+              "type": "long",
+              "image": "images/projects/beyond-beauty/long-02.jpg"
+            },
+            {
+              "type": "credits",
+              "lines": [
+                "Art Direction &amp; Graphic Design â€” Louis Ansa",
+                "Art Direction &amp; Graphic Design â€” Nahel Moussi",
+                "Developer â€” Romain Avalle"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "mystery-box",
+          "title": "Mystery Box",
+          "header": "Mystery Box",
+          "link": "https://www.mysteryboxlive.com",
+          "type": "Experience Website",
+          "agency": "Watson/DG",
+          "year": "2018",
+          "color": "ffe081",
+          "introduction": "Mystery Box Live is a live wedding-themed guessing game happening from may 14-21. Everyday weâ€™ll show you a box, and all you have to do is guess whatâ€™s inside it to win prizes you could only dream of.",
+          "thumbnail": {
+            "desktop": "images/projects/mystery-box/thumbnail.jpg",
+            "device": "images/projects/mystery-box/thumbnail@low.jpg"
+          },
+          "slides": "images/mystery-box.png",
+          "index": {
+            "number": "02",
+            "text": "MMXVII",
+            "yohan": "Experience Website"
+          },
+          "sections": [
+            {
+              "type": "full",
+              "ratio": "67",
+              "image": "images/projects/mystery-box/full-01.jpg"
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-01-01.jpg",
+                "images/projects/mystery-box/m-01-02.jpg",
+                "images/projects/mystery-box/m-01-03.jpg"
+              ]
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-02-01.jpg",
+                "images/projects/mystery-box/m-02-02.jpg",
+                "images/projects/mystery-box/m-02-03.jpg"
+              ]
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-03-01.jpg",
+                "images/projects/mystery-box/m-03-02.jpg",
+                "images/projects/mystery-box/m-03-03.jpg"
+              ]
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-04-01.jpg",
+                "images/projects/mystery-box/m-04-02.jpg",
+                "images/projects/mystery-box/m-04-03.jpg"
+              ]
+            },
+            {
+              "type": "fullscreen",
+              "image": "images/projects/mystery-box/fullscreen-01.jpg"
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-05-01.jpg",
+                "images/projects/mystery-box/m-05-02.jpg",
+                "images/projects/mystery-box/m-05-03.jpg"
+              ]
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-06-01.jpg",
+                "images/projects/mystery-box/m-06-02.jpg",
+                "images/projects/mystery-box/m-06-03.jpg"
+              ]
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/mystery-box/m-07-01.jpg",
+                "images/projects/mystery-box/m-07-02.jpg",
+                "images/projects/mystery-box/m-07-03.jpg"
+              ]
+            },
+            {
+              "type": "full",
+              "ratio": "67",
+              "image": "images/projects/mystery-box/full-02.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "67",
+              "image": "images/projects/mystery-box/full-03.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "67",
+              "image": "images/projects/mystery-box/full-04.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "67",
+              "image": "images/projects/mystery-box/full-05.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "67",
+              "image": "images/projects/mystery-box/full-06.jpg"
+            },
+            {
+              "type": "credits",
+              "lines": [
+                "Art Direction &amp; Graphic Design â€” Louis Ansa",
+                "Creative Direction â€” Hleb Marholin",
+                "Developer â€” Florian Morel",
+                "Copywriter â€” Molly Douglas",
+                "Picado Artist â€” Geraldine Sy",
+                "Producer â€” Greg Meltzer",
+                "Made with Watson DG"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "everyday",
+          "title": "Everyday",
+          "header": "Everyday",
+          "link": "",
+          "type": "Motion Graphics",
+          "agency": "Freelance",
+          "year": "2018",
+          "color": "e9e9eb",
+          "introduction": "Every (almost) Day series is composed of 20 pieces. Each piece is inspired by a music track and a font. This project allowed me to experiment layout & animation concepts.",
+          "thumbnail": {
+            "desktop": "images/projects/everyday/thumbnail.jpg",
+            "device": "images/projects/everyday/thumbnail@low.jpg"
+          },
+          "slides": "images/everyday.png",
+          "index": {
+            "number": "03",
+            "text": "MMXVII",
+            "yohan": "Type"
+          },
+          "sections": [
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-01.jpg",
+                  "video": "images/projects/everyday/everyday-01-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-02.jpg",
+                  "video": "images/projects/everyday/everyday-02-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-03.jpg",
+                  "video": "images/projects/everyday/everyday-03-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-04.jpg",
+                  "video": "images/projects/everyday/everyday-04-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-05.jpg",
+                  "video": "images/projects/everyday/everyday-05-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-06.jpg",
+                  "video": "images/projects/everyday/everyday-06-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-07.jpg",
+                  "video": "images/projects/everyday/everyday-07-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-08.jpg",
+                  "video": "images/projects/everyday/everyday-08-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-09.jpg",
+                  "video": "images/projects/everyday/everyday-09-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-10.jpg",
+                  "video": "images/projects/everyday/everyday-10-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-11.jpg",
+                  "video": "images/projects/everyday/everyday-11-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-12.jpg",
+                  "video": "images/projects/everyday/everyday-12-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-13.jpg",
+                  "video": "images/projects/everyday/everyday-13-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-14.jpg",
+                  "video": "images/projects/everyday/everyday-14-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-15.jpg",
+                  "video": "images/projects/everyday/everyday-15-c"
+                }
+              ]
+            },
+            {
+              "media": "video",
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-16.jpg",
+                  "video": "images/projects/everyday/everyday-16-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-17.jpg",
+                  "video": "images/projects/everyday/everyday-17-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-18.jpg",
+                  "video": "images/projects/everyday/everyday-18-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-19.jpg",
+                  "video": "images/projects/everyday/everyday-19-c"
+                }
+              ]
+            },
+            {
+              "media": "video",
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-20.jpg",
+                  "video": "images/projects/everyday/everyday-20-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-21.jpg",
+                  "video": "images/projects/everyday/everyday-21-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-22.jpg",
+                  "video": "images/projects/everyday/everyday-22-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-23.jpg",
+                  "video": "images/projects/everyday/everyday-23-c"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/everyday/full-24.jpg",
+                  "video": "images/projects/everyday/everyday-24-c"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "collages",
+          "title": "Collages",
+          "header": "Collages",
+          "link": "https://www.mysteryboxlive.com",
+          "type": "Fashion Editioral",
+          "agency": "Side project",
+          "year": "2017/2018",
+          "color": "f0d7c0",
+          "introduction": "Different projects experimenting collage and composition through fashion editorials and a personal project on japanese inspired animated posters.",
+          "thumbnail": {
+            "desktop": "images/projects/collages/thumbnail.jpg",
+            "device": "images/projects/collages/thumbnail@low.jpg"
+          },
+          "slides": "images/collages.png",
+          "index": {
+            "number": "04",
+            "text": "MMXVII",
+            "yohan": "Fashion Editorial"
+          },
+          "sections": [
+            {
+              "type": "two-columns",
+              "ratio": "portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/two-col-01.jpg"
+                },
+                {
+                  "poster": "images/projects/collages/two-col-02.jpg"
+                }
+              ]
+            },
+            {
+              "type": "two-columns",
+              "ratio": "portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/two-col-03.jpg"
+                },
+                {
+                  "poster": "images/projects/collages/two-col-04.jpg"
+                }
+              ]
+            },
+            {
+              "type": "two-columns",
+              "ratio": "portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/two-col-05.jpg"
+                },
+                {
+                  "poster": "images/projects/collages/two-col-06.jpg"
+                }
+              ]
+            },
+            {
+              "type": "side-portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/side-portrait-001.jpg",
+                  "video": "images/projects/collages/video-01"
+                }
+              ]
+            },
+            {
+              "type": "two-columns",
+              "ratio": "portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/two-col-07.jpg"
+                },
+                {
+                  "poster": "images/projects/collages/two-col-08.jpg"
+                }
+              ]
+            },
+            {
+              "type": "two-columns",
+              "ratio": "portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/two-col-09.jpg"
+                },
+                {
+                  "poster": "images/projects/collages/two-col-10.jpg"
+                }
+              ]
+            },
+            {
+              "type": "two-columns",
+              "ratio": "portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/two-col-11.jpg"
+                },
+                {
+                  "poster": "images/projects/collages/two-col-12.jpg"
+                }
+              ]
+            },
+            {
+              "type": "credits",
+              "lines": [
+                "Art Direction & Graphic Design â€”Â Louis Ansa",
+                "Art Direction & Photographer â€” Alice Jacquemin",
+                "Model â€”Â Nas â€”Â Girl Mgmt",
+                "Make-up â€”Â AmÃ©lie Moutia",
+                "Hairstylist â€”Â Cyril Laforet",
+                "Styling â€”Â GaÃ«lle Coz"
+              ]
+            },
+            {
+              "type": "third",
+              "align": "left",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/third-01.jpg",
+                  "video": "images/projects/collages/video-02"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "image": "images/projects/collages/full-01.jpg"
+            },
+            {
+              "type": "third",
+              "align": "right",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/third-02.jpg",
+                  "video": "images/projects/collages/video-03"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "image": "images/projects/collages/full-02.jpg"
+            },
+            {
+              "type": "side-portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/side-portrait-01.jpg",
+                  "video": "images/projects/collages/video-04"
+                }
+              ]
+            },
+            {
+              "type": "fullscreen",
+              "image": "images/projects/collages/fullscreen-01.jpg"
+            },
+            {
+              "type": "full",
+              "image": "images/projects/collages/full-03.jpg"
+            },
+            {
+              "type": "side-portrait",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/side-portrait-02.jpg",
+                  "align": "right"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "image": "images/projects/collages/full-04.jpg"
+            },
+            {
+              "type": "credits",
+              "lines": [
+                "Art Direction & Graphic Design â€” Louis Ansa",
+                "Art Direction & Photographer â€”Â Camille Froment",
+                "Model â€”Â Marie Selepec â€”Â Karin Models",
+                "Make-up â€”Â Melissa Landron",
+                "Hairstylist â€”Â Anita Bujoli",
+                "Styling â€”Â LÃ©a Patry Gamine Club & Laura Swimwear"
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/full-05.jpg",
+                  "video": "images/projects/collages/video-05"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/full-06.jpg",
+                  "video": "images/projects/collages/video-06"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/full-08.jpg",
+                  "video": "images/projects/collages/video-08"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/full-09.jpg",
+                  "video": "images/projects/collages/video-09"
+                }
+              ]
+            },
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "poster": "images/projects/collages/full-07.jpg",
+                  "video": "images/projects/collages/video-07"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "coco-creator",
+          "title": "Coco Creator",
+          "header": "Coco Creator",
+          "link": "https://www.mysteryboxlive.com",
+          "type": "Experience Website",
+          "agency": "Watson DG",
+          "year": "2017",
+          "color": "f7ca3e",
+          "introduction": "Singing has the power to transform us all. It can make a stay-at-home mom feel like a pop princess. It can turn a misunderstood teenager into a sensitive soul. It can make non-believers into believers and make the smallest creatures seem larger than life.",
+          "thumbnail": {
+            "desktop": "images/projects/coco/thumbnail.jpg",
+            "device": "images/projects/coco/thumbnail@low.jpg"
+          },
+          "slides": "images/coco-creator.png",
+          "index": {
+            "number": "05",
+            "text": "MMXVII",
+            "yohan": "Fashion Editorial"
+          },
+          "sections": [
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "ratio": "59",
+                  "poster": "images/projects/coco/video-poster.jpg",
+                  "video": "images/projects/coco/video"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "image": "images/projects/coco/md-01-desktop.jpg"
+            },
+            {
+              "type": "mobile-desktop",
+              "first": "desktop",
+              "align": "top",
+              "desktop": "images/projects/coco/md-02-desktop.jpg",
+              "mobile": "images/projects/coco/md-02-mobile.jpg"
+            },
+            {
+              "type": "fullscreen",
+              "image": "images/projects/coco/fullscreen-01.jpg"
+            },
+            {
+              "type": "full",
+              "image": "images/projects/coco/full-01.jpg"
+            },
+            {
+              "type": "mobiles",
+              "images": [
+                "images/projects/coco/m-01-01.jpg",
+                "images/projects/coco/m-01-02.jpg",
+                "images/projects/coco/m-01-03.jpg",
+                "images/projects/coco/m-01-04.jpg"
+              ]
+            },
+            {
+              "type": "full",
+              "image": "images/projects/coco/md-03-desktop.jpg"
+            },
+            {
+              "type": "full",
+              "image": "images/projects/coco/md-04-desktop.jpg"
+            },
+            {
+              "type": "full",
+              "image": "images/projects/coco/md-05-desktop.jpg"
+            },
+            {
+              "type": "credits",
+              "lines": [
+                "Art Direction &amp; Graphic Design â€” Louis Ansa",
+                "Creative Direction â€” Hleb Marholin",
+                "Developer â€” Florian Morel",
+                "Copywriter â€” Molly Douglas",
+                "Picado Artist â€” Geraldine Sy",
+                "Producer â€” Greg Meltzer",
+                "Made with Watson DG"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "sing",
+          "title": "Sing Movie",
+          "header": "Sing Movie",
+          "link": "https://www.mysteryboxlive.com",
+          "type": "Experience Website",
+          "agency": "Watson/DG",
+          "year": "2017",
+          "color": "4b5bbd",
+          "introduction": "The Sing official site foster emotional connections with the filmâ€™s characters through an audition while discovering the musical style of each character & upon diving in further, users explore the personality behind the performers.",
+          "thumbnail": {
+            "desktop": "images/projects/sing/thumbnail.jpg",
+            "device": "images/projects/sing/thumbnail@low.jpg"
+          },
+          "slides": "images/sing-movie.png",
+          "index": {
+            "number": "06",
+            "text": "MMXVII",
+            "yohan": "Fashion Editorial"
+          },
+          "sections": [
+            {
+              "type": "video-autoplay",
+              "assets": [
+                {
+                  "ratio": "66",
+                  "poster": "images/projects/sing/video-poster.jpg",
+                  "video": "images/projects/sing/video"
+                }
+              ]
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-01.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-02.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-03.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-04.jpg"
+            },
+            {
+              "type": "fullscreen",
+              "image": "images/projects/sing/fullscreen-01.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-05.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-06.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-07.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-08.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-09.jpg"
+            },
+            {
+              "type": "full",
+              "ratio": "66",
+              "image": "images/projects/sing/full-10.jpg"
+            },
+            {
+              "type": "credits",
+              "lines": [
+                "Art Direction &amp; Graphic Design â€” Louis Ansa",
+                "Creative Direction â€” Hleb Marholin",
+                "Developer â€” Florian Morel",
+                "Copywriter â€” Molly Douglas",
+                "Picado Artist â€” Geraldine Sy",
+                "Producer â€” Greg Meltzer",
+                "Made with Watson DG"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

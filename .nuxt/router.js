@@ -5,7 +5,7 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _1322e96c = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
-const _37dad1ac = () => interopDefault(import('../pages/projects/wellington-posters.vue' /* webpackChunkName: "pages/projects/wellington-posters" */))
+const _6f7ad870 = () => interopDefault(import('../pages/projects/_slug.vue' /* webpackChunkName: "pages/projects/_slug" */))
 const _1626660f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -24,9 +24,9 @@ export const routerOptions = {
     component: _1322e96c,
     name: "about"
   }, {
-    path: "/projects/wellington-posters",
-    component: _37dad1ac,
-    name: "projects-wellington-posters"
+    path: "/projects/:slug?",
+    component: _6f7ad870,
+    name: "projects-slug"
   }, {
     path: "/",
     component: _1626660f,

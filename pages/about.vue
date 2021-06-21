@@ -1,23 +1,19 @@
 <template>
   <div class="about container page">
-    <img :src="profilePic" alt="Yoran's profile picture" class="profile frame">
-    <p class="subheading">designer</p>
-    <h2>Yoran Nap</h2>
-    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <p>senior designer <a href="https://storbie.com" class="button" target="_blank">@storbie</a></p>
-    <p>contact me at <a href="mailto:yoran.nap@gmail.com" class="button">yoran.nap@gmail.com</a></p>
+    <img src="/images/memoji.jpg" alt="Yoran's profile picture" class="profile frame">
+    <p class="subheading">{{ mainJson.about.kicker }}</p>
+    <h2>{{ mainJson.about.name }}</h2>
+    <p v-for="paragraph in mainJson.about.paragraphs" :key="paragraph" v-html="paragraph"></p>
   </div>
 </template>
 
 <script>
 import gsap from 'gsap';
-import imageProfile from "~/assets/memoji.jpg";
+import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      profilePic: imageProfile
-    }
+  computed: {
+    ...mapGetters(['mainJson'])
   },
   transition: {
     name: 'about',
@@ -27,7 +23,7 @@ export default {
     enter(el, done) {
       let page = document.querySelectorAll('.page')[0].children;
       gsap.from(page, {
-        y: 100,
+        y: 20,
         opacity: 0,
         ease: "power3.out",
         stagger: 0.1,
@@ -37,7 +33,7 @@ export default {
       });
     },
     leave(el, done) {
-      let page = document.querySelectorAll('.page');
+      let page = document.querySelectorAll('.page')[0].children;
       gsap.to(page, {
         opacity: 0,
         scale: 0.95,

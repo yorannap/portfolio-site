@@ -78,24 +78,33 @@ a.button:hover {
   padding-bottom: 5px;
 }
 
-.background-text h1 {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--bg-text-color);
-  transition: var(--transition);
-  opacity: 0.03;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
+.background-text {
   position: fixed;
   top: 0;
-  font-size: 9em;
-  line-height: 0.85em;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.05;
   display: flex;
   justify-content: center;
   flex-direction: column;
   z-index: -1;
   margin-top: 0;
+}
+
+.background-text div {
+  display: flex;
+  justify-content: center;
+}
+
+.background-text span {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--bg-text-color);
+  transition: var(--transition);
+  text-align: center;
+  font-size: 9em;
+  user-select: none;
+  line-height: 0.85em;
 }
 
 #projects {
@@ -245,7 +254,7 @@ p.kicker {
 
 /***** MOBILE AND TABLET *****/
 @media only screen and (max-width: 800px) {
-  .background-text h1 {
+  .background-text span {
     font-size: 5em;
   }
   h2 {
@@ -261,7 +270,7 @@ p.kicker {
 }
 
 @media only screen and (max-width: 525px) {
-  .background-text h1 {
+  .background-text span {
     font-size: 3em;
   }
   h2 {
