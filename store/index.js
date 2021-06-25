@@ -74,9 +74,6 @@ const createStore = () => {
         state.firstProject.section = inViewProjectSections[0];
         state.secondProject.section = inViewProjectSections[1];
       },
-      updateSingleProjectSection(state, singleProjectHeader) {
-        state.singleProject.section = singleProjectHeader;
-      },
       updateProjectElements(state) {
         if(state.firstProject.section !== undefined) {
           state.firstProject.titles = state.firstProject.section.querySelectorAll(".project-titles");
@@ -92,12 +89,10 @@ const createStore = () => {
         }
       },
       updateSingleProjectElements(state) {
-        if(state.singleProject.section !== undefined) {
-          state.singleProject.titles = state.singleProject.section.querySelectorAll(".project-titles");
-          state.singleProject.kicker = state.singleProject.section.querySelector(".kicker");
-          state.singleProject.summary = state.singleProject.section.querySelector(".summary");
-          state.singleProject.container = state.singleProject.section.querySelector(".ghost-container");
-        }
+        state.singleProject.titles = document.querySelectorAll(".project-titles");
+        state.singleProject.kicker = document.querySelectorAll(".kicker");
+        state.singleProject.summary = document.querySelectorAll(".summary");
+        state.singleProject.container = document.querySelectorAll(".ghost-container");
       },
       updateMouseOffset(state, [mouseOffsetX, mouseOffsetY]) {
         state.mouseOffset.x = mouseOffsetX;
@@ -142,16 +137,10 @@ const createStore = () => {
         function mapRange(value, low1, high1, low2, high2) {
           return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
         }
-
         // update locomotive scroll
         context.state.scroll.update();
-
-        // select and update in view projects
-        let singleProjectHeader = document.querySelector("#projects.single .featured-project");
-        context.commit('updateSingleProjectSection', singleProjectHeader)
-
+        // define project elements to animate
         context.commit('updateSingleProjectElements')
-
         // if mousemove and not mobile or tablet then set new co-ordinates and offset
         if((e !== undefined) && (context.state.isMobileTablet === false)) {
           if (e.type === 'mousemove') {
@@ -163,18 +152,12 @@ const createStore = () => {
         else {
           context.commit('updateMouseOffset', [0, 0])
         }
-
         // animate project
         if(context.state.singleProject.section !== undefined) {
-          context.state.singleProject.y = context.state.singleProject.section.getBoundingClientRect().y;
-          
-          // mapping limits
-          let position = mapRange(context.state.singleProject.y, 0, window.innerHeight, 0, -100);
-          
           gsap.to(context.state.singleProject.titles, {
             y: - context.state.mouseOffset.y, 
             x: - context.state.mouseOffset.x });
-  
+
           gsap.to([context.state.singleProject.kicker, context.state.singleProject.summary], {
             y: - (context.state.mouseOffset.y * 0.8), 
             x: - context.state.mouseOffset.x * 0.8 });
@@ -183,7 +166,6 @@ const createStore = () => {
             y: context.state.mouseOffset.y / 2, 
             x: context.state.mouseOffset.x / 2});
         }
-
       },
       loco(context, e) {
         // map range utility function

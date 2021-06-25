@@ -1,7 +1,7 @@
 <template>
   <div @mousemove="locoSingle">
     <div id="projects" class="single" @scroll="locoSingle" data-scroll-container>
-      <div class="featured-project" :class="project.slug" data-scroll :data-scroll-section="project.slug">
+      <div class="featured-project first" :class="project.slug" data-scroll>
         <p class="kicker">{{ project.kicker }}</p>
         <div class="project-header">
           <h2 class="project-title-1 project-titles">{{ project.title }}</h2>
@@ -11,6 +11,7 @@
           <div class="project-image" :style="`background-image: url(${project.thumbnail})`"></div>
         </div>
       </div>
+
       <div class="project-content container">
         <section v-for="section in project.sections" :key="section.index" :class="section.type" data-scroll>
           <p v-if="section.type === 'paragraph'">{{ section.data }}</p>
@@ -18,6 +19,18 @@
           <img v-if="section.type === 'image'" :src="section.data" />
         </section>
       </div>
+
+      <div class="next-project" @scroll="locoSingle" data-scroll-container @click="clickedProject(nextProject.slug)">
+        <div class="featured-project" :class="nextProject.slug" data-scroll>
+          <div class="project-header">
+            <h2 class="project-title-1 project-titles">Next Project</h2>
+          </div>
+          <div class="ghost-container">
+            <div class="project-image" :style="`background-image: url(${nextProject.thumbnail})`"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -46,6 +59,29 @@ export default {
   },
   methods: {
     ...mapActions(["locoSingle"]),
+    clickedProject(projectSlug) {
+      // add clicked class so leave animation can exclude the clicked project
+      let projectEl = document.querySelector(`#projects .${projectSlug}`);
+      projectEl.classList.add("project-clicked");
+      this.$router.push({ path: `/projects/${projectSlug}` });
+
+      // disable future animations
+      this.$store.state.animActive = false;
+
+      // delay that waits for running animation to finish before defining the clicked project
+      setTimeout(() => {
+        let ghostContainer = projectEl.querySelector(".ghost-container");
+        let rotation = gsap.getProperty(ghostContainer, "rotate");
+        let scale = gsap.getProperty(ghostContainer, "scale");
+
+        // send defined project properties to store
+        this.$store.dispatch("definingClickedProject", {
+          projectSlug,
+          rotation,
+          scale,
+        });
+      }, this.$store.state.animDuration * 1000);
+    },
   },
   computed: {
     project() {
@@ -56,6 +92,22 @@ export default {
       })
       return project;
     },
+    nextProject() {
+      let nextProject;
+      let allProjects = this.$store.getters.mainJson.projects;
+      // loop through projects to find current one, then define next or first project
+      allProjects.forEach((project, index) => {
+        if (project === this.project) {
+          if(index === (allProjects.length - 1)) {
+            nextProject = allProjects[0]
+          }
+          else {
+            nextProject = allProjects[index + 1]
+          }
+        }
+      });
+      return nextProject;
+    }
   },
   transition: {
     name: 'project',
@@ -91,16 +143,22 @@ export default {
       });
     },
     leave(el, done) {
-      let page = document.querySelectorAll('.single')[0].children;
-      gsap.to(page, {
-        opacity: 0,
-        scale: 0.95,
-        ease: "power3.out",
-        duration: 1,
-        clearProps: "all",
-        onComplete: done
-      });
-    }
+      let projectsNotClicked = el.querySelectorAll("#projects .featured-project:not(.project-clicked)");
+      let projectContent = el.querySelectorAll("#projects .project-content");
+      let nextProjectTitle = el.querySelectorAll("#projects .project-titles");
+      gsap.to([projectContent, projectsNotClicked, nextProjectTitle], {
+          opacity: 0,
+          scale: 0.95,
+          ease: "power3.out",
+          duration: 1,
+          onComplete: done,
+        }
+      );
+    },
+    afterLeave() {
+      // re-activate scrolling and animation
+      this.$store.state.animActive = true;
+    },
   }
 }
 </script>
@@ -129,21 +187,34 @@ section.image img {
   margin-bottom: 30px;
 }
 
-#projects.single .ghost-container,
-#projects.single .project-header {
+#projects.single .first .ghost-container,
+#projects.single .first .project-header {
   max-width: 1200px;
   width: 90vw;
 }
 
-.ghost-container {
+#projects.single .first .ghost-container {
   top: 37rem;
 }
 
-.kicker {
+#projects.single .first .kicker {
   top: 21rem;
 }
 
-.featured-project {
+.featured-project.first {
   height: 50rem;
+}
+
+/*** NEXT PROJECT ***/
+.next-project {
+  cursor: pointer;
+
+}
+.next-project .featured-project {
+  height: 20rem;
+}
+
+.next-project .ghost-container {
+  transform: rotate(15deg);
 }
 </style>
