@@ -5,6 +5,11 @@ export default {
   // generate config
   render: {
     static: {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    }
+  },
+  generate: {
+    static: {
       maxAge: 1000 * 60 * 60 * 24 * 7
     }
   },
