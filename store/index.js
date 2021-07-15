@@ -23,7 +23,7 @@ const createStore = () => {
           x: 0,
           y: 0
         },
-        animActive: true,
+        animActive: false,
         animDuration: 0.5,
         ease: 'inOut',
         projectChange: true,
@@ -100,6 +100,28 @@ const createStore = () => {
       }
     },
     actions: {
+      preloadImages(context) {
+        let imageLoading = new Promise((resolve, reject) => {
+          let images = require.context('../static/images/', true).keys()
+          let imagesCount = images.length;
+          let imagesLoaded = 0;
+          images.forEach(image => {
+            let imgUrl = '/images' + image.substring(1)
+            let imgEl = new Image();
+            imgEl.src = imgUrl;
+            imgEl.onload = function() {
+              console.log(imgEl)
+              imagesLoaded++;
+              if(imagesLoaded === imagesCount){
+                resolve()
+              }
+            }
+          })
+        });
+        imageLoading.then(() => { 
+          console.log('images loaded')
+        })
+      },
       definingClickedProject(context, {projectSlug, rotation, scale}) {
         let projectEl = document.querySelector(`#projects .${projectSlug}`);
         let ghostContainer = projectEl.querySelector('.ghost-container');
@@ -137,34 +159,58 @@ const createStore = () => {
         function mapRange(value, low1, high1, low2, high2) {
           return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
         }
-        // update locomotive scroll
-        context.state.scroll.update();
-        // define project elements to animate
-        context.commit('updateSingleProjectElements')
-        // if mousemove and not mobile or tablet then set new co-ordinates and offset
-        if((e !== undefined) && (context.state.isMobileTablet === false)) {
-          if (e.type === 'mousemove') {
-            let mouseOffsetX = mapRange(e.clientX, 0, window.innerHeight, -10, 10);
-            let mouseOffsetY = mapRange(e.clientY, 0, window.innerWidth, -10, 10);
-            context.commit('updateMouseOffset', [mouseOffsetX, mouseOffsetY])
+
+        // throttle function
+        function throttle(callback, limit) {
+          if (!context.state.throttleWait) {
+            callback.call();
+            context.state.throttleWait = true;
+            setTimeout(function () {
+              context.state.throttleWait = false;
+            }, limit);
           }
         }
-        else {
-          context.commit('updateMouseOffset', [0, 0])
+        
+        // lock scroll on project click
+        let projectsContainer = document.querySelector('#projects');
+        if(context.state.animActive === false) {
+          projectsContainer.style.overflowY = 'hidden';
+          return;
         }
-        // animate project
-        if(context.state.singleProject.section !== undefined) {
-          gsap.to(context.state.singleProject.titles, {
-            y: - context.state.mouseOffset.y, 
-            x: - context.state.mouseOffset.x });
+        else {
+          throttle(animate, 10);
+        }
 
-          gsap.to([context.state.singleProject.kicker, context.state.singleProject.summary], {
-            y: - (context.state.mouseOffset.y * 0.8), 
-            x: - context.state.mouseOffset.x * 0.8 });
+        function animate(){
+          // update locomotive scroll
+          context.state.scroll.update();
+          // define project elements to animate
+          context.commit('updateSingleProjectElements')
+          // if mousemove and not mobile or tablet then set new co-ordinates and offset
+          if((e !== undefined) && (context.state.isMobileTablet === false)) {
+            if (e.type === 'mousemove') {
+              let mouseOffsetX = mapRange(e.clientX, 0, window.innerHeight, -10, 10);
+              let mouseOffsetY = mapRange(e.clientY, 0, window.innerWidth, -10, 10);
+              context.commit('updateMouseOffset', [mouseOffsetX, mouseOffsetY])
+            }
+          }
+          else {
+            context.commit('updateMouseOffset', [0, 0])
+          }
+          // animate project
+          if(context.state.singleProject.section !== undefined) {
+            gsap.to(context.state.singleProject.titles, {
+              y: - context.state.mouseOffset.y, 
+              x: - context.state.mouseOffset.x });
 
-          gsap.to(context.state.singleProject.container, {
-            y: context.state.mouseOffset.y / 2, 
-            x: context.state.mouseOffset.x / 2});
+            gsap.to([context.state.singleProject.kicker, context.state.singleProject.summary], {
+              y: - (context.state.mouseOffset.y * 0.8), 
+              x: - context.state.mouseOffset.x * 0.8 });
+
+            gsap.to(context.state.singleProject.container, {
+              y: context.state.mouseOffset.y / 2, 
+              x: context.state.mouseOffset.x / 2});
+          }
         }
       },
       loco(context, e) {
@@ -182,16 +228,19 @@ const createStore = () => {
             }, limit);
           }
         }
-        throttle(animate, 10);
         
         // lock scroll on project click
+        let projectsContainer = document.querySelector('#projects');
         if(context.state.animActive === false) {
-          let projectsContainer = document.querySelector('#projects');
           projectsContainer.style.overflowY = 'hidden';
           return;
         }
+        else {
+          projectsContainer.style.overflowY = 'visible';
+          throttle(animate, 10);
+        }
         
-        function animate(){
+        function animate() {
           // update locomotive scroll
           context.state.scroll.update();
 
@@ -297,6 +346,7 @@ const createStore = () => {
         });
       },
       init(context) {
+        context.dispatch('preloadImages');
         let scroll = new this._vm.locomotiveScroll({
           el: document.querySelector("body"),
           smooth: false,

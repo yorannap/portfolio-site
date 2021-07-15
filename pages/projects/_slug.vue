@@ -36,6 +36,7 @@
 </template>
 
 <script>
+//import Images from this.nextProject.thumbnail
 import gsap from 'gsap';
 import { mapActions } from "vuex";
 
@@ -132,7 +133,7 @@ export default {
         duration: 1,
         clearProps: "all"
       });
-      gsap.from([projectTitles, projectKickers, projectContent, projectSummary], {
+      gsap.from([projectKickers, projectTitles, projectContent, projectSummary], {
         y: 20,
         opacity: 0,
         ease: "out", 
@@ -154,12 +155,14 @@ export default {
           onComplete: done,
         }
       );
-    },
-    afterLeave() {
-      // re-activate scrolling and animation
-      this.$store.state.animActive = true;
-    },
-  }
+    }
+  },
+  beforeEnter(to, from, next) {
+    loadImage(Digital);
+  },
+  mounted() {
+    this.$store.state.animActive = true;
+  },
 }
 </script>
 
@@ -208,13 +211,19 @@ section.image img {
 /*** NEXT PROJECT ***/
 .next-project {
   cursor: pointer;
-
+  height: 350px;
+  overflow: hidden;
 }
 .next-project .featured-project {
-  height: 20rem;
+  height: 100%;
 }
 
 .next-project .ghost-container {
-  transform: rotate(15deg);
+  margin-top: 150px;
+  transform: translate(-50%, -50%) rotate(10deg);
+}
+.next-project .project-header {
+  z-index: 5;
+  top: 70%;
 }
 </style>

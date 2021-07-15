@@ -102,10 +102,6 @@ export default {
         }
       );
     },
-    afterLeave() {
-      // re-activate scrolling and animation
-      this.$store.state.animActive = true;
-    },
     enter(el, done) {
       // animate background text
       let backgroundTextLetters = el.querySelectorAll(".background-text span");
@@ -137,7 +133,7 @@ export default {
         onComplete: done,
         delay: 0.75
       });
-    },
+    }
   },
   mounted() {
     this.$store.state.animActive = true;

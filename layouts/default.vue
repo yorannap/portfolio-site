@@ -14,25 +14,28 @@ export default {
     TheHeader
   },
   mounted() {
-    // init app
-    let init = () => {
-      this.$store.dispatch('init');
-    }
-    init();
+    this.$store.dispatch('init');
     // re-init on window size change
-    window.addEventListener("resize", init);
-    // console.log mainjson
+    window.addEventListener("resize", this.$store.dispatch('init'));
     console.log(this.$store.getters.mainJson)
-    // mount animation
-    let childElements = document.querySelectorAll('header')[0].children;
-    gsap.from(childElements, {
-      opacity: 0,
-      scale: 0.95,
-      ease: "power1.out",
-      duration: 1,
-      clearProps: "all",
-      delay: 1.25
-    });
+  },
+  transition: {
+    name: "layout",
+    mode: "out-in",
+    css: false,
+    appear: true,
+    enter(el, done) {
+      let childElements = document.querySelectorAll('header')[0].children;
+      gsap.from(childElements, {
+        opacity: 0,
+        scale: 0.95,
+        ease: "power1.out",
+        duration: 1,
+        clearProps: "all",
+        delay: 1.25,
+        onComplete: done
+      });
+    }
   }
 }
 </script>
