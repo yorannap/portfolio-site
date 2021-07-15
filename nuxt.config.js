@@ -3,8 +3,10 @@ export default {
   target: 'static',
 
   // generate config
-  generate: {
-    maxAge: 1000 * 60 * 60 * 24 * 7
+  render: {
+    static: {
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    }
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
