@@ -78,6 +78,15 @@ a.button:hover {
   padding-bottom: 5px;
 }
 
+body::after{
+  position:absolute; 
+  width:0; 
+  height:0; 
+  overflow:hidden; 
+  z-index:-1;
+  content: url(/images/wellington.jpg) url(/images/panda.jpg) url(/images/the-big-universe-is-here-4k-q4.jpeg);
+}
+
 .background-text {
   position: fixed;
   top: 0;

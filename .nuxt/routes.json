@@ -3,21 +3,18 @@
     "name": "about",
     "path": "/about",
     "component": "/Users/yorannap/Documents/Coding/portfolio-site/pages/about.vue",
-    "chunkName": "pages/about",
-    "_name": "_1322e96c"
+    "chunkName": "pages/about"
   },
   {
     "name": "projects-slug",
     "path": "/projects/:slug?",
     "component": "/Users/yorannap/Documents/Coding/portfolio-site/pages/projects/_slug.vue",
-    "chunkName": "pages/projects/_slug",
-    "_name": "_6f7ad870"
+    "chunkName": "pages/projects/_slug"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/yorannap/Documents/Coding/portfolio-site/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_1626660f"
+    "chunkName": "pages/index"
   }
 ]

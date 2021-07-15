@@ -41,7 +41,7 @@ import gsap from 'gsap';
 import { mapActions } from "vuex";
 
 export default {
-  beforeRouteEnter(to, from, next) {
+  /* beforeRouteEnter(to, from, next) {
     console.log(from)
     if(from.path === '/') {
       let imgEl = document.createElement('img');
@@ -60,8 +60,8 @@ export default {
         const img = new Image();
         img.src = imagesObject[key];
       });
-    } */
-  },
+    }
+  }, */
   validate(data) {
     // validate that path exists in the main json, otherwise 404
     let validParam = false;
