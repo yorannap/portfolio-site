@@ -346,7 +346,7 @@ const createStore = () => {
         });
       },
       init(context) {
-        context.dispatch('preloadImages');
+        //context.dispatch('preloadImages');
         let scroll = new this._vm.locomotiveScroll({
           el: document.querySelector("body"),
           smooth: false,
