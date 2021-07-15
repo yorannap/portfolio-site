@@ -41,6 +41,27 @@ import gsap from 'gsap';
 import { mapActions } from "vuex";
 
 export default {
+  beforeRouteEnter(to, from, next) {
+    console.log(from)
+    if(from.path === '/') {
+      let imgEl = document.createElement('img');
+      imgEl.src = '/images/wellington.jpg';
+      imgEl.onload = function() {
+        console.log(imgEl)
+        next()
+      }
+    }
+    else {
+      next()
+    }
+    /* loadImage(FeatureImage);
+    function loadImage(imagesObject) {
+      Object.keys(imagesObject).map((key, index) => {
+        const img = new Image();
+        img.src = imagesObject[key];
+      });
+    } */
+  },
   validate(data) {
     // validate that path exists in the main json, otherwise 404
     let validParam = false;
