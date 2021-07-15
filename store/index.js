@@ -100,28 +100,6 @@ const createStore = () => {
       }
     },
     actions: {
-      preloadImages(context) {
-        let imageLoading = new Promise((resolve, reject) => {
-          let images = require.context('../static/images/', true).keys()
-          let imagesCount = images.length;
-          let imagesLoaded = 0;
-          images.forEach(image => {
-            let imgUrl = '/images' + image.substring(1)
-            let imgEl = new Image();
-            imgEl.src = imgUrl;
-            imgEl.onload = function() {
-              console.log(imgEl)
-              imagesLoaded++;
-              if(imagesLoaded === imagesCount){
-                resolve()
-              }
-            }
-          })
-        });
-        imageLoading.then(() => { 
-          console.log('images loaded')
-        })
-      },
       definingClickedProject(context, {projectSlug, rotation, scale}) {
         let projectEl = document.querySelector(`#projects .${projectSlug}`);
         let ghostContainer = projectEl.querySelector('.ghost-container');
