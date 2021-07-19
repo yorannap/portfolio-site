@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/projects/the-red-panda-project", {data:[{}],fetch:{},mutations:[]});

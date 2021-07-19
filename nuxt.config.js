@@ -2,15 +2,15 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  // generate config
-  render: {
-    static: {
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    }
-  },
+  // generate configs
   generate: {
-    static: {
-      maxAge: 1000 * 60 * 60 * 24 * 7
+    routes: function() {
+      let mainJson = require('./assets/main.json')
+      let routes = []
+      mainJson.projects.forEach(project => {
+        routes.push(`/projects/${project.slug}`)
+      });
+      return routes
     }
   },
 
@@ -29,6 +29,9 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://use.typekit.net/qat8pbi.css' }
+    ],
+    script: [
+      { src: 'https://www.googletagmanager.com/gtag/js?id=UA-134826839-1', defer: true }
     ]
   },
 

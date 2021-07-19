@@ -18,55 +18,12 @@
     "kicker": "Designer",
     "name": "Yoran Nap",
     "paragraphs": [
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "Born in the Netherlands, raised in New Zealand and living in Wellington. I’ve always loved building and designing things ever since I fell in love with Photoshop in 2013. I haven’t been able to stop! I love designing and creating things that help solve a problem.",
       "senior designer <a href='https://storbie.com' class='button' target='_blank'>@storbie</a>",
       "contact me at <a href='mailto:yoran.nap@gmail.com' class='button'>yoran.nap@gmail.com</a>"
     ]
   },
   "projects": [
-    {
-      "slug": "wellington-posters",
-      "title": "Wellington Posters",
-      "kicker": "graphic design",
-      "year": "2020",
-      "color": "f5ce4e",
-      "introduction": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.",
-      "thumbnail": "/images/wellington.jpg",
-      "sections": [
-        {
-          "type": "heading",
-          "data": "Introduction"
-        },
-        {
-          "type": "paragraph",
-          "data": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
-        },
-        {
-          "type": "paragraph",
-          "data": "Amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
-        },
-        {
-          "type": "image",
-          "data": "/images/wellington.jpg"
-        },
-        {
-          "type": "heading",
-          "data": "Introduction"
-        },
-        {
-          "type": "paragraph",
-          "data": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
-        },
-        {
-          "type": "paragraph",
-          "data": "Amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
-        },
-        {
-          "type": "image",
-          "data": "/images/wellington.jpg"
-        }
-      ]
-    },
     {
       "slug": "the-red-panda-project",
       "title": "The Red Panda Project",
@@ -78,19 +35,70 @@
       "sections": [
         {
           "type": "heading",
-          "data": "Introduction"
+          "data": "What’s the story?"
         },
         {
           "type": "paragraph",
-          "data": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+          "data": "One of the cutest and most innocent bamboo-loving creatures on the planet became endangered in 2008 and still runs a high risk of becoming extinct in the wild. "
         },
         {
           "type": "paragraph",
-          "data": "Amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis. Cupiditate doloribus reprehenderit minus exercitationem voluptatum perferendis dignissimos saepe. Deserunt, odit asperiores!"
+          "data": "Less than approximately 10,000 of these (slightly larger than) cat sized critters still have the privilege of roaming the high mountains with bamboo bedded forests ranging from the eastern Himalayas through to south-west China."
         },
         {
-          "type": "image",
-          "data": "/images/panda.jpg"
+          "type": "paragraph",
+          "data": "Snacking on bamboo with their opposable thumbs and napping on high branches with dangling legs are among their daily activities. All things that aren’t easy to do while being hunted for their fur and forced to the boundaries of their natural habitat."
+        },
+        {
+          "type": "heading",
+          "data": "What’s the project?"
+        },
+        {
+          "type": "paragraph",
+          "data": "I wanted to create a purposeful, engaging and palatable digital experience to help tell a compelling story about a serious and difficult issue."
+        },
+        {
+          "type": "paragraph",
+          "data": "On the surface UI, Web and Graphic design are skillsets focused on colour palettes, typography, composition and hierarchy. But when you couple those disciplines with research, purpose and user centric experiences you get a powerful and persuasive way to tell important stories."
+        },
+        {
+          "type": "paragraph",
+          "data": "I wanted to handle every aspect of this project, from planning and research, to illustration and designing, to coding and testing. It’s a great way for me to be able to find my weak spots, hone my skillsets, learn new things, and to have some fun and ownership over the entire project."
+        },
+        {
+          "type": "heading",
+          "data": "Why Red Pandas?"
+        },
+        {
+          "type": "paragraph",
+          "data": "They’re cute, innocent, personable, and weirdly humanly. The perfect candidate to lead the story and set the stage for all endangered species across the globe."
+        },
+        {
+          "type": "paragraph",
+          "data": "Movie’s are generally written to follow and tell the story of the main character. It’s a simplistic way to tell a personal, relatable, memorable and rich story. This is the approach I wanted to take with this project."
+        }
+      ]
+    },
+    {
+      "slug": "the-crystal-cave",
+      "title": "The Crystal Cave",
+      "kicker": "ecommerce experience",
+      "year": "2019",
+      "color": "90C3A9",
+      "introduction": "An educational ecommerce experience designed to drive purchasing and engagement behaviour",
+      "thumbnail": "/images/crystal.jpg",
+      "sections": [
+        {
+          "type": "heading",
+          "data": "Project Summary"
+        },
+        {
+          "type": "paragraph",
+          "data": "This was a project I did with Craig and Ivana from The Crystal Cave. The goal was to create a very user friendly and educational crystal shopping experience for customers."
+        },
+        {
+          "type": "paragraph",
+          "data": "We did this by providing 'Crystal Wisdom' for each product available on the website so that customers can read about the origin and energy of the crystals they are buying to make sure they get exactly what they're looking for."
         }
       ]
     }
