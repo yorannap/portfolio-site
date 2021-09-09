@@ -13,9 +13,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_f54a51ce from 'nuxt_plugin_plugin_f54a51ce' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_pluginserver_9df07ba6 from 'nuxt_plugin_pluginserver_9df07ba6' // Source: ./color-mode/plugin.server.js (mode: 'server')
-import nuxt_plugin_pluginclient_4b4e50a5 from 'nuxt_plugin_pluginclient_4b4e50a5' // Source: ./color-mode/plugin.client.js (mode: 'client')
+import nuxt_plugin_plugin_eb78e726 from 'nuxt_plugin_plugin_eb78e726' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_pluginserver_21bc2659 from 'nuxt_plugin_pluginserver_21bc2659' // Source: ./color-mode/plugin.server.js (mode: 'server')
+import nuxt_plugin_pluginclient_87fa965e from 'nuxt_plugin_pluginclient_87fa965e' // Source: ./color-mode/plugin.client.js (mode: 'client')
 import nuxt_plugin_locomotiveScroll_749f05df from 'nuxt_plugin_locomotiveScroll_749f05df' // Source: ../plugins/locomotiveScroll.js (mode: 'client')
 
 // Component: <ClientOnly>
@@ -213,16 +213,16 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_f54a51ce === 'function') {
-    await nuxt_plugin_plugin_f54a51ce(app.context, inject)
+  if (typeof nuxt_plugin_plugin_eb78e726 === 'function') {
+    await nuxt_plugin_plugin_eb78e726(app.context, inject)
   }
 
-  if (process.server && typeof nuxt_plugin_pluginserver_9df07ba6 === 'function') {
-    await nuxt_plugin_pluginserver_9df07ba6(app.context, inject)
+  if (process.server && typeof nuxt_plugin_pluginserver_21bc2659 === 'function') {
+    await nuxt_plugin_pluginserver_21bc2659(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_pluginclient_4b4e50a5 === 'function') {
-    await nuxt_plugin_pluginclient_4b4e50a5(app.context, inject)
+  if (process.client && typeof nuxt_plugin_pluginclient_87fa965e === 'function') {
+    await nuxt_plugin_pluginclient_87fa965e(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_locomotiveScroll_749f05df === 'function') {

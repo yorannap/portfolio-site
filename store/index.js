@@ -10,7 +10,8 @@ const createStore = () => {
         clickedProject: {
           rotation: 0,
           x: 50 + "%",
-          y: 700,
+          y: 900,
+          opacity: 0,
           scale: 1,
           width: null,
           height: null,
@@ -117,6 +118,7 @@ const createStore = () => {
         // defining properties
         let projectValues = {
           rotation: rotation,
+          opacity: 1,
           x: x,
           y: y,
           scale: scale,
@@ -159,7 +161,7 @@ const createStore = () => {
           throttle(animate, 10);
         }
 
-        function animate(){
+        function animate() {
           // update locomotive scroll
           context.state.scroll.update();
           // define project elements to animate
@@ -177,17 +179,9 @@ const createStore = () => {
           }
           // animate project
           if(context.state.singleProject.section !== undefined) {
-            gsap.to(context.state.singleProject.titles, {
-              y: - context.state.mouseOffset.y, 
-              x: - context.state.mouseOffset.x });
-
-            gsap.to([context.state.singleProject.kicker, context.state.singleProject.summary], {
-              y: - (context.state.mouseOffset.y * 0.8), 
-              x: - context.state.mouseOffset.x * 0.8 });
-
             gsap.to(context.state.singleProject.container, {
-              y: context.state.mouseOffset.y / 2, 
-              x: context.state.mouseOffset.x / 2});
+              y: context.state.mouseOffset.y, 
+              x: context.state.mouseOffset.x});
           }
         }
       },

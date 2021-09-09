@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import gsap from 'gsap';
 export default {
   data() {
     return {
@@ -37,7 +38,18 @@ export default {
       this.$colorMode.preference = this.themeMode
     }
   },
-
+  mounted() {
+    let childElements = document.querySelector('header');
+    console.log(childElements)
+    gsap.from(childElements, {
+      opacity: 0,
+      scale: 0.98,
+      ease: "power4.out",
+      duration: 1,
+      clearProps: "all",
+      delay: 1.25,
+    });
+  }
 }
 </script>
 
@@ -95,5 +107,14 @@ header > * {
   top: calc(100% - 75px);
   left: 40px;
   position: fixed;
+}
+
+.icon-container:hover, .logo:hover {
+  opacity: 0.6;
+}
+
+.icon-container, .logo {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.25, 0, 0, 0.75);
 }
 </style>

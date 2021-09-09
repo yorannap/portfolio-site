@@ -14,9 +14,23 @@
 
       <div class="project-content container">
         <section v-for="section in project.sections" :key="section.index" :class="section.type" data-scroll>
-          <p v-if="section.type === 'paragraph'">{{ section.data }}</p>
-          <h3 v-if="section.type === 'heading'">{{ section.data }}</h3>
-          <img v-if="section.type === 'image'" :src="section.data" />
+          <div v-if="section.type === 'heading'">
+            <h3>{{ section.data }}</h3>
+          </div>
+          <div v-if="section.type === 'subtitle'">
+            <h4>{{ section.data }}</h4>
+          </div>
+          <div v-if="section.type === 'image'">
+            <img :src="section.data" />
+            <p class="caption">{{ section.caption }}</p>
+          </div>
+          <div v-if="section.type === 'paragraph'">
+            <p>{{ section.data }}</p>
+          </div>
+          <div v-if="section.type === 'link'">
+            <a :href="section.data" target="_blank" class="button">{{ section.text }}</a>
+            <p></p>
+          </div>
         </section>
       </div>
 
@@ -123,6 +137,7 @@ export default {
       let clickedProject = this.$store.getters.clickedProject;
       gsap.from(ghostContainer, {
         rotate: clickedProject.rotation,
+        opacity: clickedProject.opacity,
         width: clickedProject.width,
         height: clickedProject.height,
         scale: clickedProject.scale,
@@ -130,7 +145,7 @@ export default {
         top: clickedProject.y + (clickedProject.rectHeight / 2),
         ease: "power4.inOut",
         duration: 1,
-        clearProps: "all"
+        /* clearProps: "all" */
       });
       gsap.from([projectKickers, projectTitles, projectContent, projectSummary], {
         y: 20,
@@ -138,7 +153,7 @@ export default {
         ease: "out", 
         duration: 1,
         delay: 0.75,
-        clearProps: "all",
+        /* clearProps: "all", */
         onComplete: done
       });
     },
@@ -148,8 +163,7 @@ export default {
       let nextProjectTitle = el.querySelectorAll("#projects .project-titles");
       gsap.to([projectContent, projectsNotClicked, nextProjectTitle], {
           opacity: 0,
-          scale: 0.95,
-          ease: "power3.out",
+          ease: "inOut",
           duration: 1,
           onComplete: done,
         }
@@ -166,27 +180,56 @@ export default {
 </script>
 
 <style scoped>
-@keyframes sections {
+@keyframes images {
   from {
-    transform: scale(1.03);
+    transform: scale(0.95);
     opacity: 0;
-    transition-timing-function: cubic-bezier(0.19,1,0.22,1);
+    transition-timing-function: cubic-bezier(0, 0.8, 0, 1);
   }
 }
 
-.project-content section.is-inview {
-  animation-name: sections;
-  animation-duration: 1s;
+.project-content section.image.is-inview {
+  animation-name: images;
+  animation-duration: 0.7s;
+}
+
+h3 {
+  font-size: 150%;
+}
+
+h4 {
+  font-size: 120%;
+}
+
+h3, h4 {
+  margin-top: 5%;
+  margin-bottom: 1%;
+
 }
 
 .project-content {
   margin-top: 50px;
-  max-width: 800px;
 }
 
-section.image img {
-  margin-top: 20px;
-  margin-bottom: 30px;
+section {
+  max-width: 600px;
+  margin: auto;
+}
+
+section.image {
+  max-width: 750px;
+}
+
+section.image {
+  margin: 30px auto;
+}
+
+section.image .caption {
+  font-size: 80%;
+  max-width: 600px;
+  margin: 5px auto 0 auto;
+  color: #999;
+  text-align: center;
 }
 
 #projects.single .first .ghost-container,
