@@ -1,11 +1,9 @@
 <template>
   <div @mousemove="locoSingle">
     <div id="projects" class="single" @scroll="locoSingle" data-scroll-container>
-      <div class="featured-project first" :class="project.slug" data-scroll>
-        <p class="kicker">{{ project.kicker }}</p>
-        <div class="project-header">
-          <h2 class="project-title-1 project-titles">{{ project.title }}</h2>
-        </div>
+      <div class="featured-project main" :class="project.slug" data-scroll>
+        <p class="subheading">{{ project.kicker }}</p>
+        <h2 class="project-titles">{{ project.title }}</h2>
         <p class="summary">{{ project.introduction }}</p>
         <div class="ghost-container">
           <div class="project-image" :style="`background-image: url(${project.thumbnail})`"></div>
@@ -129,10 +127,9 @@ export default {
     css: false,
     appear: true,
     enter(el, done) {
+      let projectSummary = el.querySelectorAll('.featured-project p');
+      let projectTitle = el.querySelector('.featured-project h2');
       let ghostContainer = el.querySelector('.ghost-container');
-      let projectTitles = el.querySelector('.project-titles');
-      let projectKickers = el.querySelector('.kicker');
-      let projectSummary = el.querySelector('.summary');
       let projectContent = el.querySelector('.project-content');
       let clickedProject = this.$store.getters.clickedProject;
       gsap.from(ghostContainer, {
@@ -147,7 +144,7 @@ export default {
         duration: 1,
         /* clearProps: "all" */
       });
-      gsap.from([projectKickers, projectTitles, projectContent, projectSummary], {
+      gsap.from([projectTitle, projectContent, projectSummary], {
         y: 20,
         opacity: 0,
         ease: "out", 
@@ -188,9 +185,24 @@ export default {
   }
 }
 
+.subheading {
+  padding-top: 130px;
+}
+
+.summary {
+  text-align: center;
+  width: 90vw;
+  max-width: 800px;
+  margin: auto;
+}
+
 .project-content section.image.is-inview {
   animation-name: images;
   animation-duration: 0.7s;
+}
+
+h2 {
+  margin-top: 0.4em;
 }
 
 h3 {
@@ -232,22 +244,14 @@ section.image .caption {
   text-align: center;
 }
 
-#projects.single .first .ghost-container,
-#projects.single .first .project-header {
+.featured-project.main .ghost-container,
+.featured-project.main .project-header {
   max-width: 1200px;
   width: 90vw;
 }
 
-#projects.single .first .ghost-container {
-  top: 37rem;
-}
-
-#projects.single .first .kicker {
-  top: 21rem;
-}
-
-.featured-project.first {
-  height: 50rem;
+.featured-project.main .ghost-container {
+  top: 30em;
 }
 
 /*** NEXT PROJECT ***/
@@ -266,6 +270,6 @@ section.image .caption {
 }
 .next-project .project-header {
   z-index: 5;
-  top: 70%;
+  top: 55%;
 }
 </style>

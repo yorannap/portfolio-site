@@ -76,6 +76,7 @@ header {
   max-width: 1400px;
   width: 100vw;
   height: 100vh;
+  margin: auto;
   position: fixed;
   pointer-events: none;
   z-index: 10;
@@ -94,18 +95,18 @@ header > * {
 
 .logo {
   position: absolute;
-  top: 30px;
-  left: 40px;
+  top: 25px;
+  left: 5vw;
 }
 .about {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 20px;
+  right: 4vw;
 }
 
 .color-mode-switch {
-  top: calc(100% - 75px);
-  left: 40px;
+  top: calc(100% - 65px);
+  left: 3.2vw;
   position: fixed;
 }
 

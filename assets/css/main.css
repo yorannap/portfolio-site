@@ -184,8 +184,7 @@ p.kicker {
 .ghost-container, 
 .ghost-wrapper,
 .project-header,
-.kicker,
-.summary {
+.kicker {
   width: 50vw;
   height: 40vw;
   max-width: 500px;
@@ -194,13 +193,6 @@ p.kicker {
   top: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-}
-
-.summary {
-  text-align: center;
-  width: 90vw;
-  max-width: 800px;
-  top: 29rem;
 }
 
 .project-image {
@@ -229,8 +221,7 @@ p.kicker {
 
 .project-title-1,
 .project-title-2,
-.kicker,
-.summary {
+.kicker {
   margin-top: -0.25em;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -251,7 +242,6 @@ p.kicker {
   margin-bottom: 5rem;
 }
 
-.summary,
 .kicker,
 .project-titles,
 .ghost-container,

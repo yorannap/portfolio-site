@@ -135,53 +135,37 @@ const createStore = () => {
         context.commit('setIsMobileTablet', check)
       },
       locoSingle(context, e) {
-        // map range utility function
-        function mapRange(value, low1, high1, low2, high2) {
-          return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-        }
-
-        // throttle function
-        function throttle(callback, limit) {
-          if (!context.state.throttleWait) {
-            callback.call();
-            context.state.throttleWait = true;
-            setTimeout(function () {
-              context.state.throttleWait = false;
-            }, limit);
+        if(context.state.isMobileTablet === false) {
+          // map range utility function
+          function mapRange(value, low1, high1, low2, high2) {
+            return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
           }
-        }
-        
-        // lock scroll on project click
-        let projectsContainer = document.querySelector('#projects');
-        if(context.state.animActive === false) {
-          projectsContainer.style.overflowY = 'hidden';
-          return;
-        }
-        else {
-          throttle(animate, 10);
-        }
-
-        function animate() {
-          // update locomotive scroll
-          context.state.scroll.update();
-          // define project elements to animate
-          context.commit('updateSingleProjectElements')
-          // if mousemove and not mobile or tablet then set new co-ordinates and offset
-          if((e !== undefined) && (context.state.isMobileTablet === false)) {
-            if (e.type === 'mousemove') {
+          // lock scroll on project click
+          let projectsContainer = document.querySelector('#projects');
+          if(context.state.animActive === false) {
+            projectsContainer.style.overflowY = 'hidden';
+            return;
+          }
+          else {
+            // update locomotive scroll
+            context.state.scroll.update();
+            // define project elements to animate
+            context.commit('updateSingleProjectElements')
+            // if mousemove and not mobile or tablet then set new co-ordinates and offset
+            if((e !== undefined) && (e.type === 'mousemove')) {
               let mouseOffsetX = mapRange(e.clientX, 0, window.innerHeight, -10, 10);
               let mouseOffsetY = mapRange(e.clientY, 0, window.innerWidth, -10, 10);
               context.commit('updateMouseOffset', [mouseOffsetX, mouseOffsetY])
             }
-          }
-          else {
-            context.commit('updateMouseOffset', [0, 0])
-          }
-          // animate project
-          if(context.state.singleProject.section !== undefined) {
-            gsap.to(context.state.singleProject.container, {
-              y: context.state.mouseOffset.y, 
-              x: context.state.mouseOffset.x});
+            else {
+              context.commit('updateMouseOffset', [0, 0])
+            }
+            // animate project
+            if(context.state.singleProject.section !== undefined) {
+              gsap.to(context.state.singleProject.container, {
+                y: context.state.mouseOffset.y, 
+                x: context.state.mouseOffset.x});
+            }
           }
         }
       },
@@ -200,7 +184,6 @@ const createStore = () => {
             }, limit);
           }
         }
-        
         // lock scroll on project click
         let projectsContainer = document.querySelector('#projects');
         if(context.state.animActive === false) {
