@@ -20,6 +20,8 @@ html {
   --transition-speed: 0.5s;
   --transition: 
     color var(--transition-speed), 
+    fill var(--transition-speed), 
+    stroke var(--transition-speed), 
     background-color var(--transition-speed), 
     box-shadow var(--transition-speed);
 }

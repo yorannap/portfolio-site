@@ -1,6 +1,8 @@
 <template>
   <header>
-    <div class="logo">
+    <!-- <div class="bg-solid top"></div> -->
+    <div class="bg-fade top"></div>
+    <div class="logo icon-container">
       <nuxt-link to="/">
         <p>yorannap</p>
       </nuxt-link>
@@ -15,6 +17,7 @@
         </div>
       </nuxt-link>
     </div>
+    <div class="bg-fade bottom"></div>
   </header>
 </template>
 
@@ -67,6 +70,9 @@ export default {
 .icon-container svg path {
   fill: var(--color-primary);
   transition: var(--transition);
+  stroke: var(--bg-primary);
+  stroke-width: 20px;
+  paint-order: stroke;
 }
 
 header {
@@ -94,28 +100,31 @@ header > * {
 }
 
 .logo {
+  z-index: 10;
   position: absolute;
   top: 25px;
   left: 5vw;
 }
 .about {
+  z-index: 10;
   position: absolute;
   top: 20px;
   right: 4vw;
 }
 
 .color-mode-switch {
+  z-index: 10;
   top: calc(100% - 65px);
   left: 3.2vw;
   position: fixed;
 }
 
 .icon-container:hover, .logo:hover {
-  opacity: 0.6;
+  transform: scale(1.1);
 }
 
 .icon-container, .logo {
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.25, 0, 0, 0.75);
 }
 </style>
