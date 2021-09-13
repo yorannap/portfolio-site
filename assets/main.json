@@ -93,13 +93,9 @@
       "kicker": "graphic design",
       "year": "2021",
       "color": "f4cc73",
-      "introduction": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.",
+      "introduction": "Coming Soon!",
       "thumbnail": "/images/wellington.jpg",
       "sections": [
-        {
-          "type": "heading",
-          "data": "Coming soon"
-        }
       ]
     },
     {
@@ -108,13 +104,9 @@
       "kicker": "ecommerce experience",
       "year": "2019",
       "color": "90C3A9",
-      "introduction": "An educational ecommerce experience designed to drive purchasing and engagement behaviour",
+      "introduction": "Coming Soon!",
       "thumbnail": "/images/crystal.jpg",
       "sections": [
-        {
-          "type": "heading",
-          "data": "Coming soon"
-        }
       ]
     }
   ]

@@ -251,7 +251,13 @@ section.image .caption {
 }
 
 .featured-project.main .ghost-container {
-  top: 30em;
+  top: 28em;
+}
+
+@media only screen and (max-height: 600px) {
+  .featured-project.main .ghost-container {
+    top: 25em;
+  }
 }
 
 /*** NEXT PROJECT ***/
@@ -261,7 +267,7 @@ section.image .caption {
   overflow: hidden;
 }
 .next-project .featured-project {
-  height: 100%;
+  min-height: 100%;
 }
 
 .next-project .ghost-container {
