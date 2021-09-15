@@ -6,6 +6,7 @@ const createStore = () => {
   return new Vuex.Store({
     state() {
       return {
+        rotation: null,
         throttleWait: false,
         clickedProject: {
           rotation: 0,
@@ -310,6 +311,10 @@ const createStore = () => {
         context.commit('initScroll', scroll);
         context.dispatch('gsapDefaults');
         context.dispatch('mobileAndTabletCheck');
+        context.state.rotation = window.matchMedia("(orientation: portrait)")
+        context.state.rotation.addEventListener('change', () => {
+          location.reload();
+        })
       }
     },
     getters: {
