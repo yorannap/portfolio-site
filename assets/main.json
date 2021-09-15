@@ -17,8 +17,9 @@
   "about": {
     "kicker": "Designer",
     "name": "Yoran Nap",
+    "intro": "Currently a senior designer <a href='https://storbie.com' class='button' target='_blank'>@storbie</a> in Wellington, NZ. You can contact me at <a href='mailto:yoran.nap@gmail.com' class='button'>yoran.nap@gmail.com</a> and connect with me on <a href='https://www.linkedin.com/in/yoran-nap/' target='_blank' class='button'>@linkedin</a>",
     "paragraphs": [
-      "Currently a senior designer <a href='https://storbie.com' class='button' target='_blank'>@storbie</a> in Wellington, NZ. You can contact me at <a href='mailto:yoran.nap@gmail.com' class='button'>yoran.nap@gmail.com</a> and connect with me on <a href='https://www.linkedin.com/in/yoran-nap/' class='button'>@linkedin</a>"
+      "I started my journey back in 2014, messing around with Photoshop, designing album art for up-and-coming Soundcloud artists. I loved it and transitioned into part-time freelance work while studying Visual Communication at Yoobee School of Design in Christchurch back in 2017.", "After graduating, I jumped into freelance work - designing a range of websites, branding identities, graphics and animations full-time for 2.5 years before joining the team at Storbie in Wellington. At Storbie, I have contributed to the redesign of storbie.com, created a virtual studio, helped redefine the brand, and led the product design of many new features among other projects.", "In my spare time, I love working on passion projects like the Red Panda project and still take on freelance projects whenever I can. I am also passionate about music production, cooking, front-end development, reading and hanging out with my partner. Working together within a team and focusing on creating the best possible product for the user is where I thrive.", "Feel free to get in touch; I’m always keen for a chat!"
     ]
   },
   "projects": [
@@ -222,6 +223,138 @@
       ]
     },
     {
+      "slug": "virtual-studio",
+      "title": "Designing a Virtual Studio",
+      "kicker": "problem solving",
+      "year": "2021",
+      "color": "aef7ff",
+      "introduction": "Boosting the internal team’s productivity and customer satisfaction with a virtual studio.",
+      "thumbnail": "/projects/virtual-studio/hero.png",
+      "sections": [
+        {
+          "type": "paragraph",
+          "data": "One of my first projects after joining the Storbie team was to improve the quality of our customers’ websites visually and structurally - adding value and improving the performance of their websites."
+        },
+        {
+          "type": "paragraph",
+          "data": "We needed to do this quickly and effectively as we had a large influx of new customers wanting websites to support their businesses and community through the 2020 lockdown."
+        },
+        {
+          "type": "paragraph",
+          "data": "After some brainstorming, we decided that creating a library of graphics was the best way to approach the problem. These graphics would allow our customers to add visual interest to their website; supporting their content. These graphics needed to meet a few different criteria to be effective."
+        },
+        {
+          "type": "subtitle",
+          "data": "Original and copyright safe"
+        },
+        {
+          "type": "paragraph",
+          "data": "We wanted our customers to use these graphics without restriction to avoid legal complications that could come with licensed graphics.  For this reason, we decided to design the graphics in-house."
+        },
+        {
+          "type": "subtitle",
+          "data": "Scalability"
+        },
+        {
+          "type": "paragraph",
+          "data": "Our main customer industries included pharmacies, veterinaries and general retail. We needed the graphics to work in the context of their websites to effectively support their content. The graphics library needed to be adaptable and scalable, so we could add new graphics as we grew."
+        },
+        {
+          "type": "paragraph",
+          "data": "We decided to build this library in the form of icons rather than illustrations or photography. Since icons are vector-based we could easily manipulate colour, line thickness and background."
+        },
+        {
+          "type": "image",
+          "data": "/projects/virtual-studio/all-icons.png",
+          "caption": "The full library of graphics"
+        },
+        {
+          "type": "subtitle",
+          "data": "Uniqueness"
+        },
+        {
+          "type": "paragraph",
+          "data": "We needed the graphics to be dynamic and unique to each customer so that no two websites would look the same. To do this, we decided to inject the brand colours of the customers’ business directly into the icons."
+        },
+        {
+          "type": "paragraph",
+          "data": "Colour alone wasn’t going to be enough, so adding a background shape was another way we could add variety. The background shape could be filled with colour, be opaque or transparent. They could have a stroke, be a circle, be a square or anything in between. Adding these variables exponentially increased the possible visual outcomes, meaning we could create a perfectly unique combination for each customer."
+        },
+        {
+          "type": "image",
+          "data": "/projects/virtual-studio/variations.png",
+          "caption": "A demonstration of some possible variations"
+        },
+        {
+          "type": "heading",
+          "data": "The process"
+        },
+        {
+          "type": "paragraph",
+          "data": "Initially, all 107 icons were designed in Adobe Illustrator. Using global colours and, with a few tweaks, an experienced Illustrator user could export the library and upload them to a customer site in 10 to 15 minutes."
+        },
+        {
+          "type": "paragraph",
+          "data": "Customers were happy, their sites were more unique, and much quicker to build. This was great, but there was still room for improvement. We were bound to get hundreds of new customers in the coming months, and the team had to rely on me to export the graphics for each site. 10 to 15 minutes per site started to add up pretty quickly."
+        },
+        {
+          "type": "paragraph",
+          "data": "I ended up building a web application to solve this issue. The app needed to be user friendly and easy to use so that anyone in Storbie could export the graphics in under a minute."
+        },
+        {
+          "type": "image",
+          "data": "/projects/virtual-studio/final.png",
+          "caption": "A screenshot of the virtual studio in action"
+        },
+        {
+          "type": "subtitle",
+          "data": "Conceptualising"
+        },
+        {
+          "type": "paragraph",
+          "data": "We needed an MVP to validate the idea and to make sure it was worthwhile and effective. Using plain HTML, CSS, and Javascript, I built a prototype."
+        },
+        {
+          "type": "paragraph",
+          "data": "After validating the MVP, we thought there might be more elements that could benefit from this approach - like the generation of unique sidebar graphics, dividers and illustrations. To make this expansion, we needed to start working with a front-end framework to make life a bit easier as the project grew."
+        },
+        {
+          "type": "paragraph",
+          "data": "After refactoring the original code and injecting it into the Vue framework, we had a V1 of the virtual studio ready to roll and improve as we saw fit."
+        },
+        {
+          "type": "subtitle",
+          "data": "Addition use cases"
+        },
+        {
+          "type": "paragraph",
+          "data": "A few months later, we made a few alterations to Storbie’s branding and needed to update the brand guidelines. Rather than creating a PDF that would get lost and altered with multiple versions, I decided to incorporate the brand guidelines into the Studio. This created a source of truth so that the guidelines could dynamically grow in one place."
+        },
+        {
+          "type": "image",
+          "data": "/projects/virtual-studio/branding.png",
+          "caption": "Showcasing the branding page in the studio"
+        },
+        {
+          "type": "paragraph",
+          "data": "Another way we ended up using the Studio was to generate sidebar and divider graphics for our customers. I also coded a JSON editor within the Studio, allowing anyone on our team to create our technically complex content packs without dev knowledge."
+        },
+        {
+          "type": "subtitle",
+          "data": "Reflection"
+        },
+        {
+          "type": "paragraph",
+          "data": "I am very happy with the result. This virtual studio has saved our team a tonne of time and significantly improved the visual direction of our customer websites. Learning to code with Vue and making the studio as dynamic and agile as we needed it to be was a big learning curve for me. However, it was so much fun to work on, and the end product is exactly what we needed. On to the next one!"
+        },
+        {
+          "type": "link",
+          "data": "https://studio.yorannap.me/",
+          "text": "View the live project 🙌"
+        }
+      ]
+    },
+    {
       "slug": "wellington-posters",
       "title": "Wellington Posters",
       "kicker": "graphic design",
@@ -229,17 +362,6 @@
       "color": "f4cc73",
       "introduction": "Coming Soon!",
       "thumbnail": "/images/wellington.jpg",
-      "sections": [
-      ]
-    },
-    {
-      "slug": "the-crystal-cave",
-      "title": "The Crystal Cave",
-      "kicker": "ecommerce experience",
-      "year": "2019",
-      "color": "90C3A9",
-      "introduction": "Coming Soon!",
-      "thumbnail": "/images/crystal.jpg",
       "sections": [
       ]
     }

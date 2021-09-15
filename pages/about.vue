@@ -3,7 +3,11 @@
     <img src="/images/memoji.jpg" alt="Yoran's profile picture" class="profile frame">
     <p class="subheading">{{ mainJson.about.kicker }}</p>
     <h2>{{ mainJson.about.name }}</h2>
-    <p v-for="paragraph in mainJson.about.paragraphs" :key="paragraph" v-html="paragraph"></p>
+    <p v-html="mainJson.about.intro" class="intro"></p>
+    <div class="about-content">
+      <p v-for="paragraph in mainJson.about.paragraphs" :key="paragraph" v-html="paragraph"></p>
+      <nuxt-link to="/" class="button">View projects 👀</nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -48,8 +52,21 @@ export default {
 </script>
 
 <style scoped>
-p, h2 {
+.about-content {
+  max-width: 600px;
+  margin: auto;
+}
+
+p.intro {
+  font-size: 1.2em;
+  line-height: 1.4em;
+  margin-bottom: 1.2em!important;
+}
+
+p.intro, h2 {
   text-align: center;
+  max-width: 800px!important;
+  margin: auto;
 }
 
 img.profile {
@@ -58,6 +75,5 @@ img.profile {
   margin: auto;
   margin-bottom: 30px;
   display: block;
-  
 }
 </style>
