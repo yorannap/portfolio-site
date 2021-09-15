@@ -243,7 +243,7 @@ section {
 }
 
 section.image {
-  max-width: 900px;
+  max-width: 850px;
   margin: 50px auto;
 }
 
