@@ -25,6 +25,11 @@
           <div v-if="section.type === 'paragraph'">
             <p>{{ section.data }}</p>
           </div>
+          <div v-if="section.type === 'list'">
+            <ol>
+              <li v-for="item in section.data" :key="item">{{ item }}</li>
+            </ol>
+          </div>
           <div v-if="section.type === 'link'">
             <a :href="section.data" target="_blank" class="button">{{ section.text }}</a>
             <p></p>
@@ -219,6 +224,15 @@ h3, h4 {
 
 }
 
+ol {
+  margin-left: 2.5em;
+  margin-bottom: 1em;
+}
+
+li::marker {
+  font-weight: 700;
+}
+
 .project-content {
   margin-top: 50px;
 }
@@ -229,11 +243,12 @@ section {
 }
 
 section.image {
-  max-width: 750px;
+  max-width: 900px;
+  margin: 50px auto;
 }
 
-section.image {
-  margin: 30px auto;
+section.image img {
+  box-shadow: 0px 5px 50px var(--shadow-color);
 }
 
 section.image .caption {

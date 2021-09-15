@@ -28,62 +28,196 @@
       "kicker": "digital experience",
       "year": "2020",
       "color": "E6C1B1",
-      "introduction": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vitae quos molestias exercitationem adipisci fugiat eaque doloremque blanditiis.",
+      "introduction": "Bringing awareness to a flagship species through a digital experience.",
       "thumbnail": "/images/panda.jpg",
       "sections": [
         {
-          "type": "heading",
-          "data": "What’s the story?"
+          "type": "paragraph",
+          "data": "I wanted to create a purposeful, engaging and palatable digital experience to help tell the story of the Red Panda."
         },
         {
           "type": "paragraph",
-          "data": "One of the cutest and most innocent bamboo-loving creatures on the planet became endangered in 2008 and still runs a high risk of becoming extinct in the wild. "
+          "data": "Less than 10,000 of these cute endangered animals are left to roam the bamboo bedded forests of the eastern Himalayas through to southwest China."
         },
         {
           "type": "paragraph",
-          "data": "Less than approximately 10,000 of these (slightly larger than) cat sized critters still have the privilege of roaming the high mountains with bamboo bedded forests ranging from the eastern Himalayas through to south-west China."
-        },
-        {
-          "type": "paragraph",
-          "data": "Snacking on bamboo with their opposable thumbs and napping on high branches with dangling legs are among their daily activities. All things that aren’t easy to do while being hunted for their fur and forced to the boundaries of their natural habitat."
-        },
-        {
-          "type": "subtitle",
-          "data": "What’s the project?"
-        },
-        {
-          "type": "paragraph",
-          "data": "I wanted to create a purposeful, engaging and palatable digital experience to help tell a compelling story about a serious and difficult issue."
+          "data": "They’re best known for snacking on bamboo with their opposable thumbs and napping on high branches with dangling legs. All things that are not easy to do whilst being hunted for their fur and forced to the boundaries of their habitat."
         },
         {
           "type": "image",
-          "data": "/images/wellington.jpg",
-          "caption": "Some random caption describing the image"
+          "data": "/projects/red-panda/philippe-oursel-NuTeY7SV-D8-unsplash.jpg",
+          "caption": "Photo by Philippe Oursel on Unsplash"
         },
         {
           "type": "paragraph",
-          "data": "On the surface UI, Web and Graphic design are skillsets focused on colour palettes, typography, composition and hierarchy. But when you couple those disciplines with research, purpose and user centric experiences you get a powerful and persuasive way to tell important stories."
-        },
-        {
-          "type": "paragraph",
-          "data": "I wanted to handle every aspect of this project, from planning and research, to illustration and designing, to coding and testing. It’s a great way for me to be able to find my weak spots, hone my skillsets, learn new things, and to have some fun and ownership over the entire project."
+          "data": "I wanted to handle every aspect of this project; planning, research, illustration, design, coding and testing - all to challenge my skillsets."
         },
         {
           "type": "heading",
-          "data": "Why Red Pandas?"
+          "data": "The strategic approach"
         },
         {
           "type": "paragraph",
-          "data": "They’re cute, innocent, personable, and weirdly humanly. The perfect candidate to lead the story and set the stage for all endangered species across the globe."
+          "data": "Simplicity, interactivity and playfulness were the key values driving the decisions for the project. With this, the information became more digestible and piqued the interest of the user. Since Red Pandas are playful, it made for a fun and intriguing creative direction."
+        },
+        {
+          "type": "image",
+          "data": "/projects/red-panda/brainstorm.png",
+          "caption": "A mind map to brainstorm project connections"
+        },
+        {
+          "type": "heading",
+          "data": "The design approach"
         },
         {
           "type": "paragraph",
-          "data": "Movie’s are generally written to follow and tell the story of the main character. It’s a simplistic way to tell a personal, relatable, memorable and rich story. This is the approach I wanted to take with this project."
+          "data": "While researching I found Red Pandas are best known to be curious, innocent and playful. I felt illustrations would be the best way to embody these characteristics. I tried several different styles and approaches to incorporate this. The one I ended up with felt like the perfect balance between geometric simplicity and freehand fun, which made for a unique illustration style."
+        },
+        {
+          "type": "image",
+          "data": "/projects/red-panda/concepts.png",
+          "caption": "Four illustration styles I explored"
+        },
+        {
+          "type": "paragraph",
+          "data": "My process for creating these illustrations was as followed:"
+        },
+        {
+          "type": "list",
+          "data": ["Find reference imagery", "Trace and adapt to create solid geometric shapes", "Scan and recreate in Adobe Illustrator", "Refine paths to make them more fluent and smooth", "Add secondary shapes to add interest and dimension", "Colour"]
+        },
+        {
+          "type": "paragraph",
+          "data": "Using shades of red, orange and yellow created a nice analogous palette that stayed true to the colours of Red Panda fur. It reinforced simplicity and gave a unified feel."
+        },
+        {
+          "type": "image",
+          "data": "/projects/red-panda/process.png",
+          "caption": "The illustration creation process"
+        },
+        {
+          "type": "subtitle",
+          "data": "Horizontal scroll"
+        },
+        {
+          "type": "paragraph",
+          "data": "To make this project feel like it was telling a story chapter-by-chapter, and to create a point of difference, I wanted to incorporate a horizontal scroll. With this page-by-page approach, the information became more structured and purposeful."
+        },
+        {
+          "type": "paragraph",
+          "data": "I was hoping that requiring the user to click from page to page would also encourage engagement and interactivity, enhancing the overall experience."
+        },
+        {
+          "type": "subtitle",
+          "data": "Animation and interactivity"
+        },
+        {
+          "type": "paragraph",
+          "data": "In an attempt to make the project more interesting and to add some WOW factor, I felt that animation was another key element to explore."
+        },
+        {
+          "type": "paragraph",
+          "data": "The initial zoom animation on page load instantly draws the user into the story they are about to experience. With each page-turn, content and illustrations smoothly guide the user from chapter to chapter, creating anticipation and excitement for what’s going to happen next."
+        },
+        {
+          "type": "image",
+          "data": "/projects/red-panda/page-turn.gif",
+          "caption": "Demonstrating how horizontal scroll works"
+        },
+        {
+          "type": "subtitle",
+          "data": "Layout and typography"
+        },
+        {
+          "type": "paragraph",
+          "data": "One way I was able to incorporate structure and simplicity was to stick with a fixed grid layout, making information organised and controlled without feeling rigid."
+        },
+        {
+          "type": "paragraph",
+          "data": "Combining a strong sans-serif with a crafty serif font, allowed for an interesting balance between serious and playful, further incorporating the project’s design ideology."
+        },
+        {
+          "type": "heading",
+          "data": "The process"
+        },
+        {
+          "type": "paragraph",
+          "data": "Once I had established the brief, it was time to research. Spending a solid chunk of time studying similar projects allowed me to have a broad palette of options and ideas to mix and match."
+        },
+        {
+          "type": "paragraph",
+          "data": "Research sources included Behance, Pinterest, Wikipedia, and National Geographic, among many others."
+        },
+        {
+          "type": "subtitle",
+          "data": "Conceptualising"
+        },
+        {
+          "type": "paragraph",
+          "data": "The next stage was spending time sketching, planning, wireframing and testing. This solidified the idea and concluded the direction for the rest of the project, as well as establishing the key points of uniqueness."
+        },
+        {
+          "type": "image",
+          "data": "/projects/red-panda/wireframes.png",
+          "caption": "Exploring various layouts with simple wireframes"
+        },
+        {
+          "type": "subtitle",
+          "data": "Coding"
+        },
+        {
+          "type": "paragraph",
+          "data": "I began coding this project on Wordpress due to its easy-to-use CMS, however, this created more code-clutter than it was worth. After some contemplation, I decided to learn and utilise Vue (a Javascript framework) - further challenging my front-end development skills."
+        },
+        {
+          "type": "paragraph",
+          "data": "Learning Vue was hugely beneficial. It not only elevated this project but has since helped improve some other projects of mine."
+        },
+        {
+          "type": "subtitle",
+          "data": "Technology"
+        },
+        {
+          "type": "paragraph",
+          "data": "The website is built and statically generated with Vue, using GSAP for animation, JSON to store data, and Netlify for hosting. With a file directory size of under 800kb, it’s super lean and loads in mere milliseconds."
+        },
+        {
+          "type": "image",
+          "data": "/projects/red-panda/code.jpg",
+          "caption": "A screenshot showing a glimpse of the project code"
+        },
+        {
+          "type": "heading",
+          "data": "Reflection"
+        },
+        {
+          "type": "paragraph",
+          "data": "One of my key learnings from this project was gaining a better understanding of research techniques. On this project, I spent a lot more time than usual conceptualising, which I now see was hugely beneficial and will help elevate future projects."
+        },
+        {
+          "type": "paragraph",
+          "data": "The second skill that was incredibly useful to learn was front-end development. With this, I was able to bring the project to life and have an end-product showcasing my efforts and more importantly; bringing awareness to the Red Panda."
+        },
+        {
+          "type": "subtitle",
+          "data": "Next time"
+        },
+        {
+          "type": "paragraph",
+          "data": "I would love to improve my sketching and drawing skills to create more textured, detailed and rich illustrations. I believe that strong illustrations have such a big impact on the uniqueness and feel of a project."
+        },
+        {
+          "type": "paragraph",
+          "data": "Secondly, this project took way too long to complete. I had other work I was juggling, but there’s no doubt there was fluff that could have been reduced to deliver the same project in a shorter timeframe."
+        },
+        {
+          "type": "paragraph",
+          "data": "Overall, this project has been great fun and I can’t wait to get my hands into the next one!"
         },
         {
           "type": "link",
           "data": "https://redpandasproject.com/",
-          "text": "View live project 🎋"
+          "text": "View the live project 🎋"
         }
       ]
     },
