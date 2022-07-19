@@ -2,22 +2,22 @@
   {
     "name": "about",
     "path": "/about",
-    "component": "/Users/yorannap/Downloads/portfolio-site/pages/about.vue",
+    "component": "/Users/yorannap/Downloads/Github/portfolio-site/pages/about.vue",
     "chunkName": "pages/about",
-    "_name": "_453c3b14"
+    "_name": "_12bd5ba4"
   },
   {
     "name": "projects-slug",
     "path": "/projects/:slug?",
-    "component": "/Users/yorannap/Downloads/portfolio-site/pages/projects/_slug.vue",
+    "component": "/Users/yorannap/Downloads/Github/portfolio-site/pages/projects/_slug.vue",
     "chunkName": "pages/projects/_slug",
-    "_name": "_167ee3c8"
+    "_name": "_316f88ae"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/Users/yorannap/Downloads/portfolio-site/pages/index.vue",
+    "component": "/Users/yorannap/Downloads/Github/portfolio-site/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_05cc858a"
+    "_name": "_32753669"
   }
 ]
