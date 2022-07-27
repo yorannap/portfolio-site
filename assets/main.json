@@ -355,6 +355,22 @@
       ]
     },
     {
+      "slug": "storbie-website-redesign",
+      "title": "Redesigning Storbie.com",
+      "kicker": "web design",
+      "year": "2021",
+      "color": "aef7ff",
+      "introduction": "Process documentation coming Soon!",
+      "thumbnail": "/projects/storbie-com/hero.jpeg",
+      "sections": [
+        {
+          "type": "link",
+          "data": "https://storbie.com/",
+          "text": "View the end result 🙌"
+        }
+      ]
+    },
+    {
       "slug": "wellington-posters",
       "title": "Wellington Posters",
       "kicker": "graphic design",
