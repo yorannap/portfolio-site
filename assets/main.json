@@ -31,6 +31,10 @@
       "color": "E6C1B1",
       "introduction": "Bringing awareness to a flagship species through a digital experience.",
       "thumbnail": "/projects/red-panda/hero.png",
+      "link": {
+        "data": "https://panda.yorannap.me/",
+        "text": "View the live project 🎋"
+      },
       "sections": [
         {
           "type": "paragraph",
@@ -216,9 +220,7 @@
           "data": "Overall, this project has been great fun and I can’t wait to get my hands into the next one!"
         },
         {
-          "type": "link",
-          "data": "https://panda.yorannap.me/",
-          "text": "View the live project 🎋"
+          "type": "link"
         }
       ]
     },
@@ -230,6 +232,10 @@
       "color": "aef7ff",
       "introduction": "Boosting the internal team’s productivity and customer satisfaction with a virtual studio.",
       "thumbnail": "/projects/virtual-studio/hero.png",
+      "link": {
+        "data": "https://studio.yorannap.me/",
+        "text": "View the live project 🙌"
+      },
       "sections": [
         {
           "type": "paragraph",
@@ -348,9 +354,7 @@
           "data": "I am very happy with the result. This virtual studio has saved our team a tonne of time and significantly improved the visual direction of our customer websites. Learning to code with Vue and making the studio as dynamic and agile as we needed it to be was a big learning curve for me. However, it was so much fun to work on, and the end product is exactly what we needed. On to the next one!"
         },
         {
-          "type": "link",
-          "data": "https://studio.yorannap.me/",
-          "text": "View the live project 🙌"
+          "type": "link"
         }
       ]
     },
@@ -362,12 +366,11 @@
       "color": "aef7ff",
       "introduction": "Process documentation coming Soon!",
       "thumbnail": "/projects/storbie-com/hero.jpeg",
+      "link": {
+        "data": "https://storbie.com/",
+        "text": "View the end result 🙌"
+      },
       "sections": [
-        {
-          "type": "link",
-          "data": "https://storbie.com/",
-          "text": "View the end result 🙌"
-        }
       ]
     },
     {
@@ -378,6 +381,7 @@
       "color": "f4cc73",
       "introduction": "Coming Soon!",
       "thumbnail": "/images/wellington.jpg",
+      "link": null,
       "sections": [
       ]
     }

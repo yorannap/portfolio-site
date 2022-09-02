@@ -11,6 +11,9 @@
       </div>
 
       <div class="project-content container">
+        <section v-if="project.link">
+          <a :href="project.link.data" target="_blank" class="featured-button">{{ project.link.text }}</a>
+        </section>
         <section v-for="section in project.sections" :key="section.index" :class="section.type" data-scroll>
           <div v-if="section.type === 'heading'">
             <h3>{{ section.data }}</h3>
@@ -31,8 +34,7 @@
             </ol>
           </div>
           <div v-if="section.type === 'link'">
-            <a :href="section.data" target="_blank" class="button">{{ section.text }}</a>
-            <p></p>
+            <a :href="project.link.data" target="_blank" class="featured-button">{{ project.link.text }}</a>
           </div>
         </section>
       </div>
@@ -292,5 +294,37 @@ section.image .caption {
 .next-project .project-header {
   z-index: 5;
   top: 55%;
+}
+
+/* FEATURED BUTTON */
+a.featured-button {
+  display: block;
+  margin: auto;
+  margin-bottom: 2em;
+  text-align: center;
+  text-decoration: none;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #eccb67);
+	background-size: 500% 500%;
+	animation: gradient 5s infinite;
+  border-radius: 0.5em;
+  border: none;
+  padding: 20px;
+  color: white;
+}
+
+a.featured-button:hover {
+  opacity: 0.8;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 </style>
