@@ -225,6 +225,21 @@
       ]
     },
     {
+      "slug": "wellington-eats",
+      "title": "Wellington Food Finder",
+      "kicker": "wellington eats",
+      "year": "2022",
+      "color": "f4c050",
+      "introduction": "Process documentation coming Soon!",
+      "thumbnail": "/projects/welly-eats/hero3.jpg",
+      "link": {
+        "data": "https://eat.yorannap.me/",
+        "text": "View the end result 🍔"
+      },
+      "sections": [
+      ]
+    },
+    {
       "slug": "virtual-studio",
       "title": "Designing a Virtual Studio",
       "kicker": "problem solving",
@@ -370,18 +385,6 @@
         "data": "https://storbie.com/",
         "text": "View the end result 🙌"
       },
-      "sections": [
-      ]
-    },
-    {
-      "slug": "wellington-posters",
-      "title": "Wellington Posters",
-      "kicker": "graphic design",
-      "year": "2021",
-      "color": "f4cc73",
-      "introduction": "Coming Soon!",
-      "thumbnail": "/images/wellington.jpg",
-      "link": null,
       "sections": [
       ]
     }
