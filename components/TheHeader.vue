@@ -80,7 +80,6 @@ header {
   /* mix-blend-mode: difference; */
   top: 0;
   left: 0;
-  max-width: 1400px;
   width: 100vw;
   height: 100vh;
   margin: auto;
